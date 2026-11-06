@@ -30,18 +30,18 @@ export const chapters = [
     },
     legalAnalysis: {
       rightsAffected: [
-        { id: "r1", label: "Hak atas perlindungan diri pribadi, keluarga, kehormatan, dan rasa aman", isCorrect: true, explanation: "Setiap warga negara berhak atas rasa aman dan perlindungan dari ancaman ketakutan (UUD 1945 Pasal 28G)." },
+        { id: "r1", label: "Hak atas perlindungan diri pribadi, keluarga, kehormatan, dan rasa aman", isCorrect: true, explanation: "Setiap orang berhak atas rasa aman dan perlindungan dari ancaman ketakutan (UUD 1945 Pasal 28G ayat (1)). Sebagai anak, Budi juga berhak atas perlindungan dari kekerasan (Pasal 28B ayat (2))." },
         { id: "r2", label: "Hak untuk bebas dari pekerjaan paksa", isCorrect: false, explanation: "Kasus ini tidak berkaitan dengan eksploitasi tenaga kerja." },
-        { id: "r3", label: "Hak memperoleh pendidikan yang layak tanpa intimidasi", isCorrect: true, explanation: "Aksi perundungan menyebabkan Budi takut pergi ke sekolah dan terganggu hak belajarnya." }
+        { id: "r3", label: "Hak memperoleh pendidikan yang layak tanpa intimidasi", isCorrect: true, explanation: "Aksi perundungan menyebabkan Budi takut pergi ke sekolah sehingga hak belajarnya terganggu (UUD 1945 Pasal 31 ayat (1) dan Pasal 28C ayat (1))." }
       ],
       dutiesNeglected: [
-        { id: "d1", label: "Kewajiban menghormati hak asasi manusia orang lain dalam tertib kehidupan bermasyarakat", isCorrect: true, explanation: "Pelaku mengabaikan hak Budi untuk hidup tenang dan dihormati martabatnya (UUD 1945 Pasal 28J)." },
+        { id: "d1", label: "Kewajiban menghormati hak asasi manusia orang lain dalam tertib kehidupan bermasyarakat", isCorrect: true, explanation: "Pelaku mengabaikan kewajiban menghormati hak asasi orang lain (UUD 1945 Pasal 28J ayat (1)). Kebebasan berekspresi di media sosial pun dibatasi demi hak orang lain (Pasal 28J ayat (2))." },
         { id: "d2", label: "Kewajiban membayar pajak tepat waktu", isCorrect: false, explanation: "Kewajiban perpajakan tidak relevan dengan konteks kasus siber di lingkungan sekolah ini." }
       ],
       legalArticles: [
         { id: "l1", label: "UUD 1945 Pasal 28G ayat (1) - Perlindungan Diri & Rasa Aman", isCorrect: true },
         { id: "l2", label: "UUD 1945 Pasal 28J ayat (1) - Menghormati Hak Orang Lain", isCorrect: true },
-        { id: "l3", label: "UU ITE / Peraturan Perundang-undangan Terkait Informasi Elektronik", isCorrect: true },
+        { id: "l3", label: "UU ITE Pasal 29 (diubah UU No. 1 Tahun 2024) - Ancaman Kekerasan melalui Informasi Elektronik", isCorrect: true },
         { id: "l4", label: "UUD 1945 Pasal 33 - Perekonomian Nasional", isCorrect: false }
       ]
     },
@@ -88,7 +88,7 @@ export const chapters = [
     ],
     realWorldAction: [
       "Simpan bukti percakapan atau tangkapan layar jika mengalami atau menyaksikan perundungan siber.",
-      "Laporkan ke pihak berwenang di sekolah (BK/Wali Kelas) atau platform aduan resmi (seperti Aduan Konten Kominfo).",
+      "Laporkan ke pihak sekolah (Wali Kelas, guru BK, atau kepala sekolah) dan gunakan fitur pelaporan di platform media sosial. Konten bermasalah juga dapat diadukan melalui kanal aduan konten resmi Kementerian Komunikasi dan Digital (Komdigi).",
       "Selalu junjung etika berinternet dan hormati hak privasi serta martabat orang lain di ruang digital."
     ]
   },
@@ -122,15 +122,15 @@ export const chapters = [
     },
     legalAnalysis: {
       rightsAffected: [
-        { id: "r1", label: "Hak atas lingkungan hidup yang baik dan sehat", isCorrect: true, explanation: "Diatur eksplisit dalam UUD 1945 Pasal 28H ayat (1)." },
+        { id: "r1", label: "Hak atas lingkungan hidup yang baik dan sehat", isCorrect: true, explanation: "Diatur eksplisit dalam UUD 1945 Pasal 28H ayat (1): hak atas lingkungan hidup yang baik dan sehat serta pelayanan kesehatan." },
         { id: "r2", label: "Hak memilih kewarganegaraan", isCorrect: false, explanation: "Tidak ada hubungannya dengan status kewarganegaraan." }
       ],
       dutiesNeglected: [
-        { id: "d1", label: "Kewajiban menjaga kelestarian fungsi lingkungan hidup dan membuang sampah pada tempatnya", isCorrect: true, explanation: "Melanggar kewajiban UU No. 18 Tahun 2008 Pasal 29." }
+        { id: "d1", label: "Kewajiban menangani sampah secara berwawasan lingkungan dan membuangnya pada tempat yang ditentukan", isCorrect: true, explanation: "Setiap orang wajib mengurangi dan menangani sampah secara berwawasan lingkungan (UU No. 18 Tahun 2008 Pasal 12 ayat (1)) dan dilarang membuang sampah tidak pada tempat yang ditentukan (Pasal 29 ayat (1) huruf e)." }
       ],
       legalArticles: [
         { id: "l1", label: "UUD 1945 Pasal 28H ayat (1) - Lingkungan Sehat", isCorrect: true },
-        { id: "l2", label: "UU No. 18 Tahun 2008 Pasal 29 - Larangan Buang Sampah Sembarangan", isCorrect: true }
+        { id: "l2", label: "UU No. 18 Tahun 2008 Pasal 29 ayat (1) huruf e - Larangan Membuang Sampah Tidak pada Tempatnya", isCorrect: true }
       ]
     },
     decisions: [
@@ -178,9 +178,9 @@ export const chapters = [
       ]
     },
     legalAnalysis: {
-      rightsAffected: [{ id: "r1", label: "Hak atas keselamatan dan kenyamanan fasilitas jalan umum bagi pejalan kaki", isCorrect: true, explanation: "Diatur dalam UU No. 22 Tahun 2009." }],
-      dutiesNeglected: [{ id: "d1", label: "Kewajiban mengemudi dengan penuh konsentrasi dan mematuhi rambu lalu lintas", isCorrect: true, explanation: "Melanggar Pasal 106 UU No. 22 Tahun 2009." }],
-      legalArticles: [{ id: "l1", label: "UU No. 22 Tahun 2009 Pasal 106 - Tata Cara Berlalu Lintas", isCorrect: true }]
+      rightsAffected: [{ id: "r1", label: "Hak atas keselamatan dan kenyamanan fasilitas jalan umum bagi pejalan kaki", isCorrect: true, explanation: "Pejalan kaki berhak atas fasilitas pendukung seperti trotoar (UU No. 22 Tahun 2009 Pasal 131 ayat (1); trotoar termasuk fasilitas pendukung menurut Pasal 45 ayat (1)). Penyandang disabilitas berhak atas kemudahan khusus (UUD 1945 Pasal 28H ayat (2))." }],
+      dutiesNeglected: [{ id: "d1", label: "Kewajiban pengemudi mengutamakan keselamatan pejalan kaki serta mengemudi dengan wajar dan penuh konsentrasi", isCorrect: true, explanation: "UU No. 22 Tahun 2009 Pasal 106 ayat (1) dan (2). Setiap warga negara juga wajib menjunjung hukum (UUD 1945 Pasal 27 ayat (1))." }],
+      legalArticles: [{ id: "l1", label: "UU No. 22 Tahun 2009 Pasal 106 & Pasal 131 - Kewajiban Pengemudi dan Hak Pejalan Kaki", isCorrect: true }]
     },
     decisions: [
       {
@@ -221,9 +221,9 @@ export const chapters = [
       ]
     },
     legalAnalysis: {
-      rightsAffected: [{ id: "r1", label: "Hak memperoleh pendidikan dasar yang dibiayai negara", isCorrect: true, explanation: "UUD 1945 Pasal 31 ayat (1) & (2)." }],
-      dutiesNeglected: [{ id: "d1", label: "Kewajiban negara memprioritaskan anggaran pendidikan dan membebaskan biaya pendidikan dasar", isCorrect: true, explanation: "Pengabaian oleh oknum sekolah." }],
-      legalArticles: [{ id: "l1", label: "UUD 1945 Pasal 31 - Hak dan Kewajiban Pendidikan", isCorrect: true }]
+      rightsAffected: [{ id: "r1", label: "Hak memperoleh pendidikan dasar yang dibiayai negara", isCorrect: true, explanation: "UUD 1945 Pasal 31 ayat (1) dan (2): setiap warga negara berhak mendapat pendidikan dan wajib mengikuti pendidikan dasar yang dibiayai pemerintah." }],
+      dutiesNeglected: [{ id: "d1", label: "Kewajiban negara memprioritaskan anggaran pendidikan dan membebaskan biaya pendidikan dasar", isCorrect: true, explanation: "Pemerintah wajib membiayai pendidikan dasar (UUD 1945 Pasal 31 ayat (2)) dan memprioritaskan anggaran pendidikan minimal 20% (Pasal 31 ayat (4)). Pungutan oleh oknum sekolah menghambat kewajiban ini, sehingga pemerintah daerah wajib menertibkannya." }],
+      legalArticles: [{ id: "l1", label: "UUD 1945 Pasal 31 ayat (1), (2) & (4) - Hak dan Kewajiban Pendidikan", isCorrect: true }]
     },
     decisions: [
       {
@@ -240,7 +240,7 @@ export const chapters = [
         isOptimal: true
       }
     ],
-    realWorldAction: ["Laporkan pungutan liar di sekolah ke Posko Aduan Dinas Pendidikan."]
+    realWorldAction: ["Laporkan pungutan yang tidak sah di sekolah kepada Dinas Pendidikan setempat atau Ombudsman Republik Indonesia."]
   },
   {
     id: "case-05",
@@ -264,9 +264,9 @@ export const chapters = [
       ]
     },
     legalAnalysis: {
-      rightsAffected: [{ id: "r1", label: "Hak atas tempat tinggal dan penghidupan yang layak", isCorrect: true, explanation: "UUD 1945 Pasal 28H." }],
-      dutiesNeglected: [{ id: "d1", label: "Kewajiban pemerintah menghormati hak asasi warga dalam proses pembangunan publik", isCorrect: true, explanation: "UUD 1945 Pasal 28J." }],
-      legalArticles: [{ id: "l1", label: "UUD 1945 Pasal 28H & Pasal 28J", isCorrect: true }]
+      rightsAffected: [{ id: "r1", label: "Hak atas tempat tinggal dan penghidupan yang layak", isCorrect: true, explanation: "UUD 1945 Pasal 28H ayat (1) (hak bertempat tinggal) dan Pasal 27 ayat (2) (penghidupan yang layak). Jika warga memiliki hak atas tanah/bangunannya, hak itu tidak boleh diambil alih sewenang-wenang (Pasal 28H ayat (4))." }],
+      dutiesNeglected: [{ id: "d1", label: "Kewajiban pemerintah menghormati hak asasi warga dalam proses pembangunan publik", isCorrect: true, explanation: "Perlindungan dan pemenuhan hak asasi manusia adalah tanggung jawab negara, terutama pemerintah (UUD 1945 Pasal 28I ayat (4)). Pengembang dan semua pihak juga wajib menghormati hak orang lain (Pasal 28J ayat (1))." }],
+      legalArticles: [{ id: "l1", label: "UUD 1945 Pasal 28H ayat (1) & (4), Pasal 28I ayat (4), Pasal 28J ayat (1)", isCorrect: true }]
     },
     decisions: [
       {

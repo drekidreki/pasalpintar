@@ -13,6 +13,24 @@
   .light-interface {
     @apply bg-ui-lightBg text-navy-primary;
   }
+
+  /* Visible keyboard focus everywhere (mouse clicks don't trigger :focus-visible) */
+  :focus-visible {
+    outline: 2px solid #4D8FE8;
+    outline-offset: 2px;
+  }
+}
+
+/* Respect the OS "reduce motion" setting for CSS transitions as well */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @layer components {

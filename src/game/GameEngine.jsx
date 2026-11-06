@@ -1,24 +1,55 @@
-import { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, FileText, AlertCircle } from 'lucide-react';
 import { chapters } from '../data/chapters';
+import { computeCaseScore } from '../data/scoring';
+import { useGameProgress } from '../hooks/useGameProgress';
 import Investigation from './Investigation';
 import LegalAnalysis from './LegalAnalysis';
 import DecisionRoom from './DecisionRoom';
 import Evaluation from './Evaluation';
 
+const STAGE_LABELS = {
+  briefing: 'Briefing',
+  investigation: 'Investigation',
+  legal: 'Legal Analysis',
+  decision: 'Decision',
+  evaluation: 'Evaluation',
+};
+
 export default function GameEngine() {
   const { caseId } = useParams();
   const navigate = useNavigate();
+  const { recordCaseResult } = useGameProgress();
   const [stage, setStage] = useState('briefing'); // 'briefing', 'investigation', 'legal', 'decision', 'evaluation'
   const [partialScores, setPartialScores] = useState({});
   const [chosenDecision, setChosenDecision] = useState(null);
-  
-  const caseData = chapters.find(c => c.id === caseId);
+  const [outcome, setOutcome] = useState(null);
+
+  const caseData = chapters.find((c) => c.id === caseId);
+
+  // Each stage starts at the top of the page, and keyboard/screen-reader focus
+  // moves to the new stage instead of being lost on <body>.
+  const mainRef = useRef(null);
+  const isFirstStage = useRef(true);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (isFirstStage.current) {
+      isFirstStage.current = false;
+      return;
+    }
+    mainRef.current?.focus({ preventScroll: true });
+  }, [stage]);
 
   if (!caseData) {
-    return <div className="p-10 text-center">Case Not Found</div>;
+    return (
+      <main className="min-h-screen flex flex-col items-center justify-center gap-4 p-10 text-center">
+        <h1 className="text-2xl font-bold">Kasus tidak ditemukan</h1>
+        <p className="text-gray-400">Kasus &ldquo;{caseId}&rdquo; tidak tersedia.</p>
+        <Link to="/dashboard" className="btn-primary">Kembali ke Dashboard</Link>
+      </main>
+    );
   }
 
   const handleLegalComplete = (scores) => {
@@ -27,43 +58,51 @@ export default function GameEngine() {
   };
 
   const handleDecisionComplete = (decision) => {
+    const { breakdown, total } = computeCaseScore(partialScores, decision);
+    const saved = recordCaseResult(caseId, {
+      score: total,
+      breakdown,
+      decisionId: decision.id,
+      cityImpact: decision.cityImpact,
+    });
     setChosenDecision(decision);
-
-    // Persist progress & city indicator updates to LocalStorage
-    const saved = localStorage.getItem('pasalpintar_progress');
-    if (saved) {
-      const progress = JSON.parse(saved);
-      const newCompleted = [...new Set([...progress.completedCases, caseId])];
-      
-      const newIndicators = { ...progress.cityIndicators };
-      if (decision.cityImpact) {
-        Object.keys(decision.cityImpact).forEach(key => {
-          newIndicators[key] = Math.max(0, Math.min(100, (newIndicators[key] || 50) + decision.cityImpact[key]));
-        });
-      }
-
-      localStorage.setItem('pasalpintar_progress', JSON.stringify({
-        ...progress,
-        completedCases: newCompleted,
-        cityIndicators: newIndicators
-      }));
-    }
-
+    setOutcome({ breakdown, total, ...saved });
     setStage('evaluation');
+  };
+
+  const handleRestart = () => {
+    setPartialScores({});
+    setChosenDecision(null);
+    setOutcome(null);
+    setStage('briefing');
   };
 
   return (
     <div className="min-h-screen bg-navy-primary flex flex-col">
       {/* Top Navigation */}
-      <div className="border-b border-white/10 p-4 flex justify-between items-center bg-navy-secondary sticky top-0 z-30">
-        <button onClick={() => navigate('/dashboard')} className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
-          <ChevronLeft size={20} /> Return to Dashboard
+      <header className="border-b border-white/10 px-4 py-3 flex justify-between items-center gap-3 bg-navy-secondary sticky top-0 z-30">
+        <button
+          type="button"
+          onClick={() => navigate('/dashboard')}
+          aria-label="Return to Dashboard"
+          className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors shrink-0 p-1"
+        >
+          <ChevronLeft size={20} aria-hidden="true" />
+          <span className="hidden sm:inline">Return to Dashboard</span>
         </button>
-        <div className="font-bold text-accent-blue">{caseData.title}</div>
-        <div className="text-sm text-gray-500 uppercase tracking-widest">{stage}</div>
-      </div>
+        <div className="font-bold text-accent-blue truncate min-w-0 text-center">{caseData.title}</div>
+        <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-widest shrink-0" aria-live="polite">
+          <span className="sr-only">Tahap saat ini: </span>
+          {STAGE_LABELS[stage]}
+        </div>
+      </header>
 
-      <main className="flex-1 p-6 md:p-10 max-w-5xl mx-auto w-full flex">
+      <main
+        ref={mainRef}
+        tabIndex={-1}
+        aria-label={`Tahap ${STAGE_LABELS[stage]}`}
+        className="flex-1 p-6 md:p-10 max-w-5xl mx-auto w-full flex focus:outline-none"
+      >
         
         {/* STAGE 1: BRIEFING */}
         {stage === 'briefing' && (
@@ -108,8 +147,8 @@ export default function GameEngine() {
                 </div>
               </div>
               <div className="flex justify-end pt-6 border-t border-gray-200">
-                <button onClick={() => setStage('investigation')} className="btn-primary flex items-center gap-2">
-                  <FileText size={18} /> Acknowledge & Begin Investigation
+                <button type="button" onClick={() => setStage('investigation')} className="btn-primary flex items-center gap-2">
+                  <FileText size={18} aria-hidden="true" /> Acknowledge & Begin Investigation
                 </button>
               </div>
             </div>
@@ -144,9 +183,9 @@ export default function GameEngine() {
         {stage === 'evaluation' && (
           <Evaluation
             caseData={caseData}
-            partialScores={partialScores}
+            outcome={outcome}
             decision={chosenDecision}
-            onRestart={() => setStage('briefing')}
+            onRestart={handleRestart}
           />
         )}
 

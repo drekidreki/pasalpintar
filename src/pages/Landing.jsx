@@ -31,9 +31,10 @@ export default function Landing() {
           <Link to="/character-select" className="btn-primary">
             Start Your Journey
           </Link>
-          <button className="btn-secondary">
+          {/* Previously a button with no action; now opens the legal reference library. */}
+          <Link to="/law-library" className="btn-secondary">
             Explore the Game
-          </button>
+          </Link>
         </div>
       </motion.div>
     </div>
