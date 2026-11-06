@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Scale } from 'lucide-react';
-import { chapters } from '../data/chapters';
+import { CASE_COUNT } from '../data/caseCount';
 import { useGameProgress } from '../hooks/useGameProgress';
 
 export default function Landing() {
@@ -54,7 +54,7 @@ export default function Landing() {
             <div className="flex flex-wrap items-start justify-between gap-6 mt-10 sm:mt-0">
               <p className="sticky-note relative sm:absolute sm:-bottom-24 sm:left-0 lg:-left-10 rotate-[-4deg] w-56 text-xl leading-snug">
                 <span className="pin" aria-hidden="true" />
-                {chapters.length} berkas kasus menunggu di papan.
+                {CASE_COUNT} berkas kasus menunggu di papan.
               </p>
               <div className="print relative sm:absolute sm:-top-24 sm:-right-2 lg:-top-28 lg:-right-24 rotate-[5deg] w-40" aria-hidden="true">
                 <span className="pin" />
