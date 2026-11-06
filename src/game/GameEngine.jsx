@@ -35,6 +35,7 @@ export default function GameEngine() {
   const [stage, setStage] = useState('briefing'); // 'briefing', 'investigation', 'legal', 'decision', 'evaluation'
   const [partialScores, setPartialScores] = useState({});
   const [chosenDecision, setChosenDecision] = useState(null);
+  const [prediction, setPrediction] = useState(null);
   const [outcome, setOutcome] = useState(null);
 
   const caseData = chapters.find((c) => c.id === caseId);
@@ -73,8 +74,8 @@ export default function GameEngine() {
     setStage('decision');
   };
 
-  const handleDecisionComplete = (decision) => {
-    const { breakdown, total } = computeCaseScore(partialScores, decision);
+  const handleDecisionComplete = (decision, prediction) => {
+    const { breakdown, total } = computeCaseScore(partialScores, decision, prediction);
     const saved = recordCaseResult(caseId, {
       score: total,
       breakdown,
@@ -82,6 +83,7 @@ export default function GameEngine() {
       cityImpact: decision.cityImpact,
     });
     setChosenDecision(decision);
+    setPrediction(prediction || null);
     setOutcome({ breakdown, total, ...saved });
     setStage('evaluation');
   };
@@ -89,6 +91,7 @@ export default function GameEngine() {
   const handleRestart = () => {
     setPartialScores({});
     setChosenDecision(null);
+    setPrediction(null);
     setOutcome(null);
     setStage('briefing');
   };
@@ -213,6 +216,7 @@ export default function GameEngine() {
           <DecisionRoom
             caseData={caseData}
             characterId={characterId}
+            cityIndicators={progress.cityIndicators}
             onDecisionChosen={handleDecisionComplete}
           />
         )}
@@ -223,6 +227,7 @@ export default function GameEngine() {
             caseData={caseData}
             outcome={outcome}
             decision={chosenDecision}
+            prediction={prediction}
             onRestart={handleRestart}
           />
         )}

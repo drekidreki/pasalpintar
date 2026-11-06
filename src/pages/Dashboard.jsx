@@ -4,13 +4,7 @@ import InvestigationBoard from '../components/board/InvestigationBoard';
 import { useGameProgress } from '../hooks/useGameProgress';
 import { chapters } from '../data/chapters';
 import { characters } from '../data/characters';
-
-const INDICATORS = [
-  { key: 'socialStability', label: 'Stabilitas sosial' },
-  { key: 'legalIntegrity', label: 'Integritas hukum' },
-  { key: 'regionalDevelopment', label: 'Pembangunan daerah' },
-  { key: 'publicTrust', label: 'Kepercayaan publik' },
-];
+import { INDICATORS } from '../data/indicators';
 
 function InvestigatorNote({ progress }) {
   const investigator = characters.find((c) => c.id === progress.characterId);

@@ -100,13 +100,31 @@ export function computeImpactScore(decision) {
   return Math.round((quality / SCORING_WEIGHTS.solutionQuality) * SCORING_WEIGHTS.impactUnderstanding);
 }
 
-export function computeCaseScore(partialScores, decision) {
+/** Direction of an indicator change: 'naik' | 'tetap' | 'turun'. */
+export const directionOf = (n) => (n > 0 ? 'naik' : n < 0 ? 'turun' : 'tetap');
+
+/**
+ * Impact understanding from the player's prediction (Decision Room): for each
+ * city indicator the player predicts whether the chosen strategy makes it go
+ * up, stay or go down. Score = share of correct directions × 10.
+ * Returns null when there is no usable prediction (falls back to computeImpactScore).
+ */
+export function computePredictionScore(decision, prediction) {
+  if (!decision?.cityImpact || !prediction || typeof prediction !== 'object') return null;
+  const keys = Object.keys(decision.cityImpact);
+  if (keys.length === 0 || !keys.every((k) => typeof prediction[k] === 'string')) return null;
+  const correct = keys.filter((k) => prediction[k] === directionOf(decision.cityImpact[k])).length;
+  return Math.round((correct / keys.length) * SCORING_WEIGHTS.impactUnderstanding);
+}
+
+export function computeCaseScore(partialScores, decision, prediction = null) {
+  const predicted = computePredictionScore(decision, prediction);
   const breakdown = {
     problemIdentification: partialScores?.problemIdentScore ?? SCORING_WEIGHTS.problemIdentification,
     rightsDuties: partialScores?.rightsDutiesScore ?? 0,
     legalBasis: partialScores?.legalBasisScore ?? 0,
     solutionQuality: decision?.solutionQualityScore ?? 0,
-    impactUnderstanding: computeImpactScore(decision),
+    impactUnderstanding: predicted ?? computeImpactScore(decision),
   };
   const total = Object.values(breakdown).reduce((sum, v) => sum + v, 0);
   return { breakdown, total };

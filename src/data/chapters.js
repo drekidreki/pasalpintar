@@ -539,50 +539,188 @@ export const chapters = [
     },
     decisions: [
       {
-        id: "dec-1",
-        title: "Mediasi Sekolah & Program Edukasi Etika Digital",
-        stakeholders: "Pihak Sekolah, Orang Tua, Konselor BK, Kepolisian (Bhabinkamtibmas)",
-        description: "Lakukan investigasi internal sekolah untuk mengidentifikasi akun anonim, adakan mediasi keluarga, berikan pendampingan psikologis bagi Budi, serta terapkan program literasi digital wajib.",
-        benefits: "Memulihkan kondisi Budi, memberikan edukasi menyeluruh kepada siswa, dan menjaga kondusivitas sekolah tanpa langsung mempidanakan anak.",
-        consequences: "Proses penelusuran akun anonim membutuhkan waktu dan pendampingan ekstra.",
-        feasibility: "Tinggi (Dapat segera dilaksanakan sekolah)",
-        legalAccuracyScore: 25,
-        solutionQualityScore: 30,
-        cityImpact: { socialStability: 10, legalIntegrity: 10, regionalDevelopment: 0, publicTrust: 15 },
-        isOptimal: true
+        "id": "dec-1",
+        "title": "Penanganan Sekolah, Pemulihan Korban & Edukasi Etika Digital",
+        "stakeholders": "Kepala Sekolah, Guru BK, Orang Tua, Siswa",
+        "description": "Sekolah mengamankan bukti, melindungi Budi dan siswa yang ikut diancam, menyediakan pendampingan, menelusuri pemilik akun anonim bersama orang tua, lalu menjalankan program etika digital. Jika keluarga melapor ke polisi, proses untuk pelaku anak mengikuti sistem peradilan pidana anak.",
+        "benefits": "Budi dan saksi terlindungi, pelaku dimintai tanggung jawab, dan seluruh angkatan belajar dari kasus ini.",
+        "consequences": "Butuh waktu, tenaga guru BK, dan kerja sama orang tua. Penelusuran akun anonim bisa lama.",
+        "feasibility": "Tinggi (dapat segera dimulai sekolah)",
+        "legalAccuracyScore": 25,
+        "solutionQualityScore": 30,
+        "cityImpact": {
+          "socialStability": 10,
+          "legalIntegrity": 10,
+          "regionalDevelopment": 0,
+          "publicTrust": 15
+        },
+        "isOptimal": true,
+        "tradeoffs": {
+          "speed": "Sedang",
+          "resources": "Sedang",
+          "burden": "Sekolah dan guru BK"
+        },
+        "explanation": "Strategi ini menjawab semua hak yang dilanggar: rasa aman (Pasal 28G ayat 1), perlindungan anak (Pasal 28B ayat 2), dan pendidikan (Pasal 31 ayat 1). Sekolah menjalankan kewajibannya, dan jalur hukum tetap terbuka tanpa mengabaikan perlindungan pelaku yang juga anak.",
+        "lawIds": [
+          "law-01",
+          "law-14",
+          "law-06",
+          "law-34",
+          "law-37"
+        ],
+        "impactReasons": {
+          "socialStability": "Ancaman berhenti dan siswa kembali merasa aman.",
+          "legalIntegrity": "Pelanggaran ditangani menurut aturan, termasuk aturan perlindungan anak.",
+          "regionalDevelopment": "Kasus ini tidak menyentuh pembangunan daerah.",
+          "publicTrust": "Orang tua melihat sekolah melindungi muridnya."
+        }
       },
       {
-        id: "dec-2",
-        title: "Langsung Melaporkan Pelaku ke Jalur Hukum Pidana",
-        stakeholders: "Kepolisian, Kuasa Hukum",
-        description: "Mengajukan laporan pidana resmi atas dugaan pengancaman di media sosial tanpa melalui prosedur penanganan anak di lingkungan sekolah.",
-        benefits: "Memberikan efek jera secara instan.",
-        consequences: "Dapat menimbulkan trauma tambahan bagi siswa yang terlibat, memicu ketakutan massal, serta mengabaikan prinsip restoratif pada lingkungan pendidikan.",
-        feasibility: "Sedang (Memerlukan proses hukum formal yang panjang)",
-        legalAccuracyScore: 15,
-        solutionQualityScore: 15,
-        cityImpact: { socialStability: -10, legalIntegrity: 5, regionalDevelopment: 0, publicTrust: -5 },
-        isOptimal: false
+        "id": "dec-2",
+        "title": "Menyerahkan Sepenuhnya ke Laporan Polisi",
+        "stakeholders": "Keluarga Budi, Kepolisian",
+        "description": "Sekolah menyarankan keluarga Budi melapor ke polisi atas dugaan ancaman lewat media elektronik, lalu menganggap urusannya selesai. Tidak ada pendampingan untuk Budi dan tidak ada langkah di sekolah.",
+        "benefits": "Melapor adalah hak korban, dan ancaman kekerasan lewat media elektronik dapat diproses menurut UU ITE.",
+        "consequences": "Budi dan siswa yang diancam tidak didampingi. Jika pelaku masih anak, penyidik wajib lebih dulu mengupayakan diversi, jadi hasilnya tidak instan. Sekolah tetap belum menjalankan kewajibannya.",
+        "feasibility": "Sedang (proses hukum formal memerlukan waktu)",
+        "legalAccuracyScore": 15,
+        "solutionQualityScore": 15,
+        "cityImpact": {
+          "socialStability": -10,
+          "legalIntegrity": 5,
+          "regionalDevelopment": 0,
+          "publicTrust": -5
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Butuh waktu",
+          "resources": "Rendah bagi sekolah",
+          "burden": "Keluarga Budi"
+        },
+        "explanation": "Jalur hukum sah, tetapi tidak cukup. Kewajiban sekolah melindungi murid dari kekerasan tidak bisa dialihkan ke polisi, dan pemulihan Budi tidak tertangani.",
+        "lawIds": [
+          "law-33",
+          "law-37",
+          "law-34"
+        ],
+        "impactReasons": {
+          "socialStability": "Suasana sekolah tetap tegang selama proses berjalan.",
+          "legalIntegrity": "Dugaan pelanggaran diproses oleh penegak hukum.",
+          "regionalDevelopment": "Kasus ini tidak menyentuh pembangunan daerah.",
+          "publicTrust": "Sekolah terlihat lepas tangan."
+        }
       },
       {
-        id: "dec-3",
-        title: "Mengabaikan Masalah & Menganggapnya Candaan Remaja",
-        stakeholders: "Tidak Ada",
-        description: "Menyarankan Budi untuk keluar dari grup dan membiarkan situasi mendingin dengan sendirinya.",
-        benefits: "Tidak memerlukan usaha atau intervensi.",
-        consequences: "Ancaman fisik berpotensi terealisasi, kesehatan mental Budi memburuk, dan iklim sekolah menjadi tidak aman.",
-        feasibility: "Sangat Rendah (Tidak menyelesaikan masalah)",
-        legalAccuracyScore: 0,
-        solutionQualityScore: 0,
-        cityImpact: { socialStability: -20, legalIntegrity: -15, regionalDevelopment: 0, publicTrust: -20 },
-        isOptimal: false
+        "id": "dec-3",
+        "title": "Mengabaikan Masalah & Menganggapnya Candaan Remaja",
+        "stakeholders": "Tidak ada",
+        "description": "Menyarankan Budi keluar dari grup dan membiarkan situasi mendingin dengan sendirinya.",
+        "benefits": "Tidak memerlukan usaha atau biaya.",
+        "consequences": "Ancaman bisa terwujud, kondisi Budi memburuk, dan siswa belajar bahwa ancaman tidak ada akibatnya.",
+        "feasibility": "Sangat rendah (tidak menyelesaikan masalah)",
+        "legalAccuracyScore": 0,
+        "solutionQualityScore": 0,
+        "cityImpact": {
+          "socialStability": -20,
+          "legalIntegrity": -15,
+          "regionalDevelopment": 0,
+          "publicTrust": -20
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Cepat terlihat",
+          "resources": "Rendah",
+          "burden": "Budi (korban)"
+        },
+        "explanation": "Bukti menunjukkan ancaman nyata, bukan candaan. Membiarkannya berarti hak Budi atas rasa aman dan pendidikan terus dilanggar, dan sekolah melalaikan kewajibannya.",
+        "lawIds": [
+          "law-01",
+          "law-02"
+        ],
+        "impactReasons": {
+          "socialStability": "Ancaman dibiarkan dan ketakutan menyebar.",
+          "legalIntegrity": "Pelanggaran tidak ditangani sama sekali.",
+          "regionalDevelopment": "Kasus ini tidak menyentuh pembangunan daerah.",
+          "publicTrust": "Korban dan orang tua kehilangan kepercayaan pada sekolah."
+        }
+      },
+      {
+        "id": "dec-4",
+        "title": "Hapus Konten & Skors Semua Anggota Grup",
+        "stakeholders": "Kepala Sekolah, Admin Grup",
+        "description": "Sekolah meminta admin menghapus meme, lalu menskors semua siswa yang ada di grup tanpa memilah peran masing-masing. Kasus dianggap selesai.",
+        "benefits": "Cepat, konten berhenti beredar, dan orang tua melihat sekolah bertindak.",
+        "consequences": "Bukti bisa hilang jika dihapus sebelum diamankan. Siswa yang menegur ikut dihukum, pemilik akun anonim tidak ditelusuri, dan Budi tetap tidak didampingi.",
+        "feasibility": "Tinggi (bisa dilakukan hari ini)",
+        "legalAccuracyScore": 10,
+        "solutionQualityScore": 10,
+        "cityImpact": {
+          "socialStability": -5,
+          "legalIntegrity": -5,
+          "regionalDevelopment": 0,
+          "publicTrust": 5
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Cepat terlihat",
+          "resources": "Rendah",
+          "burden": "Siswa yang tidak bersalah"
+        },
+        "explanation": "Hukuman massal tanpa memeriksa peran setiap siswa tidak adil (Pasal 28D ayat 1). Langkah ini juga tidak memulihkan Budi dan tidak menyentuh pelaku utama.",
+        "lawIds": [
+          "law-17",
+          "law-01"
+        ],
+        "impactReasons": {
+          "socialStability": "Siswa yang dihukum tanpa alasan merasa diperlakukan tidak adil.",
+          "legalIntegrity": "Sanksi dijatuhkan tanpa memeriksa siapa berbuat apa.",
+          "regionalDevelopment": "Kasus ini tidak menyentuh pembangunan daerah.",
+          "publicTrust": "Sebagian orang tua menilai sekolah tegas dan cepat."
+        }
       }
     ],
     realWorldAction: [
       "Simpan bukti percakapan atau tangkapan layar jika mengalami atau menyaksikan perundungan siber.",
       "Laporkan ke pihak sekolah (Wali Kelas, guru BK, atau kepala sekolah) dan gunakan fitur pelaporan di platform media sosial. Konten bermasalah juga dapat diadukan melalui kanal aduan konten resmi Kementerian Komunikasi dan Digital (Komdigi).",
       "Selalu junjung etika berinternet dan hormati hak privasi serta martabat orang lain di ruang digital."
-    ]
+    ],
+    actionGuide: {
+      "title": "Kalau kamu mengalami atau melihat ancaman di grup chat",
+      "steps": [
+        "Jangan membalas ancaman dan jangan ikut meneruskan pesannya.",
+        "Simpan bukti: tangkapan layar yang memperlihatkan nama grup, akun pengirim, tanggal, dan jam.",
+        "Ceritakan kepada orang dewasa yang kamu percaya: orang tua, wali kelas, guru BK, atau kepala sekolah.",
+        "Laporkan konten itu lewat fitur pelaporan di aplikasinya.",
+        "Jika ada bahaya langsung, minta orang dewasa segera menghubungi polisi."
+      ],
+      "contacts": [
+        {
+          "name": "Sekolah: wali kelas, guru BK, atau kepala sekolah",
+          "use": "Sekolah wajib mencegah dan menangani kekerasan, termasuk di ruang digital.",
+          "how": "Datang langsung dan bawa bukti. Minta laporanmu dicatat.",
+          "source": "Permendikdasmen 6/2026 (dicek ke sumber sekunder)"
+        },
+        {
+          "name": "SAPA 129 (Kementerian PPPA)",
+          "use": "Pengaduan kekerasan terhadap perempuan dan anak, termasuk pendampingan psikologis dan hukum.",
+          "how": "Telepon 129 atau WhatsApp 08-111-129-129.",
+          "source": "InfoPublik (Juli 2025)"
+        },
+        {
+          "name": "aduankonten.id (Komdigi)",
+          "use": "Aduan konten negatif di internet.",
+          "how": "Kirim aduan beserta tautan dan tangkapan layar kontennya.",
+          "source": "InfoPublik"
+        },
+        {
+          "name": "Polisi (110)",
+          "use": "Keadaan darurat atau ancaman yang akan segera terjadi.",
+          "how": "Telepon 110.",
+          "source": "Layanan darurat Polri"
+        }
+      ],
+      "checkedAt": "2026-11-06"
+    }
   },
   {
     id: "case-02",
@@ -1080,23 +1218,179 @@ export const chapters = [
     },
     decisions: [
       {
-        id: "dec-1",
-        title: "Pembersihan Terpadu & Penerapan Bank Sampah RW",
-        stakeholders: "Dinas Lingkungan Hidup, Pengurus RT/RW, Warga",
-        description: "Tutup TPS ilegal, koordinasikan pembersihan armada DLH, dan bentuk Bank Sampah kelolaan warga.",
-        benefits: "Solusi jangka panjang yang memulihkan lingkungan dan memberdayakan ekonomi warga.",
-        consequences: "Membutuhkan komitmen warga untuk memilah sampah dari rumah.",
-        feasibility: "Tinggi",
-        legalAccuracyScore: 25,
-        solutionQualityScore: 30,
-        cityImpact: { socialStability: 15, legalIntegrity: 15, regionalDevelopment: 10, publicTrust: 20 },
-        isOptimal: true
+        "id": "dec-1",
+        "title": "Pembersihan Terpadu & Penerapan Bank Sampah RW",
+        "stakeholders": "Dinas Lingkungan Hidup, Pengurus RT/RW, Warga",
+        "description": "Hentikan pembuangan di lokasi yang tidak berizin, telusuri pemilik truk dan pengelola lahan untuk dikenai sanksi, bersihkan bantaran bersama armada DLH, periksakan kesehatan warga, dan bentuk Bank Sampah kelolaan warga.",
+        "benefits": "Sumber pencemaran dihentikan, sungai dipulihkan, dan warga mendapat sistem pengelolaan sampah jangka panjang.",
+        "consequences": "Butuh anggaran dan armada DLH, serta komitmen warga untuk memilah sampah dari rumah.",
+        "feasibility": "Tinggi",
+        "legalAccuracyScore": 25,
+        "solutionQualityScore": 30,
+        "cityImpact": {
+          "socialStability": 15,
+          "legalIntegrity": 15,
+          "regionalDevelopment": 10,
+          "publicTrust": 20
+        },
+        "isOptimal": true,
+        "tradeoffs": {
+          "speed": "Sedang",
+          "resources": "Tinggi",
+          "burden": "Pemerintah daerah dan warga"
+        },
+        "explanation": "Strategi ini menegakkan larangan membuang sampah tidak pada tempatnya (UU 18/2008 Pasal 29), menjalankan kewajiban pemerintah daerah (Pasal 28I ayat 4), dan memulihkan hak warga atas lingkungan yang sehat (Pasal 28H ayat 1).",
+        "lawIds": [
+          "law-03",
+          "law-04",
+          "law-32",
+          "law-24"
+        ],
+        "impactReasons": {
+          "socialStability": "Bau dan pencemaran berkurang, warga lebih tenang.",
+          "legalIntegrity": "Pembuang sampah ilegal ditelusuri dan dikenai sanksi.",
+          "regionalDevelopment": "Bank sampah membuka kegiatan ekonomi warga.",
+          "publicTrust": "Aduan warga akhirnya ditindaklanjuti."
+        }
+      },
+      {
+        "id": "dec-2",
+        "title": "Gotong Royong Bersih-Bersih Sekali Jalan",
+        "stakeholders": "Warga RW 04, Relawan",
+        "description": "Warga dan relawan membersihkan bantaran sungai bersama-sama, tanpa menelusuri siapa yang membuang sampah.",
+        "benefits": "Cepat, murah, dan menguatkan kebersamaan warga.",
+        "consequences": "Truk tetap membuang sampah di malam hari, jadi tumpukan akan kembali. Warga menanggung kerja dan risiko kesehatan, sementara pemerintah tidak menjalankan kewajibannya.",
+        "feasibility": "Tinggi (dapat dilakukan akhir pekan ini)",
+        "legalAccuracyScore": 10,
+        "solutionQualityScore": 10,
+        "cityImpact": {
+          "socialStability": 5,
+          "legalIntegrity": -5,
+          "regionalDevelopment": 0,
+          "publicTrust": -5
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Cepat terlihat",
+          "resources": "Rendah",
+          "burden": "Warga RW 04"
+        },
+        "explanation": "Gotong royong baik, tetapi tidak menghentikan sumber pencemaran. Kewajiban pemerintah daerah menangani sampah (UU 18/2008 Pasal 12 dan Pasal 28I ayat 4) tidak dijalankan.",
+        "lawIds": [
+          "law-32",
+          "law-24"
+        ],
+        "impactReasons": {
+          "socialStability": "Warga merasa kompak setelah bekerja bersama.",
+          "legalIntegrity": "Pembuangan ilegal tidak ditindak.",
+          "regionalDevelopment": "Tidak ada sistem baru yang dibangun.",
+          "publicTrust": "Warga merasa ditinggal pemerintah."
+        }
+      },
+      {
+        "id": "dec-3",
+        "title": "Pindahkan Tumpukan ke Lahan Kosong Lain",
+        "stakeholders": "Kelurahan, Pengusaha Lahan",
+        "description": "Kelurahan meminta tumpukan sampah dipindahkan ke lahan kosong di pinggir kelurahan agar RW 04 segera lega.",
+        "benefits": "Keluhan RW 04 cepat mereda.",
+        "consequences": "Pencemaran berpindah ke warga lain. Lokasi baru juga bukan tempat pembuangan berizin.",
+        "feasibility": "Tinggi, tetapi melanggar hukum",
+        "legalAccuracyScore": 0,
+        "solutionQualityScore": 5,
+        "cityImpact": {
+          "socialStability": -5,
+          "legalIntegrity": -10,
+          "regionalDevelopment": -5,
+          "publicTrust": -5
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Cepat terlihat",
+          "resources": "Sedang",
+          "burden": "Warga di lokasi baru"
+        },
+        "explanation": "Memindahkan sampah ke lokasi tak berizin mengulang pelanggaran yang sama (UU 18/2008 Pasal 29) dan memindahkan pelanggaran hak atas lingkungan sehat ke warga lain.",
+        "lawIds": [
+          "law-04",
+          "law-03"
+        ],
+        "impactReasons": {
+          "socialStability": "Konflik baru muncul dengan warga di lokasi baru.",
+          "legalIntegrity": "Pelanggaran yang sama diulang.",
+          "regionalDevelopment": "Kawasan lain ikut tercemar.",
+          "publicTrust": "Warga menilai masalah hanya dipindahkan."
+        }
+      },
+      {
+        "id": "dec-4",
+        "title": "Fokus pada Sanksi Hukum untuk Pembuang",
+        "stakeholders": "DLH, Penegak Hukum",
+        "description": "Pembuang sampah dilaporkan dan diproses secara hukum. Pembersihan menunggu sampai proses selesai.",
+        "benefits": "Memberi efek jera dan kepastian hukum.",
+        "consequences": "Selama proses berjalan, sungai tetap tercemar dan warga terus terpapar. Pengelolaan sampah warga tidak disentuh.",
+        "feasibility": "Sedang (proses hukum memerlukan waktu)",
+        "legalAccuracyScore": 20,
+        "solutionQualityScore": 15,
+        "cityImpact": {
+          "socialStability": 0,
+          "legalIntegrity": 10,
+          "regionalDevelopment": 0,
+          "publicTrust": 5
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Butuh waktu",
+          "resources": "Sedang",
+          "burden": "Warga yang terus terpapar"
+        },
+        "explanation": "Menegakkan hukum itu penting, tetapi hak warga atas lingkungan sehat (Pasal 28H ayat 1) perlu dipulihkan sekarang, bukan setelah putusan.",
+        "lawIds": [
+          "law-04",
+          "law-03"
+        ],
+        "impactReasons": {
+          "socialStability": "Kondisi warga belum berubah.",
+          "legalIntegrity": "Pelanggar diproses secara hukum.",
+          "regionalDevelopment": "Tidak ada perbaikan lingkungan atau sistem baru.",
+          "publicTrust": "Warga melihat ada tindakan, walau lambat."
+        }
       }
     ],
     realWorldAction: [
       "Pilahlah sampah organik dan anorganik dari rumah.",
       "Gunakan saluran resmi sistem pengaduan daerah jika menemukan TPS ilegal."
-    ]
+    ],
+    actionGuide: {
+      "title": "Kalau kamu melihat pembuangan sampah ilegal",
+      "steps": [
+        "Catat lokasi, tanggal, jam, dan nomor kendaraan jika terlihat jelas. Jangan mendekat atau menegur pelaku sendirian, apalagi di malam hari.",
+        "Ambil foto atau video dari tempat yang aman.",
+        "Laporkan kepada pengurus RT/RW dan kelurahan, lalu ke Dinas Lingkungan Hidup kabupaten/kota.",
+        "Jika tidak ditanggapi, buat aduan di SP4N-LAPOR! dan simpan nomor tiket aduannya.",
+        "Jika ada keluhan kesehatan, periksakan diri ke puskesmas dan simpan catatan pemeriksaannya."
+      ],
+      "contacts": [
+        {
+          "name": "Dinas Lingkungan Hidup kabupaten/kota",
+          "use": "Penanganan sampah dan pencemaran di daerahmu.",
+          "how": "Lihat kontak aduan di situs resmi pemerintah daerahmu.",
+          "source": "Dibuat umum karena kontaknya berbeda di setiap daerah"
+        },
+        {
+          "name": "SP4N-LAPOR! (lapor.go.id)",
+          "use": "Kanal aduan pelayanan publik nasional. Aduan diteruskan ke instansi yang berwenang, termasuk Kementerian Lingkungan Hidup.",
+          "how": "Buat aduan di lapor.go.id. Sertakan lokasi, waktu, dan foto.",
+          "source": "Situs Kementerian Lingkungan Hidup (kemenlh.go.id)"
+        },
+        {
+          "name": "Puskesmas",
+          "use": "Pemeriksaan kesehatan dan catatan medis jika ada keluhan.",
+          "how": "Datang langsung ke puskesmas terdekat.",
+          "source": "Layanan kesehatan umum"
+        }
+      ],
+      "checkedAt": "2026-11-06"
+    }
   },
   {
     id: "case-03",
@@ -1578,20 +1872,171 @@ export const chapters = [
     },
     decisions: [
       {
-        id: "dec-1",
-        title: "Pemasangan Bolard Pembatas & Operasi Penertiban Berkelanjutan",
-        stakeholders: "Dishub, Satlantas, Satpol PP",
-        description: "Pasang pembatas fisik trotoar agar motor tidak bisa masuk dan tingkatkan penilangan elektronik.",
-        benefits: "Mengembalikan fungsi penuh trotoar untuk pejalan kaki secara instan.",
-        consequences: "Diperlukan pengawasan konsisten di lapangan.",
-        feasibility: "Tinggi",
-        legalAccuracyScore: 25,
-        solutionQualityScore: 30,
-        cityImpact: { socialStability: 10, legalIntegrity: 20, regionalDevelopment: 5, publicTrust: 15 },
-        isOptimal: true
+        "id": "dec-1",
+        "title": "Pemasangan Bolard Pembatas & Operasi Penertiban Berkelanjutan",
+        "stakeholders": "Dishub, Satlantas, Satpol PP, Pedagang",
+        "description": "Pasang pembatas fisik yang menghalangi motor tetapi tetap bisa dilalui kursi roda, lakukan penertiban rutin (termasuk tilang elektronik jika tersedia), dan pindahkan pedagang ke lokasi resmi yang disiapkan bersama mereka.",
+        "benefits": "Trotoar kembali berfungsi untuk pejalan kaki dan pengguna kursi roda, dan pedagang tetap punya tempat berjualan.",
+        "consequences": "Butuh anggaran, pengawasan rutin, dan waktu untuk menyiapkan lokasi pedagang.",
+        "feasibility": "Tinggi",
+        "legalAccuracyScore": 25,
+        "solutionQualityScore": 30,
+        "cityImpact": {
+          "socialStability": 10,
+          "legalIntegrity": 20,
+          "regionalDevelopment": 5,
+          "publicTrust": 15
+        },
+        "isOptimal": true,
+        "tradeoffs": {
+          "speed": "Sedang",
+          "resources": "Tinggi",
+          "burden": "Pemerintah kota"
+        },
+        "explanation": "Strategi ini memulihkan fungsi trotoar (UU 22/2009 Pasal 45 dan 131), memberi kemudahan bagi penyandang disabilitas (Pasal 28H ayat 2), dan tetap memperhatikan penghidupan pedagang (Pasal 27 ayat 2).",
+        "lawIds": [
+          "law-08",
+          "law-07",
+          "law-05",
+          "law-21",
+          "law-10"
+        ],
+        "impactReasons": {
+          "socialStability": "Pedagang dipindahkan dengan dialog, tidak diusir.",
+          "legalIntegrity": "Aturan lalu lintas ditegakkan secara konsisten.",
+          "regionalDevelopment": "Lokasi dagang resmi menata kawasan.",
+          "publicTrust": "Pejalan kaki merasakan hasilnya setiap hari."
+        }
+      },
+      {
+        "id": "dec-2",
+        "title": "Razia Gabungan Besar-Besaran Sekali",
+        "stakeholders": "Satpol PP, Satlantas",
+        "description": "Operasi gabungan satu hari: pengendara di trotoar ditilang dan semua lapak diangkut.",
+        "benefits": "Trotoar langsung bersih dan hasilnya mudah dilihat.",
+        "consequences": "Tanpa pengawasan lanjutan, pelanggaran kembali dalam beberapa hari. Pedagang kehilangan nafkah tanpa tempat pengganti.",
+        "feasibility": "Tinggi",
+        "legalAccuracyScore": 15,
+        "solutionQualityScore": 10,
+        "cityImpact": {
+          "socialStability": -10,
+          "legalIntegrity": 5,
+          "regionalDevelopment": -5,
+          "publicTrust": 0
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Cepat terlihat",
+          "resources": "Sedang",
+          "burden": "Pedagang kecil"
+        },
+        "explanation": "Penegakan aturan memang perlu, tetapi tindakan sekali tanpa tindak lanjut tidak menjaga fungsi trotoar. Hilangnya nafkah pedagang juga menyentuh hak atas penghidupan yang layak (Pasal 27 ayat 2).",
+        "lawIds": [
+          "law-05",
+          "law-10"
+        ],
+        "impactReasons": {
+          "socialStability": "Pedagang yang kehilangan nafkah memicu ketegangan.",
+          "legalIntegrity": "Pelanggaran ditindak, walau hanya sekali.",
+          "regionalDevelopment": "Kegiatan ekonomi kecil di kawasan itu terhenti.",
+          "publicTrust": "Pejalan kaki senang, pedagang kecewa."
+        }
+      },
+      {
+        "id": "dec-3",
+        "title": "Izinkan Lapak di Trotoar dengan Retribusi",
+        "stakeholders": "Pemerintah Kota, Pedagang",
+        "description": "Pedagang boleh tetap berjualan di trotoar dengan membayar retribusi. Motor tetap dilarang naik trotoar.",
+        "benefits": "Pedagang tenang, dan kota mendapat pemasukan.",
+        "consequences": "Lapak tetap menutup sebagian besar trotoar, jadi pejalan kaki dan pengguna kursi roda tetap tidak bisa lewat.",
+        "feasibility": "Tinggi",
+        "legalAccuracyScore": 5,
+        "solutionQualityScore": 5,
+        "cityImpact": {
+          "socialStability": 5,
+          "legalIntegrity": -10,
+          "regionalDevelopment": 5,
+          "publicTrust": -5
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Cepat terlihat",
+          "resources": "Rendah",
+          "burden": "Pejalan kaki dan penyandang disabilitas"
+        },
+        "explanation": "Selama lapak menutup sebagian besar lebar trotoar, fungsinya sebagai fasilitas pejalan kaki (UU 22/2009 Pasal 45) hilang dan hak penyandang disabilitas (Pasal 28H ayat 2) tetap terabaikan.",
+        "lawIds": [
+          "law-08",
+          "law-21"
+        ],
+        "impactReasons": {
+          "socialStability": "Pedagang tidak lagi khawatir digusur.",
+          "legalIntegrity": "Fungsi trotoar dikorbankan secara resmi.",
+          "regionalDevelopment": "Kota mendapat pemasukan retribusi.",
+          "publicTrust": "Pejalan kaki merasa diabaikan."
+        }
+      },
+      {
+        "id": "dec-4",
+        "title": "Kampanye Kesadaran Tanpa Penegakan",
+        "stakeholders": "Dishub, Komunitas",
+        "description": "Pasang spanduk dan jalankan kampanye media sosial tentang hak pejalan kaki, tanpa penertiban.",
+        "benefits": "Murah dan tidak menimbulkan konflik.",
+        "consequences": "Pelanggaran berlanjut karena tidak ada akibatnya. Pengguna kursi roda tetap tidak bisa lewat.",
+        "feasibility": "Tinggi",
+        "legalAccuracyScore": 5,
+        "solutionQualityScore": 5,
+        "cityImpact": {
+          "socialStability": 0,
+          "legalIntegrity": -5,
+          "regionalDevelopment": 0,
+          "publicTrust": -5
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Butuh waktu",
+          "resources": "Rendah",
+          "burden": "Pejalan kaki"
+        },
+        "explanation": "Edukasi berguna sebagai pelengkap, tetapi pemerintah kota tetap wajib mengembalikan fungsi trotoar (Pasal 28I ayat 4). Tanpa penegakan, kewajiban pengendara dalam UU 22/2009 Pasal 106 tidak ditegakkan.",
+        "lawIds": [
+          "law-24",
+          "law-05"
+        ],
+        "impactReasons": {
+          "socialStability": "Situasi di jalan tidak berubah.",
+          "legalIntegrity": "Pelanggaran dibiarkan.",
+          "regionalDevelopment": "Kawasan tidak ditata.",
+          "publicTrust": "Warga melihat tidak ada perubahan nyata."
+        }
       }
     ],
-    realWorldAction: ["Selalu utamakan keselamatan pejalan kaki dan jangan menggunakan trotoar saat berkendara."]
+    realWorldAction: ["Selalu utamakan keselamatan pejalan kaki dan jangan menggunakan trotoar saat berkendara."],
+    actionGuide: {
+      "title": "Kalau trotoar di jalanmu tidak bisa dipakai",
+      "steps": [
+        "Saat berkendara, jangan pernah naik ke trotoar, termasuk saat macet.",
+        "Catat lokasi dan waktu, lalu foto kondisi trotoar dari tempat yang aman.",
+        "Laporkan ke Dinas Perhubungan atau kanal aduan pemerintah kotamu.",
+        "Jika tidak ditanggapi, buat aduan di SP4N-LAPOR! dan simpan nomor tiketnya.",
+        "Saat berjalan kaki, beri jalan kepada pengguna kursi roda dan orang lanjut usia."
+      ],
+      "contacts": [
+        {
+          "name": "Dinas Perhubungan atau Satpol PP kota",
+          "use": "Penataan trotoar dan penertiban sesuai peraturan daerah.",
+          "how": "Lihat kanal aduan di situs resmi pemerintah kotamu.",
+          "source": "Dibuat umum karena kontaknya berbeda di setiap daerah"
+        },
+        {
+          "name": "SP4N-LAPOR! (lapor.go.id)",
+          "use": "Kanal aduan pelayanan publik nasional. Aduan diteruskan ke instansi yang berwenang, misalnya pemerintah kota atau dinas terkait.",
+          "how": "Buat aduan di lapor.go.id. Sertakan lokasi, waktu, dan foto.",
+          "source": "Laporan pengelolaan aduan SP4N-LAPOR! instansi pemerintah (2025–2026)"
+        }
+      ],
+      "checkedAt": "2026-11-06"
+    }
   },
   {
     id: "case-04",
@@ -2057,20 +2502,176 @@ export const chapters = [
     },
     decisions: [
       {
-        id: "dec-1",
-        title: "Penertiban Pungli & Penyaluran Beasiswa Bantuan Kurang Mampu",
-        stakeholders: "Dinas Pendidikan, Inspektorat Daerah",
-        description: "Hapus seluruh biaya ilegal, tindak oknum, dan salurkan Kartu Indonesia Pintar/Bantuan Khusus.",
-        benefits: "Anak-anak dapat kembali sekolah tanpa beban biaya.",
-        consequences: "Membutuhkan audit finansial sekolah.",
-        feasibility: "Tinggi",
-        legalAccuracyScore: 25,
-        solutionQualityScore: 30,
-        cityImpact: { socialStability: 20, legalIntegrity: 15, regionalDevelopment: 20, publicTrust: 25 },
-        isOptimal: true
+        "id": "dec-1",
+        "title": "Penertiban Pungli & Penyaluran Bantuan Pendidikan",
+        "stakeholders": "Dinas Pendidikan, Inspektorat Daerah, Sekolah, Orang Tua",
+        "description": "Periksa dasar penetapan biaya dan hentikan pungutan yang tidak sah, kembalikan dana yang terlanjur ditagih, data anak yang berhenti sekolah, lalu ajak mereka kembali dengan bantuan seperti Program Indonesia Pintar (PIP).",
+        "benefits": "Anak-anak kembali bersekolah tanpa beban biaya, dan penyebab utamanya dihentikan.",
+        "consequences": "Butuh audit keuangan sekolah dan pendataan keluarga, yang memerlukan waktu.",
+        "feasibility": "Tinggi",
+        "legalAccuracyScore": 25,
+        "solutionQualityScore": 30,
+        "cityImpact": {
+          "socialStability": 20,
+          "legalIntegrity": 15,
+          "regionalDevelopment": 20,
+          "publicTrust": 25
+        },
+        "isOptimal": true,
+        "tradeoffs": {
+          "speed": "Sedang",
+          "resources": "Sedang",
+          "burden": "Pemerintah daerah"
+        },
+        "explanation": "Strategi ini menjalankan kewajiban negara membiayai pendidikan dasar (Pasal 31 ayat 2 dan UU Sisdiknas Pasal 34 ayat 2) dan memulihkan hak anak atas pendidikan serta tumbuh kembang (Pasal 31 ayat 1 dan Pasal 28B ayat 2).",
+        "lawIds": [
+          "law-06",
+          "law-35",
+          "law-29",
+          "law-14"
+        ],
+        "impactReasons": {
+          "socialStability": "Keluarga tidak lagi terbebani biaya yang tidak sah.",
+          "legalIntegrity": "Pungutan diperiksa dan dihentikan sesuai aturan.",
+          "regionalDevelopment": "Anak-anak pesisir kembali belajar, modal masa depan daerah.",
+          "publicTrust": "Warga melihat aduan relawan ditindaklanjuti."
+        }
+      },
+      {
+        "id": "dec-2",
+        "title": "Beri Bantuan, Biarkan Pungutan",
+        "stakeholders": "Dinas Pendidikan",
+        "description": "Sembilan siswa yang berhenti mendapat bantuan biaya, tetapi pungutan untuk siswa lain tetap berjalan.",
+        "benefits": "Anak-anak yang berhenti bisa cepat kembali bersekolah.",
+        "consequences": "Bantuan negara justru dipakai untuk membayar pungutan yang belum tentu sah. Keluarga lain tetap terbebani.",
+        "feasibility": "Tinggi",
+        "legalAccuracyScore": 10,
+        "solutionQualityScore": 15,
+        "cityImpact": {
+          "socialStability": 5,
+          "legalIntegrity": -5,
+          "regionalDevelopment": 5,
+          "publicTrust": 0
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Cepat terlihat",
+          "resources": "Sedang",
+          "burden": "Keluarga siswa lain"
+        },
+        "explanation": "Bantuan menolong sebagian anak, tetapi pungutan yang menghalangi pendidikan dasar tetap berjalan. Kewajiban pemerintah menjamin wajib belajar tanpa biaya (UU Sisdiknas Pasal 34 ayat 2) belum dijalankan.",
+        "lawIds": [
+          "law-35",
+          "law-06"
+        ],
+        "impactReasons": {
+          "socialStability": "Sebagian keluarga lega.",
+          "legalIntegrity": "Pungutan bermasalah tetap berjalan.",
+          "regionalDevelopment": "Beberapa anak kembali belajar.",
+          "publicTrust": "Sebagian warga puas, sebagian tetap merasa diperas."
+        }
+      },
+      {
+        "id": "dec-3",
+        "title": "Copot Kepala Sekolah Saat Itu Juga",
+        "stakeholders": "Dinas Pendidikan",
+        "description": "Kepala sekolah langsung dicopot tanpa pemeriksaan siapa yang menetapkan pungutan. Anak-anak yang berhenti tidak didata.",
+        "benefits": "Memberi sinyal tegas bahwa pungutan tidak dibiarkan.",
+        "consequences": "Belum jelas siapa yang menetapkan biaya itu, jadi sanksi bisa salah sasaran. Anak-anak yang sudah bekerja tidak otomatis kembali ke sekolah.",
+        "feasibility": "Tinggi",
+        "legalAccuracyScore": 10,
+        "solutionQualityScore": 10,
+        "cityImpact": {
+          "socialStability": -5,
+          "legalIntegrity": 0,
+          "regionalDevelopment": 0,
+          "publicTrust": 5
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Cepat terlihat",
+          "resources": "Rendah",
+          "burden": "Kepala sekolah dan siswa"
+        },
+        "explanation": "Sanksi tanpa pemeriksaan mengabaikan kepastian hukum yang adil (Pasal 28D ayat 1), dan hak anak atas pendidikan belum dipulihkan.",
+        "lawIds": [
+          "law-17",
+          "law-06"
+        ],
+        "impactReasons": {
+          "socialStability": "Sekolah bergejolak setelah pergantian mendadak.",
+          "legalIntegrity": "Ada sanksi, tetapi tanpa pemeriksaan yang semestinya.",
+          "regionalDevelopment": "Anak-anak tetap putus sekolah.",
+          "publicTrust": "Sebagian warga menilai pemerintah tegas."
+        }
+      },
+      {
+        "id": "dec-4",
+        "title": "Denda Orang Tua yang Membiarkan Anak Bekerja",
+        "stakeholders": "Pemerintah Desa",
+        "description": "Orang tua didenda jika anaknya bekerja dan tidak sekolah. Pungutan di sekolah tidak diperiksa.",
+        "benefits": "Memberi tekanan agar anak kembali ke sekolah.",
+        "consequences": "Keluarga miskin makin terbebani, sementara penyebab di sekolah tetap ada. Anak bisa makin terdesak bekerja untuk membayar denda.",
+        "feasibility": "Sedang",
+        "legalAccuracyScore": 0,
+        "solutionQualityScore": 5,
+        "cityImpact": {
+          "socialStability": -10,
+          "legalIntegrity": 0,
+          "regionalDevelopment": -5,
+          "publicTrust": -10
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Sedang",
+          "resources": "Rendah",
+          "burden": "Keluarga miskin"
+        },
+        "explanation": "Kewajiban membiayai pendidikan dasar ada pada negara (Pasal 31 ayat 2), bukan dipindahkan menjadi hukuman bagi keluarga yang tidak mampu.",
+        "lawIds": [
+          "law-06",
+          "law-29"
+        ],
+        "impactReasons": {
+          "socialStability": "Keluarga miskin makin tertekan.",
+          "legalIntegrity": "Tidak ada perubahan: pungutan bermasalah tidak disentuh.",
+          "regionalDevelopment": "Ekonomi keluarga pesisir makin lemah.",
+          "publicTrust": "Warga merasa disalahkan atas masalah yang bukan dari mereka."
+        }
       }
     ],
-    realWorldAction: ["Laporkan pungutan yang tidak sah di sekolah kepada Dinas Pendidikan setempat atau Ombudsman Republik Indonesia."]
+    realWorldAction: ["Laporkan pungutan yang tidak sah di sekolah kepada Dinas Pendidikan setempat atau Ombudsman Republik Indonesia."],
+    actionGuide: {
+      "title": "Kalau sekolah menagih biaya yang memberatkan",
+      "steps": [
+        "Tanyakan secara sopan dasar tertulis setiap biaya: siapa yang menetapkan, untuk apa, dan apakah wajib.",
+        "Simpan bukti tagihan, kuitansi, atau pesan yang meminta pembayaran.",
+        "Bicarakan bersama orang tua lain dengan kepala sekolah atau komite sekolah.",
+        "Jika tidak ada penyelesaian, laporkan ke Dinas Pendidikan kabupaten/kota, lalu ke Ombudsman RI.",
+        "Tanyakan ke sekolah atau dinas pendidikan apakah kamu berhak atas Program Indonesia Pintar (PIP)."
+      ],
+      "contacts": [
+        {
+          "name": "Dinas Pendidikan kabupaten/kota",
+          "use": "Pengawasan sekolah dan aduan biaya pendidikan.",
+          "how": "Datang langsung atau lihat kanal aduan di situs pemerintah daerahmu.",
+          "source": "Dibuat umum karena kontaknya berbeda di setiap daerah"
+        },
+        {
+          "name": "Ombudsman RI (perwakilan provinsi)",
+          "use": "Aduan maladministrasi pelayanan publik, misalnya pungutan sekolah yang tidak sah atau proses pemerintah yang tidak patut.",
+          "how": "Datang ke kantor perwakilan Ombudsman di provinsimu atau lihat ombudsman.go.id. Bawa bukti dan catatan aduan yang sudah kamu sampaikan ke instansinya.",
+          "source": "Berita resmi Ombudsman RI (2025–2026)"
+        },
+        {
+          "name": "Program Indonesia Pintar (PIP)",
+          "use": "Bantuan pendidikan dari pemerintah untuk siswa dari keluarga kurang mampu.",
+          "how": "Tanyakan cara pengajuan dan pengecekan kepada sekolah.",
+          "source": "Pemberitaan penyaluran PIP 2026"
+        }
+      ],
+      "checkedAt": "2026-11-06"
+    }
   },
   {
     id: "case-05",
@@ -2562,19 +3163,176 @@ export const chapters = [
     },
     decisions: [
       {
-        id: "dec-1",
-        title: "Pemberhentian Sementara Pengosongan & Musyawarah Relokasi Layak",
-        stakeholders: "Pemkot, Warga, LBH, Pengembang",
-        description: "Hentikan pengosongan sepihak dan adakan musyawarah terbuka untuk menentukan skema ganti rugi dan Rusunawa.",
-        benefits: "Menjaga keadilan sosial dan keharmonisan kota.",
-        consequences: "Jadwal proyek sedikit tertunda.",
-        feasibility: "Tinggi",
-        legalAccuracyScore: 25,
-        solutionQualityScore: 30,
-        cityImpact: { socialStability: 25, legalIntegrity: 20, regionalDevelopment: 10, publicTrust: 25 },
-        isOptimal: true
+        "id": "dec-1",
+        "title": "Pemberhentian Sementara Pengosongan & Musyawarah Relokasi Layak",
+        "stakeholders": "Pemkot, Warga, LBH, Pengembang",
+        "description": "Hentikan pengosongan sepihak, periksa status tanah, dan adakan musyawarah terbuka dengan semua warga terdampak untuk menyepakati relokasi atau kompensasi, misalnya Rusunawa, secara tertulis.",
+        "benefits": "Pembangunan tetap berjalan, dan warga mendapat kepastian tempat tinggal.",
+        "consequences": "Jadwal proyek tertunda beberapa waktu.",
+        "feasibility": "Tinggi",
+        "legalAccuracyScore": 25,
+        "solutionQualityScore": 30,
+        "cityImpact": {
+          "socialStability": 25,
+          "legalIntegrity": 20,
+          "regionalDevelopment": 10,
+          "publicTrust": 25
+        },
+        "isOptimal": true,
+        "tradeoffs": {
+          "speed": "Butuh waktu",
+          "resources": "Sedang",
+          "burden": "Pemerintah kota dan pengembang (waktu)"
+        },
+        "explanation": "Strategi ini menghormati hak atas tempat tinggal (Pasal 28H ayat 1), kepastian hukum yang adil (Pasal 28D ayat 1), dan hak atas informasi (Pasal 28F), tanpa menolak pembangunan yang dibutuhkan kota.",
+        "lawIds": [
+          "law-03",
+          "law-17",
+          "law-19",
+          "law-24",
+          "law-10"
+        ],
+        "impactReasons": {
+          "socialStability": "Konflik mereda karena warga dilibatkan.",
+          "legalIntegrity": "Prosesnya tertulis, jelas, dan dapat diuji.",
+          "regionalDevelopment": "Pembangunan tetap berjalan, hanya tertunda.",
+          "publicTrust": "Warga merasa didengar."
+        }
+      },
+      {
+        "id": "dec-2",
+        "title": "Lanjutkan Pengosongan dengan Uang Pindah",
+        "stakeholders": "Pemkot, Pengembang",
+        "description": "Tenggat diperpanjang dua minggu dan warga diberi uang pindah, tanpa musyawarah dan tanpa tempat tinggal pengganti.",
+        "benefits": "Proyek tepat waktu, dan warga mendapat sejumlah dana.",
+        "consequences": "Warga tidak mendapat kepastian tempat tinggal, dan keputusan dibuat tanpa melibatkan mereka.",
+        "feasibility": "Tinggi",
+        "legalAccuracyScore": 10,
+        "solutionQualityScore": 10,
+        "cityImpact": {
+          "socialStability": -10,
+          "legalIntegrity": -5,
+          "regionalDevelopment": 10,
+          "publicTrust": -10
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Cepat terlihat",
+          "resources": "Sedang",
+          "burden": "Warga terdampak"
+        },
+        "explanation": "Uang pindah tidak menggantikan hak atas tempat tinggal (Pasal 28H ayat 1) dan proses yang adil (Pasal 28D ayat 1). Warga sudah menyatakan tidak menolak pembangunan, jadi musyawarah sebenarnya mungkin.",
+        "lawIds": [
+          "law-03",
+          "law-17"
+        ],
+        "impactReasons": {
+          "socialStability": "Warga terpaksa pindah tanpa tujuan jelas.",
+          "legalIntegrity": "Prosesnya tidak memberi kepastian hukum.",
+          "regionalDevelopment": "Proyek selesai sesuai jadwal.",
+          "publicTrust": "Warga merasa diabaikan."
+        }
+      },
+      {
+        "id": "dec-3",
+        "title": "Batalkan Proyek Sepenuhnya",
+        "stakeholders": "Pemkot",
+        "description": "Pembangunan fasilitas publik dibatalkan agar warga tidak perlu pindah.",
+        "benefits": "Warga tetap tinggal di rumahnya.",
+        "consequences": "Fasilitas yang dibutuhkan kota batal, padahal warga sendiri tidak menolak pembangunan. Status tanah dan nasib warga tetap belum jelas.",
+        "feasibility": "Sedang",
+        "legalAccuracyScore": 10,
+        "solutionQualityScore": 10,
+        "cityImpact": {
+          "socialStability": 5,
+          "legalIntegrity": 0,
+          "regionalDevelopment": -15,
+          "publicTrust": 0
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Cepat terlihat",
+          "resources": "Rendah",
+          "burden": "Warga kota yang butuh fasilitas"
+        },
+        "explanation": "Melindungi warga tidak berarti harus menghentikan pembangunan. Yang dibutuhkan adalah proses yang adil dan berdasarkan hak, bukan pembatalan.",
+        "lawIds": [
+          "law-24",
+          "law-03"
+        ],
+        "impactReasons": {
+          "socialStability": "Warga terdampak lega untuk sementara.",
+          "legalIntegrity": "Status tanah tetap tidak diperiksa.",
+          "regionalDevelopment": "Fasilitas publik batal dibangun.",
+          "publicTrust": "Sebagian warga puas, sebagian kecewa fasilitasnya batal."
+        }
+      },
+      {
+        "id": "dec-4",
+        "title": "Serahkan Negosiasi ke Pengembang",
+        "stakeholders": "Pengembang",
+        "description": "Pemerintah kota lepas tangan dan meminta pengembang bernegosiasi langsung dengan warga.",
+        "benefits": "Pemerintah kota tidak perlu mengeluarkan anggaran atau tenaga.",
+        "consequences": "Posisi tawar warga lemah, dan tidak ada pihak yang menjamin hak mereka. Negara tetap bertanggung jawab atas perlindungan hak warga.",
+        "feasibility": "Tinggi",
+        "legalAccuracyScore": 0,
+        "solutionQualityScore": 5,
+        "cityImpact": {
+          "socialStability": -5,
+          "legalIntegrity": -10,
+          "regionalDevelopment": 5,
+          "publicTrust": -15
+        },
+        "isOptimal": false,
+        "tradeoffs": {
+          "speed": "Sedang",
+          "resources": "Rendah",
+          "burden": "Warga terdampak"
+        },
+        "explanation": "Perlindungan dan pemenuhan hak asasi adalah tanggung jawab negara, terutama pemerintah (Pasal 28I ayat 4). Kewajiban itu tidak bisa diserahkan kepada pengembang.",
+        "lawIds": [
+          "law-24",
+          "law-02"
+        ],
+        "impactReasons": {
+          "socialStability": "Warga menghadapi pengembang sendirian.",
+          "legalIntegrity": "Pemerintah melepaskan kewajibannya.",
+          "regionalDevelopment": "Proyek berjalan.",
+          "publicTrust": "Warga merasa ditinggalkan pemerintahnya."
+        }
       }
     ],
-    realWorldAction: ["Gunakan musyawarah mufakat dalam menyelesaikan konflik kepentingan publik."]
+    realWorldAction: ["Gunakan musyawarah mufakat dalam menyelesaikan konflik kepentingan publik."],
+    actionGuide: {
+      "title": "Kalau tempat tinggalmu terdampak rencana pembangunan",
+      "steps": [
+        "Minta pemberitahuan dan rencana tertulis: siapa yang membangun, kapan, dan apa pilihan untuk warga.",
+        "Kumpulkan dokumen: bukti kepemilikan atau hak atas tanah, bukti pembayaran PBB, KTP, dan KK.",
+        "Minta musyawarah yang melibatkan semua warga terdampak, bukan hanya ketua RT, dan catat hasilnya secara tertulis.",
+        "Minta pendampingan lembaga bantuan hukum (LBH) sebelum menandatangani apa pun.",
+        "Jika pemerintah tidak menjalankan prosedur yang patut, adukan ke Ombudsman RI. Dugaan pelanggaran hak asasi dapat diadukan ke Komnas HAM."
+      ],
+      "contacts": [
+        {
+          "name": "Lembaga Bantuan Hukum (LBH) atau organisasi bantuan hukum",
+          "use": "Pendampingan dan nasihat hukum bagi warga.",
+          "how": "Hubungi LBH atau organisasi bantuan hukum di kotamu.",
+          "source": "Dibuat umum karena lembaganya berbeda di setiap daerah"
+        },
+        {
+          "name": "Ombudsman RI (perwakilan provinsi)",
+          "use": "Aduan maladministrasi pelayanan publik, misalnya pungutan sekolah yang tidak sah atau proses pemerintah yang tidak patut.",
+          "how": "Datang ke kantor perwakilan Ombudsman di provinsimu atau lihat ombudsman.go.id. Bawa bukti dan catatan aduan yang sudah kamu sampaikan ke instansinya.",
+          "source": "Berita resmi Ombudsman RI (2025–2026)"
+        },
+        {
+          "name": "Komnas HAM",
+          "use": "Pengaduan dugaan pelanggaran hak asasi manusia.",
+          "how": "Lihat cara pengaduan di situs resmi Komnas HAM.",
+          "source": "Pemberitaan pengaduan Komnas HAM"
+        }
+      ],
+      "checkedAt": "2026-11-06"
+    }
   }
 ];

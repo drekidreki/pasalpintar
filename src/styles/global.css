@@ -153,3 +153,40 @@
     box-shadow: 0 1px 2px rgba(0,0,0,.2);
   }
 }
+
+/* Print only the Real-World Action Guide (Evaluation → "Cetak").
+   Evaluation.jsx marks the guide's ancestors and every other branch before
+   calling window.print(), and removes the marks on "afterprint". */
+@media print {
+  body[data-print='guide'] {
+    background: #fff !important;
+  }
+  body[data-print='guide']::before,
+  body[data-print='guide']::after,
+  body[data-print='guide'] [data-print-hide] {
+    display: none !important;
+  }
+  body[data-print='guide'] [data-print-ancestor] {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  body[data-print='guide'] #action-guide,
+  body[data-print='guide'] #action-guide * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  body[data-print='guide'] #action-guide {
+    margin: 0;
+    padding: 0;
+  }
+  body[data-print='guide'] #action-guide .guide-actions {
+    display: none !important;
+  }
+}
