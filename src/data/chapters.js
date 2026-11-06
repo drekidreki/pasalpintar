@@ -304,20 +304,237 @@ export const chapters = [
       ]
     },
     legalAnalysis: {
-      rightsAffected: [
-        { id: "r1", label: "Hak atas perlindungan diri pribadi, keluarga, kehormatan, dan rasa aman", isCorrect: true, explanation: "Setiap orang berhak atas rasa aman dan perlindungan dari ancaman ketakutan (UUD 1945 Pasal 28G ayat (1)). Sebagai anak, Budi juga berhak atas perlindungan dari kekerasan (Pasal 28B ayat (2))." },
-        { id: "r2", label: "Hak untuk bebas dari pekerjaan paksa", isCorrect: false, explanation: "Kasus ini tidak berkaitan dengan eksploitasi tenaga kerja." },
-        { id: "r3", label: "Hak memperoleh pendidikan yang layak tanpa intimidasi", isCorrect: true, explanation: "Aksi perundungan menyebabkan Budi takut pergi ke sekolah sehingga hak belajarnya terganggu (UUD 1945 Pasal 31 ayat (1) dan Pasal 28C ayat (1))." }
+      "facts": [
+        {
+          "id": "fa1",
+          "text": "Akun anonim mengirim meme Budi bertuliskan 'Habisi dia sepulang sekolah' ke grup angkatan.",
+          "established": true,
+          "basis": "Screenshot Grup Chat",
+          "explanation": "Terlihat langsung di bukti utama."
+        },
+        {
+          "id": "fa2",
+          "text": "Meme itu disebarkan ulang oleh banyak anggota grup.",
+          "established": true,
+          "basis": "Screenshot Grup Chat, kesaksian Siska",
+          "explanation": "Tangkapan layar menunjukkan pesan di-forward berkali-kali, dan Siska menguatkannya."
+        },
+        {
+          "id": "fa3",
+          "text": "Budi absen lima hari dan terlihat tertekan setelah meme beredar.",
+          "established": true,
+          "basis": "Laporan Absensi & Konseling, kesaksian Pak Hendra",
+          "explanation": "Tercatat di dokumen resmi sekolah."
+        },
+        {
+          "id": "fa4",
+          "text": "Siswa yang menegur ikut menerima ancaman.",
+          "established": true,
+          "basis": "Kesaksian Siska, Pesan Pribadi kepada Siska",
+          "explanation": "Siska menyatakannya dan pesannya masih tersimpan di ponselnya."
+        },
+        {
+          "id": "fa8",
+          "text": "Sekolah belum menindaklanjuti kejadian ini.",
+          "established": true,
+          "basis": "Kesaksian Pak Hendra (Guru BK)",
+          "explanation": "Diakui sendiri oleh guru BK. Pengakuan pihak sekolah tentang tindakannya sendiri cukup kuat."
+        },
+        {
+          "id": "fa5",
+          "text": "Pesan itu hanya candaan, jadi tidak ada ancaman.",
+          "established": false,
+          "basis": "Pesan Admin Grup",
+          "explanation": "Ini klaim admin, bukan fakta. Isi pesannya jelas berupa ancaman kekerasan, dan admin bukan pengirimnya."
+        },
+        {
+          "id": "fa6",
+          "text": "Pemilik akun anonim adalah siswa kelas sebelah.",
+          "established": false,
+          "basis": "Rumor yang disebut Siska",
+          "explanation": "Siska sendiri menyebutnya 'cuma omongan'. Rumor tidak bisa dijadikan fakta."
+        },
+        {
+          "id": "fa7",
+          "text": "Budi sering terlambat, jadi ia ikut bertanggung jawab.",
+          "established": false,
+          "basis": "Catatan Keterlambatan Budi",
+          "explanation": "Catatan lama itu tidak berhubungan dengan ancaman. Kesimpulan ini menyalahkan korban."
+        }
       ],
-      dutiesNeglected: [
-        { id: "d1", label: "Kewajiban menghormati hak asasi manusia orang lain dalam tertib kehidupan bermasyarakat", isCorrect: true, explanation: "Pelaku mengabaikan kewajiban menghormati hak asasi orang lain (UUD 1945 Pasal 28J ayat (1)). Kebebasan berekspresi di media sosial pun dibatasi demi hak orang lain (Pasal 28J ayat (2))." },
-        { id: "d2", label: "Kewajiban membayar pajak tepat waktu", isCorrect: false, explanation: "Kewajiban perpajakan tidak relevan dengan konteks kasus siber di lingkungan sekolah ini." }
+      "rightsAffected": [
+        {
+          "id": "r1",
+          "label": "Hak atas perlindungan diri pribadi, keluarga, kehormatan, dan rasa aman",
+          "isCorrect": true,
+          "explanation": "Setiap orang berhak atas rasa aman dan perlindungan dari ancaman ketakutan (UUD 1945 Pasal 28G ayat (1)). Sebagai anak, Budi juga berhak atas perlindungan dari kekerasan (Pasal 28B ayat (2)).",
+          "supportedBy": [
+            "fa1",
+            "fa4"
+          ]
+        },
+        {
+          "id": "r2",
+          "label": "Hak untuk bebas dari pekerjaan paksa",
+          "isCorrect": false,
+          "explanation": "Kasus ini tidak berkaitan dengan eksploitasi tenaga kerja."
+        },
+        {
+          "id": "r3",
+          "label": "Hak memperoleh pendidikan yang layak tanpa intimidasi",
+          "isCorrect": true,
+          "explanation": "Aksi perundungan menyebabkan Budi takut pergi ke sekolah sehingga hak belajarnya terganggu (UUD 1945 Pasal 31 ayat (1) dan Pasal 28C ayat (1)).",
+          "supportedBy": [
+            "fa3"
+          ]
+        },
+        {
+          "id": "r4",
+          "label": "Hak anak atas perlindungan dari kekerasan",
+          "isCorrect": true,
+          "explanation": "Budi masih anak. UUD 1945 Pasal 28B ayat (2) menjamin perlindungan anak dari kekerasan; ancaman yang membuatnya takut termasuk kekerasan psikis.",
+          "supportedBy": [
+            "fa1",
+            "fa3"
+          ]
+        },
+        {
+          "id": "r5",
+          "label": "Hak atas pekerjaan dan penghidupan yang layak",
+          "isCorrect": false,
+          "explanation": "Pasal 27 ayat (2) memang hak warga negara, tetapi tidak ada fakta dalam kasus ini tentang pekerjaan atau penghidupan."
+        },
+        {
+          "id": "r6",
+          "label": "Hak pengirim meme untuk bebas berpendapat",
+          "isCorrect": false,
+          "explanation": "Kebebasan berpendapat dijamin (Pasal 28E ayat (3)), tetapi dibatasi undang-undang demi hak orang lain (Pasal 28J ayat (2)). Tidak ada hak untuk mengancam."
+        }
       ],
-      legalArticles: [
-        { id: "l1", label: "UUD 1945 Pasal 28G ayat (1) - Perlindungan Diri & Rasa Aman", isCorrect: true },
-        { id: "l2", label: "UUD 1945 Pasal 28J ayat (1) - Menghormati Hak Orang Lain", isCorrect: true },
-        { id: "l3", label: "UU ITE Pasal 29 (diubah UU No. 1 Tahun 2024) - Ancaman Kekerasan melalui Informasi Elektronik", isCorrect: true },
-        { id: "l4", label: "UUD 1945 Pasal 33 - Perekonomian Nasional", isCorrect: false }
+      "dutiesNeglected": [
+        {
+          "id": "d1",
+          "label": "Kewajiban menghormati hak asasi manusia orang lain dalam tertib kehidupan bermasyarakat",
+          "isCorrect": true,
+          "explanation": "Pelaku mengabaikan kewajiban menghormati hak asasi orang lain (UUD 1945 Pasal 28J ayat (1)). Kebebasan berekspresi di media sosial pun dibatasi demi hak orang lain (Pasal 28J ayat (2)).",
+          "supportedBy": [
+            "fa1",
+            "fa2"
+          ]
+        },
+        {
+          "id": "d2",
+          "label": "Kewajiban membayar pajak tepat waktu",
+          "isCorrect": false,
+          "explanation": "Kewajiban perpajakan tidak relevan dengan konteks kasus siber di lingkungan sekolah ini."
+        },
+        {
+          "id": "d3",
+          "label": "Kewajiban sekolah melindungi murid dari kekerasan di lingkungan sekolah",
+          "isCorrect": true,
+          "explanation": "Anak di lingkungan satuan pendidikan wajib dilindungi dari kekerasan (UU No. 35 Tahun 2014 Pasal 54), dan aturan terbaru menempatkan kepala sekolah sebagai penanggung jawab budaya sekolah yang aman. Sekolah belum bertindak.",
+          "supportedBy": [
+            "fa8",
+            "fa3"
+          ]
+        },
+        {
+          "id": "d4",
+          "label": "Kewajiban Budi untuk datang tepat waktu",
+          "isCorrect": false,
+          "explanation": "Keterlambatan Budi tidak berkaitan dengan ancaman yang ia terima. Pilihan ini menggeser kesalahan kepada korban."
+        }
+      ],
+      "legalArticles": [
+        {
+          "id": "l1",
+          "label": "UUD 1945 Pasal 28G ayat (1) - Perlindungan Diri & Rasa Aman",
+          "isCorrect": true,
+          "explanation": "Inti kasus: Budi kehilangan rasa aman karena ancaman.",
+          "lawIds": [
+            "law-01"
+          ]
+        },
+        {
+          "id": "l2",
+          "label": "UUD 1945 Pasal 28J ayat (1) - Menghormati Hak Orang Lain",
+          "isCorrect": true,
+          "explanation": "Dasar kewajiban yang diabaikan para pelaku.",
+          "lawIds": [
+            "law-02"
+          ]
+        },
+        {
+          "id": "l3",
+          "label": "UU ITE Pasal 29 (diubah UU No. 1 Tahun 2024) - Ancaman Kekerasan melalui Informasi Elektronik",
+          "isCorrect": true,
+          "explanation": "Relevan, terutama untuk pesan ancaman yang dikirim langsung ke Siska. Untuk meme yang disebar di grup, unsur 'secara langsung kepada korban' perlu dikaji lebih cermat.",
+          "lawIds": [
+            "law-33"
+          ]
+        },
+        {
+          "id": "l4",
+          "label": "UUD 1945 Pasal 33 - Perekonomian Nasional",
+          "isCorrect": false,
+          "explanation": "Pasal ini mengatur perekonomian nasional, tidak berkaitan dengan perundungan."
+        },
+        {
+          "id": "l5",
+          "label": "UUD 1945 Pasal 28B ayat (2) - Perlindungan Anak dari Kekerasan",
+          "isCorrect": true,
+          "explanation": "Korban dan saksi masih anak; pasal ini menjamin perlindungan mereka dari kekerasan.",
+          "lawIds": [
+            "law-14"
+          ]
+        },
+        {
+          "id": "l6",
+          "label": "UUD 1945 Pasal 31 ayat (1) - Hak atas Pendidikan",
+          "isCorrect": true,
+          "explanation": "Ancaman membuat Budi tidak bisa bersekolah.",
+          "lawIds": [
+            "law-06"
+          ]
+        },
+        {
+          "id": "l7",
+          "label": "UUD 1945 Pasal 28E ayat (3) - Kebebasan Mengeluarkan Pendapat",
+          "isCorrect": false,
+          "explanation": "Pasal ini justru menjamin kebebasan berpendapat dan tidak menjadi dasar pelanggarannya. Yang relevan adalah pembatasannya dalam Pasal 28J.",
+          "lawIds": [
+            "law-18"
+          ]
+        },
+        {
+          "id": "l8",
+          "label": "UUD 1945 Pasal 27 ayat (3) - Bela Negara",
+          "isCorrect": false,
+          "explanation": "Bela negara tidak berkaitan dengan kasus ini.",
+          "lawIds": [
+            "law-11"
+          ]
+        }
+      ],
+      "conclusions": [
+        {
+          "id": "c1",
+          "text": "Ancaman dan penyebarannya melanggar hak Budi atas rasa aman, perlindungan anak, dan pendidikan. Para pelaku mengabaikan kewajiban menghormati hak orang lain, dan sekolah wajib bertindak. Karena pelaku kemungkinan juga anak, penanganannya harus mengikuti aturan perlindungan anak.",
+          "isCorrect": true,
+          "explanation": "Kesimpulan ini sesuai fakta yang terbukti, menyebut hak dan kewajiban yang tepat, dan tidak melampaui bukti: pemilik akun belum diketahui."
+        },
+        {
+          "id": "c2",
+          "text": "Pemilik akun anonim sudah pasti siswa kelas sebelah dan harus langsung dipenjara.",
+          "isCorrect": false,
+          "explanation": "Identitasnya belum terbukti (hanya rumor). Jika pelakunya anak, hukum mewajibkan perlakuan khusus, termasuk upaya diversi."
+        },
+        {
+          "id": "c3",
+          "text": "Karena pesannya hanya di grup dan admin menyebutnya candaan, tidak ada hak yang dilanggar.",
+          "isCorrect": false,
+          "explanation": "Klaim 'candaan' tidak menghapus isi ancaman dan dampaknya yang nyata pada Budi."
+        }
       ]
     },
     decisions: [
@@ -659,16 +876,206 @@ export const chapters = [
       ]
     },
     legalAnalysis: {
-      rightsAffected: [
-        { id: "r1", label: "Hak atas lingkungan hidup yang baik dan sehat", isCorrect: true, explanation: "Diatur eksplisit dalam UUD 1945 Pasal 28H ayat (1): hak atas lingkungan hidup yang baik dan sehat serta pelayanan kesehatan." },
-        { id: "r2", label: "Hak memilih kewarganegaraan", isCorrect: false, explanation: "Tidak ada hubungannya dengan status kewarganegaraan." }
+      "facts": [
+        {
+          "id": "fa1",
+          "text": "Sampah plastik dan limbah cair merembes ke Sungai Hijau.",
+          "established": true,
+          "basis": "Sampel & Foto Lokasi",
+          "explanation": "Terlihat langsung di dokumentasi lokasi."
+        },
+        {
+          "id": "fa2",
+          "text": "Kasus ISPA dan penyakit kulit anak di RW 04 meningkat dalam dua bulan terakhir.",
+          "established": true,
+          "basis": "Surat Aduan Puskesmas",
+          "explanation": "Data resmi fasilitas kesehatan."
+        },
+        {
+          "id": "fa3",
+          "text": "Kelurahan tidak pernah menerbitkan izin pembuangan sampah di lokasi itu.",
+          "established": true,
+          "basis": "Surat Kelurahan tentang Izin",
+          "explanation": "Dokumen resmi dari pihak yang mencatat izin."
+        },
+        {
+          "id": "fa4",
+          "text": "Truk membuang sampah di lokasi itu pada malam hari, berulang kali.",
+          "established": true,
+          "basis": "Kesaksian Pak RT, Buku Catatan Truk",
+          "explanation": "Keterangan warga yang konsisten dan tercatat rutin."
+        },
+        {
+          "id": "fa8",
+          "text": "Warga sudah melapor, tetapi belum ada tindakan.",
+          "established": true,
+          "basis": "Kesaksian Pak RT, surat Kelurahan",
+          "explanation": "Pak RT menyatakannya, dan kelurahan baru menjawab setelah posko bertanya."
+        },
+        {
+          "id": "fa5",
+          "text": "Pencemaran ini sudah terbukti menyebabkan penyakit warga.",
+          "established": false,
+          "basis": "Surat Aduan Puskesmas",
+          "explanation": "Kenaikan kasus belum membuktikan penyebabnya. Masih perlu uji air dan penilaian tenaga kesehatan."
+        },
+        {
+          "id": "fa6",
+          "text": "Lokasi itu sudah diizinkan secara lisan.",
+          "established": false,
+          "basis": "Pernyataan Pemilik Lahan",
+          "explanation": "Klaim pihak yang berkepentingan tanpa dokumen, dan dibantah surat kelurahan."
+        },
+        {
+          "id": "fa7",
+          "text": "Warga RW 04 tidak mungkin ikut membuang sampah karena pernah juara lomba kebersihan.",
+          "established": false,
+          "basis": "Piagam Lomba Kebersihan",
+          "explanation": "Prestasi tiga tahun lalu tidak membuktikan apa pun tentang kejadian sekarang."
+        }
       ],
-      dutiesNeglected: [
-        { id: "d1", label: "Kewajiban menangani sampah secara berwawasan lingkungan dan membuangnya pada tempat yang ditentukan", isCorrect: true, explanation: "Setiap orang wajib mengurangi dan menangani sampah secara berwawasan lingkungan (UU No. 18 Tahun 2008 Pasal 12 ayat (1)) dan dilarang membuang sampah tidak pada tempat yang ditentukan (Pasal 29 ayat (1) huruf e)." }
+      "rightsAffected": [
+        {
+          "id": "r1",
+          "label": "Hak atas lingkungan hidup yang baik dan sehat",
+          "isCorrect": true,
+          "explanation": "Diatur eksplisit dalam UUD 1945 Pasal 28H ayat (1): hak atas lingkungan hidup yang baik dan sehat serta pelayanan kesehatan.",
+          "supportedBy": [
+            "fa1"
+          ]
+        },
+        {
+          "id": "r2",
+          "label": "Hak memilih kewarganegaraan",
+          "isCorrect": false,
+          "explanation": "Tidak ada hubungannya dengan status kewarganegaraan."
+        },
+        {
+          "id": "r3",
+          "label": "Hak warga atas pelayanan pengelolaan sampah yang baik dan berwawasan lingkungan",
+          "isCorrect": true,
+          "explanation": "UU No. 18 Tahun 2008 Pasal 11 ayat (1) huruf a. Pembuangan liar yang dibiarkan menunjukkan layanan itu tidak terpenuhi.",
+          "supportedBy": [
+            "fa1",
+            "fa8"
+          ]
+        },
+        {
+          "id": "r4",
+          "label": "Hak pemilik lahan memakai tanahnya sesuka hati",
+          "isCorrect": false,
+          "explanation": "Hak milik dilindungi (Pasal 28H ayat (4)), tetapi tidak berarti boleh mencemari lingkungan dan merugikan orang lain (Pasal 28J)."
+        },
+        {
+          "id": "r5",
+          "label": "Hak atas pendidikan",
+          "isCorrect": false,
+          "explanation": "Tidak ada fakta dalam kasus ini yang berkaitan dengan pendidikan."
+        }
       ],
-      legalArticles: [
-        { id: "l1", label: "UUD 1945 Pasal 28H ayat (1) - Lingkungan Sehat", isCorrect: true },
-        { id: "l2", label: "UU No. 18 Tahun 2008 Pasal 29 ayat (1) huruf e - Larangan Membuang Sampah Tidak pada Tempatnya", isCorrect: true }
+      "dutiesNeglected": [
+        {
+          "id": "d1",
+          "label": "Kewajiban menangani sampah secara berwawasan lingkungan dan membuangnya pada tempat yang ditentukan",
+          "isCorrect": true,
+          "explanation": "Setiap orang wajib mengurangi dan menangani sampah secara berwawasan lingkungan (UU No. 18 Tahun 2008 Pasal 12 ayat (1)) dan dilarang membuang sampah tidak pada tempat yang ditentukan (Pasal 29 ayat (1) huruf e).",
+          "supportedBy": [
+            "fa1",
+            "fa4",
+            "fa3"
+          ]
+        },
+        {
+          "id": "d2",
+          "label": "Kewajiban pemerintah daerah melindungi hak warga atas lingkungan yang sehat",
+          "isCorrect": true,
+          "explanation": "Perlindungan dan pemenuhan HAM adalah tanggung jawab negara, terutama pemerintah (UUD 1945 Pasal 28I ayat (4)). Laporan warga belum ditindaklanjuti.",
+          "supportedBy": [
+            "fa8"
+          ]
+        },
+        {
+          "id": "d3",
+          "label": "Kewajiban warga RW 04 membersihkan sendiri sampah kiriman truk",
+          "isCorrect": false,
+          "explanation": "Warga bisa ikut berpartisipasi, tetapi mereka bukan pihak yang membuang. Kewajiban utama ada pada pembuang dan pemerintah daerah."
+        }
+      ],
+      "legalArticles": [
+        {
+          "id": "l1",
+          "label": "UUD 1945 Pasal 28H ayat (1) - Lingkungan Sehat",
+          "isCorrect": true,
+          "explanation": "Dasar hak warga atas lingkungan yang baik dan sehat.",
+          "lawIds": [
+            "law-03"
+          ]
+        },
+        {
+          "id": "l2",
+          "label": "UU No. 18 Tahun 2008 Pasal 29 ayat (1) huruf e - Larangan Membuang Sampah Tidak pada Tempatnya",
+          "isCorrect": true,
+          "explanation": "Larangan yang langsung dilanggar oleh pembuangan di lokasi tak berizin.",
+          "lawIds": [
+            "law-04"
+          ]
+        },
+        {
+          "id": "l3",
+          "label": "UU No. 18 Tahun 2008 Pasal 12 ayat (1) - Kewajiban Menangani Sampah",
+          "isCorrect": true,
+          "explanation": "Kewajiban setiap orang menangani sampah secara berwawasan lingkungan.",
+          "lawIds": [
+            "law-32"
+          ]
+        },
+        {
+          "id": "l4",
+          "label": "UUD 1945 Pasal 28I ayat (4) - Tanggung Jawab Negara",
+          "isCorrect": true,
+          "explanation": "Dasar kewajiban pemerintah daerah untuk bertindak.",
+          "lawIds": [
+            "law-24"
+          ]
+        },
+        {
+          "id": "l5",
+          "label": "UUD 1945 Pasal 27 ayat (2) - Pekerjaan dan Penghidupan Layak",
+          "isCorrect": false,
+          "explanation": "Tidak ada fakta tentang pekerjaan atau penghidupan yang terganggu.",
+          "lawIds": [
+            "law-10"
+          ]
+        },
+        {
+          "id": "l6",
+          "label": "UUD 1945 Pasal 31 ayat (1) - Hak atas Pendidikan",
+          "isCorrect": false,
+          "explanation": "Kasus ini tidak berkaitan dengan pendidikan.",
+          "lawIds": [
+            "law-06"
+          ]
+        }
+      ],
+      "conclusions": [
+        {
+          "id": "c1",
+          "text": "Pembuangan sampah di lokasi tak berizin yang mencemari sungai melanggar hak warga atas lingkungan yang baik dan sehat. Pembuangnya melanggar UU Pengelolaan Sampah, dan pemerintah daerah wajib bertindak. Kaitannya dengan penyakit warga masih perlu dibuktikan.",
+          "isCorrect": true,
+          "explanation": "Sesuai fakta, menyebut hak dan kewajiban yang tepat, dan jujur tentang hal yang belum terbukti."
+        },
+        {
+          "id": "c2",
+          "text": "Pemilik lahan sudah pasti menyebabkan penyakit warga dan wajib membayar biaya pengobatan.",
+          "isCorrect": false,
+          "explanation": "Hubungan sebab-akibat dengan penyakit belum terbukti. Kesimpulan ini melampaui bukti."
+        },
+        {
+          "id": "c3",
+          "text": "Karena pemilik lahan mengaku punya izin lisan, kasus ini bukan pelanggaran.",
+          "isCorrect": false,
+          "explanation": "Klaim izin lisan dibantah surat resmi kelurahan dan tidak menghapus pencemarannya."
+        }
       ]
     },
     decisions: [
@@ -971,9 +1378,203 @@ export const chapters = [
       ]
     },
     legalAnalysis: {
-      rightsAffected: [{ id: "r1", label: "Hak atas keselamatan dan kenyamanan fasilitas jalan umum bagi pejalan kaki", isCorrect: true, explanation: "Pejalan kaki berhak atas fasilitas pendukung seperti trotoar (UU No. 22 Tahun 2009 Pasal 131 ayat (1); trotoar termasuk fasilitas pendukung menurut Pasal 45 ayat (1)). Penyandang disabilitas berhak atas kemudahan khusus (UUD 1945 Pasal 28H ayat (2))." }],
-      dutiesNeglected: [{ id: "d1", label: "Kewajiban pengemudi mengutamakan keselamatan pejalan kaki serta mengemudi dengan wajar dan penuh konsentrasi", isCorrect: true, explanation: "UU No. 22 Tahun 2009 Pasal 106 ayat (1) dan (2). Setiap warga negara juga wajib menjunjung hukum (UUD 1945 Pasal 27 ayat (1))." }],
-      legalArticles: [{ id: "l1", label: "UU No. 22 Tahun 2009 Pasal 106 & Pasal 131 - Kewajiban Pengemudi dan Hak Pejalan Kaki", isCorrect: true }]
+      "facts": [
+        {
+          "id": "fa1",
+          "text": "Sepeda motor melintas di atas trotoar saat jam macet.",
+          "established": true,
+          "basis": "Rekaman CCTV, kesaksian Ibu Rahma dan Pak Darto",
+          "explanation": "Terekam kamera dan dikuatkan dua saksi dari pihak berbeda."
+        },
+        {
+          "id": "fa2",
+          "text": "Lapak pedagang menutup lebih dari separuh lebar trotoar.",
+          "established": true,
+          "basis": "Foto Lapak di Trotoar",
+          "explanation": "Terlihat di foto lokasi."
+        },
+        {
+          "id": "fa3",
+          "text": "Pejalan kaki terpaksa berjalan di bahu jalan yang padat.",
+          "established": true,
+          "basis": "Kesaksian Ibu Rahma, surat komunitas penyandang disabilitas",
+          "explanation": "Dikuatkan oleh dua sumber."
+        },
+        {
+          "id": "fa4",
+          "text": "Pengguna kursi roda tidak bisa melintasi trotoar di ruas ini.",
+          "established": true,
+          "basis": "Surat Komunitas Penyandang Disabilitas",
+          "explanation": "Laporan langsung dari anggota yang mengalaminya."
+        },
+        {
+          "id": "fa5",
+          "text": "Motor naik ke trotoar sepanjang hari.",
+          "established": false,
+          "basis": "Rekaman CCTV",
+          "explanation": "Rekaman hanya mencakup jam macet. Pelanggaran di jam lain belum diketahui."
+        },
+        {
+          "id": "fa6",
+          "text": "Karena sudah sepuluh tahun dan tidak ada yang protes, lapak di trotoar sah.",
+          "established": false,
+          "basis": "Pernyataan Paguyuban Pedagang",
+          "explanation": "Lamanya berjualan tidak mengubah fungsi trotoar. 'Tidak ada yang protes' juga bukan bukti tidak ada yang terganggu."
+        },
+        {
+          "id": "fa7",
+          "text": "Tarif parkir mal yang mahal membuat motor naik ke trotoar.",
+          "established": false,
+          "basis": "Keluhan Tarif Parkir Mal",
+          "explanation": "Tidak ada bukti yang menghubungkan tarif parkir dengan pelanggaran ini."
+        }
+      ],
+      "rightsAffected": [
+        {
+          "id": "r1",
+          "label": "Hak atas keselamatan dan kenyamanan fasilitas jalan umum bagi pejalan kaki",
+          "isCorrect": true,
+          "explanation": "Pejalan kaki berhak atas fasilitas pendukung seperti trotoar (UU No. 22 Tahun 2009 Pasal 131 ayat (1); trotoar termasuk fasilitas pendukung menurut Pasal 45 ayat (1)). Penyandang disabilitas berhak atas kemudahan khusus (UUD 1945 Pasal 28H ayat (2)).",
+          "supportedBy": [
+            "fa1",
+            "fa2",
+            "fa3"
+          ]
+        },
+        {
+          "id": "r2",
+          "label": "Hak penyandang disabilitas atas kemudahan dan perlakuan khusus",
+          "isCorrect": true,
+          "explanation": "UUD 1945 Pasal 28H ayat (2). Trotoar yang tertutup membuat pengguna kursi roda harus turun ke jalan.",
+          "supportedBy": [
+            "fa4"
+          ]
+        },
+        {
+          "id": "r3",
+          "label": "Hak pedagang berjualan di trotoar demi penghidupan",
+          "isCorrect": false,
+          "explanation": "Hak atas penghidupan yang layak (Pasal 27 ayat (2)) nyata, tetapi tidak memberi hak memakai trotoar yang fungsinya untuk pejalan kaki. Nasib pedagang tetap perlu dipikirkan di ruang keputusan."
+        },
+        {
+          "id": "r4",
+          "label": "Hak atas status kewarganegaraan",
+          "isCorrect": false,
+          "explanation": "Tidak berkaitan dengan kasus ini."
+        }
+      ],
+      "dutiesNeglected": [
+        {
+          "id": "d1",
+          "label": "Kewajiban pengemudi mengutamakan keselamatan pejalan kaki serta mengemudi dengan wajar dan penuh konsentrasi",
+          "isCorrect": true,
+          "explanation": "UU No. 22 Tahun 2009 Pasal 106 ayat (1) dan (2). Setiap warga negara juga wajib menjunjung hukum (UUD 1945 Pasal 27 ayat (1)).",
+          "supportedBy": [
+            "fa1"
+          ]
+        },
+        {
+          "id": "d2",
+          "label": "Kewajiban pedagang dan pengendara menghormati hak pejalan kaki",
+          "isCorrect": true,
+          "explanation": "Setiap orang wajib menghormati hak asasi orang lain (UUD 1945 Pasal 28J ayat (1)).",
+          "supportedBy": [
+            "fa1",
+            "fa2"
+          ]
+        },
+        {
+          "id": "d3",
+          "label": "Kewajiban pemerintah kota menjaga fungsi trotoar bagi pejalan kaki",
+          "isCorrect": true,
+          "explanation": "Perlindungan dan pemenuhan hak warga adalah tanggung jawab negara, terutama pemerintah (UUD 1945 Pasal 28I ayat (4)).",
+          "supportedBy": [
+            "fa2",
+            "fa3",
+            "fa4"
+          ]
+        },
+        {
+          "id": "d4",
+          "label": "Kewajiban pejalan kaki mengalah kepada kendaraan saat macet",
+          "isCorrect": false,
+          "explanation": "Justru sebaliknya: pengemudi wajib mengutamakan keselamatan pejalan kaki (UU No. 22 Tahun 2009 Pasal 106 ayat (2))."
+        }
+      ],
+      "legalArticles": [
+        {
+          "id": "l1",
+          "label": "UU No. 22 Tahun 2009 Pasal 106 & Pasal 131 - Kewajiban Pengemudi dan Hak Pejalan Kaki",
+          "isCorrect": true,
+          "explanation": "Inti kasus: kewajiban pengemudi dan hak pejalan kaki atas trotoar.",
+          "lawIds": [
+            "law-05",
+            "law-07"
+          ]
+        },
+        {
+          "id": "l2",
+          "label": "UU No. 22 Tahun 2009 Pasal 45 ayat (1) - Trotoar sebagai Fasilitas Pendukung",
+          "isCorrect": true,
+          "explanation": "Menegaskan trotoar dan fasilitas bagi penyandang disabilitas sebagai bagian resmi fasilitas lalu lintas.",
+          "lawIds": [
+            "law-08"
+          ]
+        },
+        {
+          "id": "l3",
+          "label": "UUD 1945 Pasal 28H ayat (2) - Kemudahan bagi Kelompok Rentan",
+          "isCorrect": true,
+          "explanation": "Dasar hak penyandang disabilitas atas kemudahan khusus.",
+          "lawIds": [
+            "law-21"
+          ]
+        },
+        {
+          "id": "l4",
+          "label": "UUD 1945 Pasal 27 ayat (1) - Kewajiban Menjunjung Hukum",
+          "isCorrect": true,
+          "explanation": "Setiap warga negara, termasuk pengendara, wajib menjunjung hukum.",
+          "lawIds": [
+            "law-09"
+          ]
+        },
+        {
+          "id": "l5",
+          "label": "UUD 1945 Pasal 28D ayat (4) - Status Kewarganegaraan",
+          "isCorrect": false,
+          "explanation": "Tidak berkaitan dengan kasus ini."
+        },
+        {
+          "id": "l6",
+          "label": "UUD 1945 Pasal 31 ayat (4) - Anggaran Pendidikan",
+          "isCorrect": false,
+          "explanation": "Tidak berkaitan dengan lalu lintas atau trotoar.",
+          "lawIds": [
+            "law-29"
+          ]
+        }
+      ],
+      "conclusions": [
+        {
+          "id": "c1",
+          "text": "Pemakaian trotoar oleh motor dan lapak melanggar hak pejalan kaki, terutama penyandang disabilitas. Pengendara melanggar kewajibannya menurut UU LLAJ, dan pemerintah kota wajib mengembalikan fungsi trotoar sambil memikirkan nasib pedagang.",
+          "isCorrect": true,
+          "explanation": "Sesuai fakta dan menyeimbangkan hak semua pihak tanpa membenarkan pelanggaran."
+        },
+        {
+          "id": "c2",
+          "text": "Semua pedagang harus diusir hari ini juga karena mereka pelaku utama.",
+          "isCorrect": false,
+          "explanation": "Fakta menunjukkan dua sumber masalah: motor dan lapak. Solusi yang hanya mengusir tanpa proses juga mengabaikan hak penghidupan pedagang."
+        },
+        {
+          "id": "c3",
+          "text": "Karena macet, motor yang naik trotoar bisa dimaklumi.",
+          "isCorrect": false,
+          "explanation": "Kemacetan menjelaskan keadaan, tetapi tidak menghapus kewajiban pengemudi mengutamakan pejalan kaki."
+        }
+      ]
     },
     decisions: [
       {
@@ -1258,9 +1859,201 @@ export const chapters = [
       ]
     },
     legalAnalysis: {
-      rightsAffected: [{ id: "r1", label: "Hak memperoleh pendidikan dasar yang dibiayai negara", isCorrect: true, explanation: "UUD 1945 Pasal 31 ayat (1) dan (2): setiap warga negara berhak mendapat pendidikan dan wajib mengikuti pendidikan dasar yang dibiayai pemerintah." }],
-      dutiesNeglected: [{ id: "d1", label: "Kewajiban negara memprioritaskan anggaran pendidikan dan membebaskan biaya pendidikan dasar", isCorrect: true, explanation: "Pemerintah wajib membiayai pendidikan dasar (UUD 1945 Pasal 31 ayat (2)) dan memprioritaskan anggaran pendidikan minimal 20% (Pasal 31 ayat (4)). Pungutan oleh oknum sekolah menghambat kewajiban ini, sehingga pemerintah daerah wajib menertibkannya." }],
-      legalArticles: [{ id: "l1", label: "UUD 1945 Pasal 31 ayat (1), (2) & (4) - Hak dan Kewajiban Pendidikan", isCorrect: true }]
+      "facts": [
+        {
+          "id": "fa1",
+          "text": "Sekolah menagih biaya 'wajib' kepada siswa yang tidak mampu.",
+          "established": true,
+          "basis": "Kwitansi Pungutan Sekolah, kesaksian Ibu Sari",
+          "explanation": "Tertulis di kwitansi berkop sekolah dan dikuatkan orang tua."
+        },
+        {
+          "id": "fa2",
+          "text": "Sembilan siswa kelas 4–6 tidak hadir lebih dari sebulan.",
+          "established": true,
+          "basis": "Daftar Siswa Tidak Aktif, kesaksian Pak Budi",
+          "explanation": "Data resmi sekolah, dikuatkan relawan."
+        },
+        {
+          "id": "fa7",
+          "text": "Ada anak yang berhenti sekolah dan bekerja sebagai pemilah ikan.",
+          "established": true,
+          "basis": "Kesaksian Ibu Sari, briefing kasus",
+          "explanation": "Dinyatakan langsung oleh orang tuanya."
+        },
+        {
+          "id": "fa4",
+          "text": "Kebutuhan ekonomi keluarga ikut mendorong anak bekerja.",
+          "established": true,
+          "basis": "Catatan relawan, kesaksian Ibu Sari",
+          "explanation": "Pengamatan lapangan yang konsisten dengan kesaksian orang tua."
+        },
+        {
+          "id": "fa3",
+          "text": "Orang tua tidak pernah diajak membahas biaya itu.",
+          "established": false,
+          "basis": "Kesaksian Ibu Sari, dibantah bendahara",
+          "explanation": "Belum bisa ditetapkan: kesaksian orang tua bertentangan dengan klaim bendahara. Perlu notulen rapat komite."
+        },
+        {
+          "id": "fa5",
+          "text": "Biaya itu sumbangan sukarela yang disepakati komite.",
+          "established": false,
+          "basis": "Pernyataan Bendahara Sekolah",
+          "explanation": "Klaim tanpa dokumen, dan bertentangan dengan kata 'wajib' di kwitansi."
+        },
+        {
+          "id": "fa6",
+          "text": "Anak-anak berhenti sekolah karena nilainya rendah.",
+          "established": false,
+          "basis": "Nilai Rapor Anak Pesisir",
+          "explanation": "Tidak ada bukti hubungan itu. Hak atas pendidikan juga tidak bergantung pada nilai."
+        }
+      ],
+      "rightsAffected": [
+        {
+          "id": "r1",
+          "label": "Hak memperoleh pendidikan dasar yang dibiayai negara",
+          "isCorrect": true,
+          "explanation": "UUD 1945 Pasal 31 ayat (1) dan (2): setiap warga negara berhak mendapat pendidikan dan wajib mengikuti pendidikan dasar yang dibiayai pemerintah.",
+          "supportedBy": [
+            "fa1",
+            "fa2"
+          ]
+        },
+        {
+          "id": "r2",
+          "label": "Hak anak untuk tumbuh dan berkembang",
+          "isCorrect": true,
+          "explanation": "UUD 1945 Pasal 28B ayat (2). Anak usia sekolah dasar yang harus bekerja kehilangan kesempatan tumbuh dan berkembang.",
+          "supportedBy": [
+            "fa7",
+            "fa2"
+          ]
+        },
+        {
+          "id": "r3",
+          "label": "Hak anak untuk bekerja membantu keluarga",
+          "isCorrect": false,
+          "explanation": "Hak atas pekerjaan (Pasal 27 ayat (2) dan 28D ayat (2)) tidak dimaksudkan untuk membenarkan anak usia sekolah dasar meninggalkan sekolah demi bekerja."
+        },
+        {
+          "id": "r4",
+          "label": "Hak memilih kewarganegaraan",
+          "isCorrect": false,
+          "explanation": "Tidak berkaitan dengan kasus ini."
+        }
+      ],
+      "dutiesNeglected": [
+        {
+          "id": "d1",
+          "label": "Kewajiban negara memprioritaskan anggaran pendidikan dan membebaskan biaya pendidikan dasar",
+          "isCorrect": true,
+          "explanation": "Pemerintah wajib membiayai pendidikan dasar (UUD 1945 Pasal 31 ayat (2)) dan memprioritaskan anggaran pendidikan minimal 20% (Pasal 31 ayat (4)). Pungutan oleh oknum sekolah menghambat kewajiban ini, sehingga pemerintah daerah wajib menertibkannya.",
+          "supportedBy": [
+            "fa1"
+          ]
+        },
+        {
+          "id": "d2",
+          "label": "Kewajiban pemerintah dan pemerintah daerah menjamin wajib belajar tanpa memungut biaya",
+          "isCorrect": true,
+          "explanation": "UU No. 20 Tahun 2003 Pasal 34 ayat (2). Sejak putusan MK tahun 2025, jaminan tanpa biaya ini berlaku untuk sekolah dasar negeri maupun yang diselenggarakan masyarakat.",
+          "supportedBy": [
+            "fa1",
+            "fa2"
+          ]
+        },
+        {
+          "id": "d3",
+          "label": "Kewajiban anak-anak pesisir mengikuti pendidikan dasar",
+          "isCorrect": false,
+          "explanation": "Kewajiban itu memang ada (Pasal 31 ayat (2)), tetapi anak-anak tidak mengabaikannya karena lalai. Mereka terhalang biaya, dan kewajiban menghapus hambatan itu ada pada pemerintah."
+        },
+        {
+          "id": "d4",
+          "label": "Kewajiban orang tua membayar semua biaya yang ditetapkan sekolah",
+          "isCorrect": false,
+          "explanation": "Pendidikan dasar dibiayai pemerintah. Pungutan wajib yang menghalangi siswa tidak mampu justru yang dipersoalkan."
+        }
+      ],
+      "legalArticles": [
+        {
+          "id": "l1",
+          "label": "UUD 1945 Pasal 31 ayat (1), (2) & (4) - Hak dan Kewajiban Pendidikan",
+          "isCorrect": true,
+          "explanation": "Inti kasus: hak atas pendidikan dasar yang dibiayai pemerintah.",
+          "lawIds": [
+            "law-06",
+            "law-29"
+          ]
+        },
+        {
+          "id": "l2",
+          "label": "UU No. 20 Tahun 2003 Pasal 34 ayat (2) - Wajib Belajar Tanpa Memungut Biaya",
+          "isCorrect": true,
+          "explanation": "Kewajiban pemerintah menjamin pendidikan dasar tanpa biaya, sebagaimana dimaknai putusan MK tahun 2025.",
+          "lawIds": [
+            "law-35"
+          ]
+        },
+        {
+          "id": "l3",
+          "label": "UUD 1945 Pasal 28B ayat (2) - Tumbuh Kembang Anak",
+          "isCorrect": true,
+          "explanation": "Anak yang harus bekerja kehilangan haknya untuk tumbuh dan berkembang.",
+          "lawIds": [
+            "law-14"
+          ]
+        },
+        {
+          "id": "l4",
+          "label": "UUD 1945 Pasal 28I ayat (4) - Tanggung Jawab Negara",
+          "isCorrect": true,
+          "explanation": "Dasar kewajiban pemerintah daerah untuk bertindak.",
+          "lawIds": [
+            "law-24"
+          ]
+        },
+        {
+          "id": "l5",
+          "label": "UUD 1945 Pasal 27 ayat (2) - Hak atas Pekerjaan",
+          "isCorrect": false,
+          "explanation": "Hak atas pekerjaan tidak menjadi dasar bagi anak usia sekolah dasar untuk bekerja menggantikan sekolah.",
+          "lawIds": [
+            "law-10"
+          ]
+        },
+        {
+          "id": "l6",
+          "label": "UUD 1945 Pasal 29 ayat (2) - Kebebasan Beragama",
+          "isCorrect": false,
+          "explanation": "Tidak berkaitan dengan kasus ini.",
+          "lawIds": [
+            "law-26"
+          ]
+        }
+      ],
+      "conclusions": [
+        {
+          "id": "c1",
+          "text": "Pungutan wajib yang menghalangi siswa tidak mampu melanggar hak anak atas pendidikan dasar yang dibiayai pemerintah dan hak mereka untuk tumbuh kembang. Pemerintah daerah wajib menertibkan pungutan, sementara dasar penetapannya masih perlu diperiksa.",
+          "isCorrect": true,
+          "explanation": "Sesuai fakta, menempatkan kewajiban pada pemerintah, dan jujur bahwa sah tidaknya kesepakatan komite belum terbukti."
+        },
+        {
+          "id": "c2",
+          "text": "Anak-anak berhenti sekolah karena malas dan nilainya rendah, jadi tidak ada pelanggaran hak.",
+          "isCorrect": false,
+          "explanation": "Tidak didukung bukti dan menyalahkan anak. Hak atas pendidikan dasar tidak bergantung pada nilai."
+        },
+        {
+          "id": "c3",
+          "text": "Karena bendahara menyebutnya sumbangan sukarela, pungutan itu pasti sah.",
+          "isCorrect": false,
+          "explanation": "Klaim itu belum terbukti dan bertentangan dengan kwitansi yang menyebut 'wajib'."
+        }
+      ]
     },
     decisions: [
       {
@@ -1553,9 +2346,219 @@ export const chapters = [
       ]
     },
     legalAnalysis: {
-      rightsAffected: [{ id: "r1", label: "Hak atas tempat tinggal dan penghidupan yang layak", isCorrect: true, explanation: "UUD 1945 Pasal 28H ayat (1) (hak bertempat tinggal) dan Pasal 27 ayat (2) (penghidupan yang layak). Jika warga memiliki hak atas tanah/bangunannya, hak itu tidak boleh diambil alih sewenang-wenang (Pasal 28H ayat (4))." }],
-      dutiesNeglected: [{ id: "d1", label: "Kewajiban pemerintah menghormati hak asasi warga dalam proses pembangunan publik", isCorrect: true, explanation: "Perlindungan dan pemenuhan hak asasi manusia adalah tanggung jawab negara, terutama pemerintah (UUD 1945 Pasal 28I ayat (4)). Pengembang dan semua pihak juga wajib menghormati hak orang lain (Pasal 28J ayat (1))." }],
-      legalArticles: [{ id: "l1", label: "UUD 1945 Pasal 28H ayat (1) & (4), Pasal 28I ayat (4), Pasal 28J ayat (1)", isCorrect: true }]
+      "facts": [
+        {
+          "id": "fa1",
+          "text": "Warga diberi tenggat tiga hari tanpa pilihan relokasi.",
+          "established": true,
+          "basis": "Surat Peringatan Pengosongan",
+          "explanation": "Tertulis di surat yang diterima warga."
+        },
+        {
+          "id": "fa2",
+          "text": "Undangan sosialisasi hanya ditujukan kepada ketua RT.",
+          "established": true,
+          "basis": "Undangan Sosialisasi Proyek, kesaksian Ibu Nur",
+          "explanation": "Dokumen tertulis, dikuatkan kesaksian warga."
+        },
+        {
+          "id": "fa3",
+          "text": "Warga tidak menolak pembangunan, tetapi meminta dialog dan tempat tinggal pengganti.",
+          "established": true,
+          "basis": "Kesaksian Ibu Nur",
+          "explanation": "Pernyataan langsung perwakilan warga tentang tuntutan mereka sendiri."
+        },
+        {
+          "id": "fa4",
+          "text": "Belum ada keputusan tertulis tentang relokasi atau ganti rugi.",
+          "established": true,
+          "basis": "Kesaksian Pak Yusuf (Staf Pemkot)",
+          "explanation": "Diakui sendiri oleh staf pemerintah kota."
+        },
+        {
+          "id": "fa5",
+          "text": "Warga sudah diajak bicara dan menyetujui rencana ini.",
+          "established": false,
+          "basis": "Siaran Pers Pengembang",
+          "explanation": "Klaim pihak berkepentingan tanpa dokumen, dan bertentangan dengan undangan yang hanya ditujukan ke ketua RT."
+        },
+        {
+          "id": "fa6",
+          "text": "Warga terbukti memiliki tanahnya karena rutin membayar PBB.",
+          "established": false,
+          "basis": "Bukti Pembayaran PBB Warga",
+          "explanation": "Bukti bayar PBB bukan sertifikat. Status kepemilikan tanah belum diketahui."
+        },
+        {
+          "id": "fa7",
+          "text": "Rumah semipermanen boleh dikosongkan tanpa prosedur.",
+          "established": false,
+          "basis": "Foto Bangunan Semipermanen",
+          "explanation": "Bahan bangunan tidak menentukan hak warga atas proses yang adil."
+        }
+      ],
+      "rightsAffected": [
+        {
+          "id": "r1",
+          "label": "Hak atas tempat tinggal dan penghidupan yang layak",
+          "isCorrect": true,
+          "explanation": "UUD 1945 Pasal 28H ayat (1) (hak bertempat tinggal) dan Pasal 27 ayat (2) (penghidupan yang layak). Jika warga memiliki hak atas tanah/bangunannya, hak itu tidak boleh diambil alih sewenang-wenang (Pasal 28H ayat (4)).",
+          "supportedBy": [
+            "fa1",
+            "fa3"
+          ]
+        },
+        {
+          "id": "r2",
+          "label": "Hak atas kepastian hukum yang adil",
+          "isCorrect": true,
+          "explanation": "UUD 1945 Pasal 28D ayat (1). Perintah pengosongan tiga hari tanpa keputusan tertulis soal relokasi tidak memberi kepastian.",
+          "supportedBy": [
+            "fa1",
+            "fa4"
+          ]
+        },
+        {
+          "id": "r3",
+          "label": "Hak menyampaikan pendapat dan memperoleh informasi tentang rencana pembangunan",
+          "isCorrect": true,
+          "explanation": "UUD 1945 Pasal 28E ayat (3) dan Pasal 28F. Warga terdampak tidak diundang dan tidak diberi informasi.",
+          "supportedBy": [
+            "fa2"
+          ]
+        },
+        {
+          "id": "r4",
+          "label": "Hak milik pribadi warga atas tanahnya sudah pasti dilanggar",
+          "isCorrect": false,
+          "explanation": "Pasal 28H ayat (4) baru bisa dipakai jika kepemilikan terbukti. Bukti bayar PBB belum membuktikannya."
+        },
+        {
+          "id": "r5",
+          "label": "Hak beragama",
+          "isCorrect": false,
+          "explanation": "Tidak berkaitan dengan kasus ini."
+        }
+      ],
+      "dutiesNeglected": [
+        {
+          "id": "d1",
+          "label": "Kewajiban pemerintah menghormati hak asasi warga dalam proses pembangunan publik",
+          "isCorrect": true,
+          "explanation": "Perlindungan dan pemenuhan hak asasi manusia adalah tanggung jawab negara, terutama pemerintah (UUD 1945 Pasal 28I ayat (4)). Pengembang dan semua pihak juga wajib menghormati hak orang lain (Pasal 28J ayat (1)).",
+          "supportedBy": [
+            "fa1",
+            "fa2",
+            "fa4"
+          ]
+        },
+        {
+          "id": "d2",
+          "label": "Kewajiban pengembang menghormati hak warga",
+          "isCorrect": true,
+          "explanation": "UUD 1945 Pasal 28J ayat (1). Tenggat tiga hari datang dari pengembang tanpa dasar yang jelas.",
+          "supportedBy": [
+            "fa1"
+          ]
+        },
+        {
+          "id": "d3",
+          "label": "Kewajiban warga mengosongkan rumah dalam tiga hari demi kepentingan umum",
+          "isCorrect": false,
+          "explanation": "Kepentingan umum itu nyata, tetapi tidak menghapus kewajiban menempuh proses yang adil. Hak warga hanya boleh dibatasi dengan undang-undang (Pasal 28J ayat (2))."
+        },
+        {
+          "id": "d4",
+          "label": "Kewajiban bela negara",
+          "isCorrect": false,
+          "explanation": "Tidak berkaitan dengan kasus ini."
+        }
+      ],
+      "legalArticles": [
+        {
+          "id": "l1",
+          "label": "UUD 1945 Pasal 28H ayat (1) - Hak Bertempat Tinggal",
+          "isCorrect": true,
+          "explanation": "Dasar hak warga atas tempat tinggal.",
+          "lawIds": [
+            "law-03"
+          ]
+        },
+        {
+          "id": "l2",
+          "label": "UUD 1945 Pasal 28D ayat (1) - Kepastian Hukum yang Adil",
+          "isCorrect": true,
+          "explanation": "Pengosongan tanpa keputusan tertulis yang jelas tidak memberi kepastian hukum.",
+          "lawIds": [
+            "law-17"
+          ]
+        },
+        {
+          "id": "l3",
+          "label": "UUD 1945 Pasal 28I ayat (4) - Tanggung Jawab Negara",
+          "isCorrect": true,
+          "explanation": "Dasar kewajiban pemerintah kota.",
+          "lawIds": [
+            "law-24"
+          ]
+        },
+        {
+          "id": "l4",
+          "label": "UUD 1945 Pasal 28J ayat (1) - Menghormati Hak Orang Lain",
+          "isCorrect": true,
+          "explanation": "Dasar kewajiban pengembang.",
+          "lawIds": [
+            "law-02"
+          ]
+        },
+        {
+          "id": "l5",
+          "label": "UUD 1945 Pasal 27 ayat (2) - Penghidupan yang Layak",
+          "isCorrect": true,
+          "explanation": "Penggusuran tanpa relokasi dapat memutus mata pencaharian warga.",
+          "lawIds": [
+            "law-10"
+          ]
+        },
+        {
+          "id": "l6",
+          "label": "UUD 1945 Pasal 28H ayat (4) - Hak Milik Pribadi",
+          "isCorrect": false,
+          "explanation": "Belum bisa dipakai karena status tanah belum diketahui. Pasal ini menjadi relevan jika kepemilikan warga terbukti.",
+          "lawIds": [
+            "law-22"
+          ]
+        },
+        {
+          "id": "l7",
+          "label": "UUD 1945 Pasal 31 ayat (1) - Hak atas Pendidikan",
+          "isCorrect": false,
+          "explanation": "Tidak berkaitan dengan kasus ini.",
+          "lawIds": [
+            "law-06"
+          ]
+        }
+      ],
+      "conclusions": [
+        {
+          "id": "c1",
+          "text": "Pengosongan sepihak tanpa musyawarah dan tanpa kepastian relokasi melanggar hak warga atas tempat tinggal, kepastian hukum, dan informasi. Pemerintah kota dan pengembang wajib menempuh proses yang adil. Status kepemilikan tanah masih perlu diperiksa.",
+          "isCorrect": true,
+          "explanation": "Sesuai fakta, mengakui kepentingan umum tanpa membenarkan proses yang tidak adil, dan jujur bahwa status tanah belum diketahui."
+        },
+        {
+          "id": "c2",
+          "text": "Karena untuk kepentingan umum, warga wajib pindah sesuai jadwal tanpa perlu dialog.",
+          "isCorrect": false,
+          "explanation": "Kepentingan umum tidak menghapus hak warga atas proses yang adil dan kepastian hukum."
+        },
+        {
+          "id": "c3",
+          "text": "Warga sudah pasti pemilik sah tanahnya, jadi proyek harus dibatalkan.",
+          "isCorrect": false,
+          "explanation": "Kepemilikan belum terbukti, dan fakta tidak menunjukkan proyek harus dibatalkan. Warga sendiri tidak menolak pembangunan."
+        }
+      ]
     },
     decisions: [
       {

@@ -22,22 +22,66 @@ function tally(options, selectedIds) {
   };
 }
 
+/** Share of the legal-basis weight earned by choosing the right conclusion. */
+export const CONCLUSION_POINTS = 5;
+
 /**
- * Legal analysis stage. Same formula as the original LegalAnalysis.jsx:
- * (correct picks − incorrect picks) / correct options, floored at 0.
+ * Is a chosen right/duty backed by evidence? True when the player linked it to
+ * at least one fact that (a) the option really rests on and (b) the player
+ * correctly marked as established.
  */
-export function computeLegalScores(legalAnalysis, { rights, duties, articles }) {
-  const r = tally(legalAnalysis.rightsAffected, rights);
-  const d = tally(legalAnalysis.dutiesNeglected, duties);
+export function isLinkSupported(option, linkedFactIds = [], establishedByPlayer = [], facts = []) {
+  if (!option.supportedBy?.length) return true; // options without fact data can't be linked
+  const realFacts = new Set(facts.filter((f) => f.established).map((f) => f.id));
+  const marked = new Set(establishedByPlayer);
+  return linkedFactIds.some((id) => option.supportedBy.includes(id) && realFacts.has(id) && marked.has(id));
+}
+
+/**
+ * Legal analysis stage (weights unchanged: rights & duties 20, legal basis 25).
+ *
+ * Rights & duties: (credit − wrong picks) / correct options, floored at 0.
+ *   A correct pick earns 1 when linked to a supporting established fact, and
+ *   0.5 when it is not; evidence-based reasoning beats guessing.
+ * Legal basis: (correct − wrong articles) / correct articles × 20, plus 5 for
+ *   the right legal conclusion. Cases without conclusions use the full 25 for
+ *   articles (original formula).
+ */
+export function computeLegalScores(
+  legalAnalysis,
+  { rights = [], duties = [], articles = [], facts = [], links = {}, conclusion = null }
+) {
+  const factData = legalAnalysis.facts || [];
+  let credit = 0;
+  let wrong = 0;
+  let total = 0;
+  for (const [options, picked] of [
+    [legalAnalysis.rightsAffected, rights],
+    [legalAnalysis.dutiesNeglected, duties],
+  ]) {
+    const set = new Set(picked);
+    for (const o of options) {
+      if (o.isCorrect) total++;
+      if (!set.has(o.id)) continue;
+      if (!o.isCorrect) {
+        wrong++;
+        continue;
+      }
+      credit += factData.length === 0 || isLinkSupported(o, links[o.id], facts, factData) ? 1 : 0.5;
+    }
+  }
+
   const a = tally(legalAnalysis.legalArticles, articles);
+  const hasConclusions = (legalAnalysis.conclusions || []).length > 0;
+  const articleWeight = hasConclusions ? SCORING_WEIGHTS.legalBasis - CONCLUSION_POINTS : SCORING_WEIGHTS.legalBasis;
+  const conclusionOk = hasConclusions && legalAnalysis.conclusions.some((c) => c.id === conclusion && c.isCorrect);
 
   return {
     // Problem identification is graded in the investigation stage
     // (lib/investigation.js → computeProblemIdentScore) and merged in GameEngine.
-    rightsDutiesScore: Math.round(
-      ratio(r.correct + d.correct, r.incorrect + d.incorrect, r.total + d.total) * SCORING_WEIGHTS.rightsDuties
-    ),
-    legalBasisScore: Math.round(ratio(a.correct, a.incorrect, a.total) * SCORING_WEIGHTS.legalBasis),
+    rightsDutiesScore: Math.round(ratio(credit, wrong, total) * SCORING_WEIGHTS.rightsDuties),
+    legalBasisScore:
+      Math.round(ratio(a.correct, a.incorrect, a.total) * articleWeight) + (conclusionOk ? CONCLUSION_POINTS : 0),
   };
 }
 
