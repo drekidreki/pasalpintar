@@ -16,6 +16,7 @@
  *   indicatorBaseline: { ...same keys },  // starting point before per-case impacts
  *   legacyCases: string[],               // cases completed under v1 (impact already in baseline)
  *   inProgressCases: string[],           // briefing acknowledged, not finished yet (added in Stage B)
+ *   preferences: { showCommentary: boolean } // added in Stage C
  *   caseResults: {
  *     [caseId]: { attempts, lastScore, lastDecisionId, lastPlayedAt,
  *                 best: { score, breakdown, decisionId, cityImpact, achievedAt } }
@@ -42,6 +43,16 @@ export const DEFAULT_INDICATORS = Object.freeze({
 
 const clamp = (n) => Math.max(0, Math.min(100, Math.round(n)));
 
+export const DEFAULT_PREFERENCES = Object.freeze({ showCommentary: true });
+
+function sanitizePreferences(value) {
+  const v = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  return {
+    ...v,
+    showCommentary: typeof v.showCommentary === 'boolean' ? v.showCommentary : DEFAULT_PREFERENCES.showCommentary,
+  };
+}
+
 export function createDefaultProgress() {
   return {
     version: SCHEMA_VERSION,
@@ -51,6 +62,7 @@ export function createDefaultProgress() {
     indicatorBaseline: { ...DEFAULT_INDICATORS },
     legacyCases: [],
     inProgressCases: [],
+    preferences: { ...DEFAULT_PREFERENCES },
     caseResults: {},
   };
 }
@@ -148,6 +160,7 @@ export function migrate(raw) {
       indicatorBaseline: { ...cityIndicators },
       legacyCases: [...completedCases],
       inProgressCases: [],
+      preferences: sanitizePreferences(parsed.preferences),
       caseResults: {},
     };
     return { progress, backup: { key: BACKUP_KEY_V1, raw }, changed: true };
@@ -161,6 +174,7 @@ export function migrate(raw) {
     indicatorBaseline: sanitizeIndicators(parsed.indicatorBaseline, DEFAULT_INDICATORS),
     legacyCases: sanitizeStringArray(parsed.legacyCases),
     inProgressCases: sanitizeStringArray(parsed.inProgressCases),
+    preferences: sanitizePreferences(parsed.preferences),
     caseResults: sanitizeCaseResults(parsed.caseResults),
   };
   progress.cityIndicators = computeIndicators(progress);
@@ -235,6 +249,10 @@ function update(updater) {
 
 export function selectCharacter(characterId) {
   update((prev) => ({ ...prev, characterId }));
+}
+
+export function setShowCommentary(show) {
+  update((prev) => ({ ...prev, preferences: { ...prev.preferences, showCommentary: Boolean(show) } }));
 }
 
 /** Mark a case as being investigated (briefing acknowledged, not finished). */

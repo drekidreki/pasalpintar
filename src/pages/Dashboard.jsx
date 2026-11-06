@@ -26,7 +26,7 @@ function InvestigatorNote({ progress }) {
       <h2 id="note-heading" className="font-hand font-bold text-xl tracking-normal mb-2">Catatan penyidik</h2>
       {investigator ? (
         <p className="text-lg leading-snug">
-          {investigator.name}, {investigator.role}
+          {investigator.name}, {investigator.roleLabel || investigator.role}
         </p>
       ) : (
         <p className="text-lg leading-snug">Belum ada penyidik yang dipilih.</p>

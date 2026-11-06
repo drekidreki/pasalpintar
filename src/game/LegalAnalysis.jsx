@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Scale, CheckCircle, Check } from 'lucide-react';
 import { computeLegalScores } from '../data/scoring';
+import CommentaryPanel from '../components/CommentaryPanel';
+import { getCommentary, legalOutcome } from '../lib/commentary';
 
 function OptionButton({ item, isSelected, isSubmitted, onToggle, compact = false, showExplanation = true }) {
   return (
@@ -34,7 +36,7 @@ function OptionButton({ item, isSelected, isSubmitted, onToggle, compact = false
   );
 }
 
-export default function LegalAnalysis({ caseData, onStageComplete }) {
+export default function LegalAnalysis({ caseData, characterId, onStageComplete }) {
   const [selectedRights, setSelectedRights] = useState([]);
   const [selectedDuties, setSelectedDuties] = useState([]);
   const [selectedArticles, setSelectedArticles] = useState([]);
@@ -58,6 +60,22 @@ export default function LegalAnalysis({ caseData, onStageComplete }) {
           <p className="text-gray-400">Hubungkan fakta kasus dengan hak yang terdampak, kewajiban yang diabaikan, dan dasar hukum yang berlaku.</p>
         </div>
       </div>
+
+      <CommentaryPanel
+        characterId={characterId}
+        className="mb-8"
+        text={
+          isSubmitted
+            ? getCommentary(characterId, caseData.id, 'legalResult', {
+                outcome: legalOutcome(caseData.legalAnalysis, {
+                  rights: selectedRights,
+                  duties: selectedDuties,
+                  articles: selectedArticles,
+                }),
+              })
+            : getCommentary(characterId, caseData.id, 'legal')
+        }
+      />
 
       <div className="space-y-8 mb-12">
         <fieldset className="card-dark">

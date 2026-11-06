@@ -2,8 +2,9 @@ import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { X, FileText } from 'lucide-react';
 import { useDialogA11y } from '../hooks/useDialogA11y';
+import InvestigatorAvatar from './InvestigatorAvatar';
 
-export default function EvidenceCard({ evidence, onClose }) {
+export default function EvidenceCard({ evidence, investigator, perspectiveNote, onClose }) {
   const dialogRef = useRef(null);
   useDialogA11y(dialogRef, { onClose, active: Boolean(evidence) });
 
@@ -49,6 +50,15 @@ export default function EvidenceCard({ evidence, onClose }) {
             <h3 className="text-sm font-bold text-crimson mb-1">🔍 Key Takeaway</h3>
             <p className="text-sm text-ink/85">{evidence.clue}</p>
           </div>
+          {investigator && perspectiveNote && (
+            <div className="flex gap-3 items-start mt-4">
+              <InvestigatorAvatar character={investigator} size={40} />
+              <p className="text-ink">
+                <span className="block text-xs font-semibold text-ink/70">Catatan {investigator.name}</span>
+                <span className="font-hand text-[17px] leading-snug">{perspectiveNote}</span>
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="p-4 bg-paper border-t border-ink/15 flex justify-end">

@@ -28,7 +28,7 @@ export default function Achievements() {
               const unlocked = completedCount >= b.req;
               return (
                 <div key={b.id} className={`card-dark p-6 flex flex-col items-center text-center ${!unlocked && 'opacity-50'}`}>
-                  <div className={`p-4 rounded-full mb-4 ${unlocked ? 'bg-brass/20 text-brass' : 'bg-gray-800 text-gray-400'}`}>
+                  <div className={`p-4 rounded-full mb-4 ${unlocked ? 'bg-brass/20 text-brass' : 'bg-black/30 text-gray-400'}`}>
                     {unlocked ? <CheckCircle size={32} /> : <Lock size={32} />}
                   </div>
                   <h3 className="font-bold text-lg mb-1">{b.title}</h3>

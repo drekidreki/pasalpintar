@@ -5,6 +5,8 @@ import { ChevronLeft, FileText, AlertCircle } from 'lucide-react';
 import { chapters } from '../data/chapters';
 import { computeCaseScore } from '../data/scoring';
 import { useGameProgress } from '../hooks/useGameProgress';
+import { getCharacter, getCommentary, getRelevance, relevanceLabel } from '../lib/commentary';
+import InvestigatorAvatar from '../components/InvestigatorAvatar';
 import Investigation from './Investigation';
 import LegalAnalysis from './LegalAnalysis';
 import DecisionRoom from './DecisionRoom';
@@ -21,7 +23,8 @@ const STAGE_LABELS = {
 export default function GameEngine() {
   const { caseId } = useParams();
   const navigate = useNavigate();
-  const { recordCaseResult, markCaseStarted } = useGameProgress();
+  const { progress, recordCaseResult, markCaseStarted } = useGameProgress();
+  const characterId = progress.characterId;
   const [stage, setStage] = useState('briefing'); // 'briefing', 'investigation', 'legal', 'decision', 'evaluation'
   const [partialScores, setPartialScores] = useState({});
   const [chosenDecision, setChosenDecision] = useState(null);
@@ -110,7 +113,7 @@ export default function GameEngine() {
             <div className="light-interface p-8 md:p-12 rounded-xl shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-2 bg-crimson" />
               <div className="flex items-center gap-3 text-crimson font-bold mb-6 text-sm">
-                <AlertCircle size={18} /> Briefing kasus
+                <AlertCircle size={18} aria-hidden="true" /> Briefing kasus
               </div>
               <h1 className="text-3xl md:text-4xl font-bold mb-8">{caseData.title}</h1>
               <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -123,6 +126,7 @@ export default function GameEngine() {
                     <h3 className="text-sm font-bold text-gray-600 mb-1 uppercase">Primary Objective</h3>
                     <p className="text-lg leading-relaxed text-ink font-medium">{caseData.briefing.objective}</p>
                   </div>
+                  <PerspectiveNote characterId={characterId} caseId={caseId} />
                 </div>
                 <div className="bg-paper-deep p-6 rounded-md border border-ink/15">
                   <h3 className="text-sm font-bold text-gray-600 mb-3 uppercase">Case Details</h3>
@@ -160,9 +164,10 @@ export default function GameEngine() {
 
         {/* STAGE 2: INVESTIGATION */}
         {stage === 'investigation' && (
-          <Investigation 
-            caseData={caseData} 
-            onStageComplete={() => setStage('legal')} 
+          <Investigation
+            caseData={caseData}
+            characterId={characterId}
+            onStageComplete={() => setStage('legal')}
           />
         )}
 
@@ -170,6 +175,7 @@ export default function GameEngine() {
         {stage === 'legal' && (
           <LegalAnalysis
             caseData={caseData}
+            characterId={characterId}
             onStageComplete={handleLegalComplete}
           />
         )}
@@ -178,6 +184,7 @@ export default function GameEngine() {
         {stage === 'decision' && (
           <DecisionRoom
             caseData={caseData}
+            characterId={characterId}
             onDecisionChosen={handleDecisionComplete}
           />
         )}
@@ -194,5 +201,40 @@ export default function GameEngine() {
 
       </main>
     </div>
+  );
+}
+/**
+ * How the chosen investigator frames this case. Facts above stay the same for
+ * everyone; this only shows what the character notices first.
+ */
+function PerspectiveNote({ characterId, caseId }) {
+  const character = getCharacter(characterId);
+  if (!character) {
+    return (
+      <p className="text-sm text-ink/80 border-l-4 border-ink/20 pl-4">
+        Belum ada penyidik yang dipilih.{' '}
+        <Link to="/character-select" className="underline decoration-crimson underline-offset-2 font-semibold">
+          Pilih penyidik
+        </Link>{' '}
+        untuk mendapat catatan sudut pandang selama investigasi.
+      </p>
+    );
+  }
+  const relevance = getRelevance(characterId, caseId);
+  const intro = getCommentary(characterId, caseId, 'briefing');
+  return (
+    <section aria-labelledby="perspective-heading" className="flex gap-4 items-start bg-[#F3EBD9] border border-ink/15 rounded-md p-4">
+      <InvestigatorAvatar character={character} size={56} />
+      <div className="min-w-0">
+        <h3 id="perspective-heading" className="font-display font-bold text-lg leading-tight text-ink">
+          Sudut pandang {character.name}
+        </h3>
+        <p className="text-sm font-semibold text-crimson">{relevanceLabel(relevance)}</p>
+        {intro && <p className="font-hand text-[17px] leading-snug text-ink mt-2">{intro}</p>}
+        <p className="text-xs text-ink/70 mt-2">
+          Fakta dan dasar hukum kasus sama untuk semua penyidik. Yang berbeda adalah apa yang kamu perhatikan.
+        </p>
+      </div>
+    </section>
   );
 }

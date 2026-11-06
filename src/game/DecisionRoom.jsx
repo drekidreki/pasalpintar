@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldAlert, CheckCircle2, Building2 } from 'lucide-react';
+import CommentaryPanel from '../components/CommentaryPanel';
+import { getCommentary } from '../lib/commentary';
 
-export default function DecisionRoom({ caseData, onDecisionChosen }) {
+export default function DecisionRoom({ caseData, characterId, onDecisionChosen }) {
   const [selectedDecision, setSelectedDecision] = useState(null);
 
   return (
@@ -15,6 +17,8 @@ export default function DecisionRoom({ caseData, onDecisionChosen }) {
           <p className="text-gray-400">Pilih strategi penanganan yang proporsional, berdasar hukum, dan efektif untuk jangka panjang.</p>
         </div>
       </div>
+
+      <CommentaryPanel characterId={characterId} text={getCommentary(characterId, caseData.id, 'decision')} className="mb-8" />
 
       <div role="radiogroup" aria-label="Pilihan strategi penanganan" className="grid md:grid-cols-3 gap-6 mb-12">
         {caseData.decisions.map((dec) => {

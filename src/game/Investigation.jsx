@@ -3,9 +3,15 @@ import { motion } from 'framer-motion';
 import { Search, FolderOpen, UserPlus, CheckCircle2 } from 'lucide-react';
 import EvidenceCard from '../components/EvidenceCard';
 import DialogueBox from '../components/DialogueBox';
+import CommentaryPanel from '../components/CommentaryPanel';
+import { getCharacter, getCommentary } from '../lib/commentary';
 
-export default function Investigation({ caseData, onStageComplete }) {
+export default function Investigation({ caseData, characterId, onStageComplete }) {
   const [collectedItems, setCollectedItems] = useState(new Set());
+  const character = getCharacter(characterId);
+  const comment = (event, payload) => getCommentary(characterId, caseData.id, event, payload);
+  // The investigator's latest note; it changes only in response to the player's actions.
+  const [note, setNote] = useState(() => comment('investigationStart'));
   const [activeEvidence, setActiveEvidence] = useState(null);
   const [activeWitness, setActiveWitness] = useState(null);
 
@@ -16,11 +22,15 @@ export default function Investigation({ caseData, onStageComplete }) {
   const handleInspectEvidence = (ev) => {
     setActiveEvidence(ev);
     setCollectedItems((prev) => new Set([...prev, ev.id]));
+    const line = comment('evidence', { evidenceId: ev.id });
+    if (line) setNote(line);
   };
 
   const handleFinishDialogue = (witId) => {
     setActiveWitness(null);
     setCollectedItems((prev) => new Set([...prev, witId]));
+    const line = comment('witnessAfter', { witnessId: witId });
+    if (line) setNote(line);
   };
 
   const itemClass = (isCollected) =>
@@ -43,6 +53,8 @@ export default function Investigation({ caseData, onStageComplete }) {
         </div>
       </div>
 
+      <CommentaryPanel characterId={characterId} text={note} className="mb-8" />
+
       <div className="grid md:grid-cols-2 gap-8 mb-12">
         {/* Evidence Section */}
         <section aria-labelledby="evidence-heading">
@@ -64,7 +76,7 @@ export default function Investigation({ caseData, onStageComplete }) {
                     {isCollected ? (
                       <CheckCircle2 className="text-status-success shrink-0" size={20} aria-label="Sudah diperiksa" />
                     ) : (
-                      <span className="text-xs bg-gray-800 px-2 py-1 rounded shrink-0">Unread</span>
+                      <span className="text-xs bg-black/30 px-2 py-1 rounded shrink-0">Unread</span>
                     )}
                   </motion.button>
                 </li>
@@ -96,7 +108,7 @@ export default function Investigation({ caseData, onStageComplete }) {
                     {isCollected ? (
                       <CheckCircle2 className="text-status-success shrink-0" size={20} aria-label="Sudah diwawancarai" />
                     ) : (
-                      <span className="text-xs bg-gray-800 px-2 py-1 rounded shrink-0">Interview</span>
+                      <span className="text-xs bg-black/30 px-2 py-1 rounded shrink-0">Interview</span>
                     )}
                   </motion.button>
                 </li>
@@ -107,7 +119,12 @@ export default function Investigation({ caseData, onStageComplete }) {
       </div>
 
       {isComplete && (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex justify-center mt-12">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col items-center gap-3 mt-12">
+          {character && (
+            <p className="font-hand text-lg text-paper text-center max-w-xl">
+              {character.name}: &ldquo;{comment('investigationComplete')}&rdquo;
+            </p>
+          )}
           <button type="button" onClick={onStageComplete} className="btn-primary flex items-center gap-2 text-lg px-8">
             Proceed to Legal Analysis <CheckCircle2 size={20} aria-hidden="true" />
           </button>
@@ -115,11 +132,20 @@ export default function Investigation({ caseData, onStageComplete }) {
       )}
 
       {/* Modals & Overlays — mounted only while open so their state always starts fresh */}
-      {activeEvidence && <EvidenceCard evidence={activeEvidence} onClose={() => setActiveEvidence(null)} />}
+      {activeEvidence && (
+        <EvidenceCard
+          evidence={activeEvidence}
+          investigator={character}
+          perspectiveNote={character ? comment('evidence', { evidenceId: activeEvidence.id }) : null}
+          onClose={() => setActiveEvidence(null)}
+        />
+      )}
       {activeWitness && (
         <DialogueBox
           key={activeWitness.id}
           witness={activeWitness}
+          investigator={character}
+          intent={character ? comment('witnessBefore', { witnessId: activeWitness.id }) : null}
           onComplete={() => handleFinishDialogue(activeWitness.id)}
           onClose={() => setActiveWitness(null)}
         />
