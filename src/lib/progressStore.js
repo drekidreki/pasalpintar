@@ -18,6 +18,7 @@
  *   inProgressCases: string[],           // briefing acknowledged, not finished yet (added in Stage B)
  *   preferences: { showCommentary: boolean } // added in Stage C
  *   investigations: { [caseId]: draft }       // unfinished investigation, added in Stage D
+ *   achievements: { [badgeId]: ISO date }     // unlocked badges, never removed, added in Stage G
  *   caseResults: {
  *     [caseId]: { attempts, lastScore, lastDecisionId, lastPlayedAt,
  *                 best: { score, breakdown, decisionId, cityImpact, achievedAt } }
@@ -77,6 +78,14 @@ function sanitizeInvestigations(value) {
   return out;
 }
 
+/** Keep only { id: date string } entries. */
+function sanitizeAchievements(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+  const out = {};
+  for (const [id, at] of Object.entries(value)) if (typeof at === 'string') out[id] = at;
+  return out;
+}
+
 export function createDefaultProgress() {
   return {
     version: SCHEMA_VERSION,
@@ -88,6 +97,7 @@ export function createDefaultProgress() {
     inProgressCases: [],
     preferences: { ...DEFAULT_PREFERENCES },
     investigations: {},
+    achievements: {},
     caseResults: {},
   };
 }
@@ -187,6 +197,7 @@ export function migrate(raw) {
       inProgressCases: [],
       preferences: sanitizePreferences(parsed.preferences),
       investigations: {},
+      achievements: {},
       caseResults: {},
     };
     return { progress, backup: { key: BACKUP_KEY_V1, raw }, changed: true };
@@ -202,6 +213,7 @@ export function migrate(raw) {
     inProgressCases: sanitizeStringArray(parsed.inProgressCases),
     preferences: sanitizePreferences(parsed.preferences),
     investigations: sanitizeInvestigations(parsed.investigations),
+    achievements: sanitizeAchievements(parsed.achievements),
     caseResults: sanitizeCaseResults(parsed.caseResults),
   };
   progress.cityIndicators = computeIndicators(progress);
@@ -297,9 +309,11 @@ export function markCaseStarted(caseId) {
 /**
  * Record one finished playthrough of a case.
  * result: { score, breakdown, decisionId, cityImpact }
- * Returns { isNewBest, previousBest, attempts, indicatorsBefore, indicatorsAfter }.
+ * options.evaluateAchievements(nextProgress, { ...result, previousBest }) → badge ids
+ *   (optional; keeps this store independent of the case data).
+ * Returns { isNewBest, previousBest, attempts, indicatorsBefore, indicatorsAfter, newAchievements }.
  */
-export function recordCaseResult(caseId, result) {
+export function recordCaseResult(caseId, result, options = {}) {
   const before = getProgress();
   const prevResult = before.caseResults[caseId];
   const previousBest = prevResult?.best?.score ?? null;
@@ -313,6 +327,7 @@ export function recordCaseResult(caseId, result) {
   };
   // Ties go to the latest attempt.
   const isNewBest = previousBest === null || result.score >= previousBest;
+  const newAchievements = [];
 
   const next = update((prev) => {
     const caseResults = {
@@ -334,6 +349,15 @@ export function recordCaseResult(caseId, result) {
       caseResults,
     };
     draft.cityIndicators = computeIndicators(draft);
+    const earned = options.evaluateAchievements?.(draft, { ...result, previousBest }) || [];
+    const achievements = { ...(prev.achievements || {}) };
+    for (const id of earned) {
+      if (!achievements[id]) {
+        achievements[id] = now;
+        newAchievements.push(id);
+      }
+    }
+    draft.achievements = achievements;
     return draft;
   });
 
@@ -344,6 +368,7 @@ export function recordCaseResult(caseId, result) {
     attempts: next.caseResults[caseId].attempts,
     indicatorsBefore: before.cityIndicators,
     indicatorsAfter: next.cityIndicators,
+    newAchievements,
   };
 }
 

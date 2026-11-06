@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, FileText, AlertCircle, NotebookPen } from 'lucide-react';
 import { chapters } from '../data/chapters';
 import { computeCaseScore } from '../data/scoring';
+import { evaluateAchievements, makeContext } from '../data/achievements';
 import { useGameProgress } from '../hooks/useGameProgress';
 import { getCharacter, getCommentary, getRelevance, relevanceLabel } from '../lib/commentary';
 import InvestigatorAvatar from '../components/InvestigatorAvatar';
@@ -13,6 +14,8 @@ import Investigation from './Investigation';
 import LegalAnalysis from './LegalAnalysis';
 import DecisionRoom from './DecisionRoom';
 import Evaluation from './Evaluation';
+
+const ACHIEVEMENT_CONTEXT = makeContext(chapters);
 
 const STAGE_LABELS = {
   briefing: 'Briefing',
@@ -81,6 +84,8 @@ export default function GameEngine() {
       breakdown,
       decisionId: decision.id,
       cityImpact: decision.cityImpact,
+    }, {
+      evaluateAchievements: (next, result) => evaluateAchievements(next, ACHIEVEMENT_CONTEXT, result),
     });
     setChosenDecision(decision);
     setPrediction(prediction || null);

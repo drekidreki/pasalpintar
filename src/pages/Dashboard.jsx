@@ -35,6 +35,14 @@ function InvestigatorNote({ progress }) {
       >
         {investigator ? 'Ganti penyidik' : 'Pilih penyidik'}
       </Link>
+      {solved > 0 && (
+        <Link
+          to="/report"
+          className="block mt-1 text-base underline decoration-crimson decoration-2 underline-offset-4"
+        >
+          Lihat statistik
+        </Link>
+      )}
     </section>
   );
 }

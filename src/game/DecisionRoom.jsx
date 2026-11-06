@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ShieldAlert, Building2, ArrowUp, ArrowDown, Minus, Clock, Coins, Users } from 'lucide-react';
 import CommentaryPanel from '../components/CommentaryPanel';
 import { getCommentary } from '../lib/commentary';
 import { INDICATORS, DIRECTIONS } from '../data/indicators';
+import { orderDecisions } from '../lib/decisionOrder';
 
 const DIRECTION_ICONS = { naik: ArrowUp, tetap: Minus, turun: ArrowDown };
 
@@ -35,6 +36,7 @@ function Tradeoffs({ t }) {
 export default function DecisionRoom({ caseData, characterId, cityIndicators, onDecisionChosen }) {
   const [selectedId, setSelectedId] = useState(null);
   const [prediction, setPrediction] = useState({});
+  const ordered = useMemo(() => orderDecisions(caseData.decisions, caseData.id), [caseData]);
   const selected = caseData.decisions.find((d) => d.id === selectedId) || null;
   const predictionDone = INDICATORS.every(({ key }) => prediction[key]);
   const ready = Boolean(selected) && predictionDone;
@@ -63,7 +65,7 @@ export default function DecisionRoom({ caseData, characterId, cityIndicators, on
       <fieldset className="mb-6">
         <legend className="text-lg font-bold mb-4">1. Pilih strategi penanganan</legend>
         <div className="grid md:grid-cols-2 gap-5">
-          {caseData.decisions.map((dec) => {
+          {ordered.map((dec) => {
             const isSelected = selectedId === dec.id;
             const titleId = `dec-title-${dec.id}`;
             return (
@@ -126,7 +128,7 @@ export default function DecisionRoom({ caseData, characterId, cityIndicators, on
               </tr>
             </thead>
             <tbody>
-              {caseData.decisions.map((d) => (
+              {ordered.map((d) => (
                 <tr key={d.id} className="border-b border-white/5 align-top">
                   <th scope="row" className="py-2 pr-3 font-semibold text-white">{d.title}</th>
                   <td className="py-2 pr-3 text-gray-300">{d.tradeoffs?.speed}</td>

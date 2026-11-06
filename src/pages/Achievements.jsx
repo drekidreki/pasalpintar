@@ -2,16 +2,16 @@ import { motion } from 'framer-motion';
 import { Award, CheckCircle, Lock } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import { useGameProgress } from '../hooks/useGameProgress';
+import { chapters } from '../data/chapters';
+import { ACHIEVEMENTS, makeContext, unlockedAchievements } from '../data/achievements';
+import { formatCheckedAt } from '../lib/actionGuide';
+
+const CONTEXT = makeContext(chapters);
 
 export default function Achievements() {
   const { progress } = useGameProgress();
-  const completedCount = progress.completedCases.length;
-
-  const badgeList = [
-    { id: 'b1', title: 'First Response', desc: 'Selesaikan kasus pertama kamu.', req: 1 },
-    { id: 'b2', title: 'Legal Investigator', desc: 'Selesaikan 3 kasus penanganan hak warga.', req: 3 },
-    { id: 'b3', title: 'Civic Guardian', desc: 'Selesaikan seluruh 5 kasus di Kota PasalPintar.', req: 5 },
-  ];
+  const unlocked = new Set(unlockedAchievements(progress, CONTEXT));
+  const dates = progress.achievements || {};
 
   return (
     <div className="min-h-screen flex flex-col pb-20 md:pb-0">
@@ -19,24 +19,36 @@ export default function Achievements() {
       <main className="flex-1 p-6 md:p-10 max-w-5xl mx-auto w-full">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
-            <Award className="text-brass" /> Badges & Achievements
+            <Award className="text-brass" aria-hidden="true" /> Badges & Achievements
           </h1>
-          <p className="text-gray-400 mb-8">Pencapaian kamu selama bertugas sebagai Civic Response Officer.</p>
+          <p className="text-gray-400 mb-2">
+            Setiap lencana didapat dari cara kamu menyelidiki dan menalar kasus, bukan dari lamanya bermain. Lencana yang sudah terbuka tidak akan hilang.
+          </p>
+          <p className="text-sm text-gray-300 mb-8" aria-live="polite">
+            {unlocked.size} dari {ACHIEVEMENTS.length} lencana terbuka
+          </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {badgeList.map(b => {
-              const unlocked = completedCount >= b.req;
+          <ul className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {ACHIEVEMENTS.map((b) => {
+              const isOpen = unlocked.has(b.id);
+              const at = dates[b.id]?.slice(0, 10);
               return (
-                <div key={b.id} className={`card-dark p-6 flex flex-col items-center text-center ${!unlocked && 'opacity-50'}`}>
-                  <div className={`p-4 rounded-full mb-4 ${unlocked ? 'bg-brass/20 text-brass' : 'bg-black/30 text-gray-400'}`}>
-                    {unlocked ? <CheckCircle size={32} /> : <Lock size={32} />}
+                <li
+                  key={b.id}
+                  className={`card-dark p-6 flex flex-col items-center text-center ${isOpen ? '' : 'opacity-60'}`}
+                >
+                  <div className={`p-4 rounded-full mb-4 ${isOpen ? 'bg-brass/20 text-brass' : 'bg-black/30 text-gray-400'}`}>
+                    {isOpen ? <CheckCircle size={32} aria-hidden="true" /> : <Lock size={32} aria-hidden="true" />}
                   </div>
-                  <h3 className="font-bold text-lg mb-1">{b.title}</h3>
-                  <p className="text-xs text-gray-400">{b.desc}</p>
-                </div>
+                  <h2 className="font-bold text-lg mb-1">{b.title}</h2>
+                  <p className="text-xs text-gray-300">{b.desc}</p>
+                  <p className="text-xs mt-3 font-semibold text-gray-400">
+                    {isOpen ? (at ? `Terbuka · ${formatCheckedAt(at)}` : 'Terbuka') : 'Terkunci'}
+                  </p>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </motion.div>
       </main>
     </div>

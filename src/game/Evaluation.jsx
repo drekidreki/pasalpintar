@@ -14,7 +14,8 @@ import {
   Building,
   ClipboardList,
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ACHIEVEMENTS } from '../data/achievements';
 import { SCORING_WEIGHTS, directionOf } from '../data/scoring';
 import { INDICATORS, DIRECTIONS } from '../data/indicators';
 import { laws } from '../data/laws';
@@ -37,11 +38,40 @@ function LawChips({ ids }) {
   return (
     <ul className="flex flex-wrap gap-2 mt-3" aria-label="Dasar hukum">
       {items.map((l) => (
-        <li key={l.id} className="text-xs px-2 py-1 rounded border border-white/15 text-gray-200 flex items-center gap-1">
-          <Scale size={12} aria-hidden="true" /> {l.title}
+        <li key={l.id}>
+          <Link
+            to={`/law-library#${l.id}`}
+            className="text-xs px-2 py-1 rounded border border-white/15 text-gray-200 hover:border-brass flex items-center gap-1"
+          >
+            <Scale size={12} aria-hidden="true" /> {l.title}
+            <span className="sr-only">(buka di Law Library)</span>
+          </Link>
         </li>
       ))}
     </ul>
+  );
+}
+
+function NewBadges({ ids }) {
+  const items = (ids || []).map((id) => ACHIEVEMENTS.find((a) => a.id === id)).filter(Boolean);
+  if (!items.length) return null;
+  return (
+    <section aria-labelledby="new-badges" className="mb-8 rounded-lg border border-brass/60 bg-brass/10 p-4">
+      <h2 id="new-badges" className="font-bold flex items-center gap-2 text-brass-light">
+        <Award size={18} aria-hidden="true" /> Pencapaian baru terbuka
+      </h2>
+      <ul className="mt-2 space-y-1 text-sm">
+        {items.map((a) => (
+          <li key={a.id}>
+            <span className="font-semibold text-white">{a.title}</span>
+            <span className="text-gray-300"> · {a.desc}</span>
+          </li>
+        ))}
+      </ul>
+      <Link to="/achievements" className="inline-block mt-2 text-sm underline decoration-brass underline-offset-4">
+        Lihat semua pencapaian
+      </Link>
+    </section>
   );
 }
 
@@ -256,7 +286,7 @@ function ActionGuide({ caseData }) {
 export default function Evaluation({ caseData, outcome, decision, prediction, onRestart }) {
   const navigate = useNavigate();
   if (!outcome || !decision) return null;
-  const { breakdown, total, isNewBest, previousBest, bestScore, attempts, indicatorsBefore, indicatorsAfter } = outcome;
+  const { breakdown, total, isNewBest, previousBest, bestScore, attempts, indicatorsBefore, indicatorsAfter, newAchievements } = outcome;
   const best = caseData.decisions.find((d) => d.isOptimal);
 
   return (
@@ -298,6 +328,8 @@ export default function Evaluation({ caseData, outcome, decision, prediction, on
             </div>
           ))}
         </dl>
+
+        <NewBadges ids={newAchievements} />
 
         <section aria-labelledby="decision-heading" className="mb-8 p-6 bg-soot/80 rounded-xl border border-white/10">
           <p className="text-xs uppercase tracking-widest text-gray-400 mb-1">Strategi yang kamu pilih</p>
