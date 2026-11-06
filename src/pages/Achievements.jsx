@@ -14,12 +14,12 @@ export default function Achievements() {
   ];
 
   return (
-    <div className="min-h-screen bg-navy-primary flex flex-col pb-20 md:pb-0">
+    <div className="min-h-screen flex flex-col pb-20 md:pb-0">
       <Navbar />
       <main className="flex-1 p-6 md:p-10 max-w-5xl mx-auto w-full">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
-            <Award className="text-accent-blue" /> Badges & Achievements
+            <Award className="text-brass" /> Badges & Achievements
           </h1>
           <p className="text-gray-400 mb-8">Pencapaian kamu selama bertugas sebagai Civic Response Officer.</p>
 
@@ -28,7 +28,7 @@ export default function Achievements() {
               const unlocked = completedCount >= b.req;
               return (
                 <div key={b.id} className={`card-dark p-6 flex flex-col items-center text-center ${!unlocked && 'opacity-50'}`}>
-                  <div className={`p-4 rounded-full mb-4 ${unlocked ? 'bg-accent-blue/20 text-accent-blue' : 'bg-gray-800 text-gray-500'}`}>
+                  <div className={`p-4 rounded-full mb-4 ${unlocked ? 'bg-brass/20 text-brass' : 'bg-gray-800 text-gray-400'}`}>
                     {unlocked ? <CheckCircle size={32} /> : <Lock size={32} />}
                   </div>
                   <h3 className="font-bold text-lg mb-1">{b.title}</h3>

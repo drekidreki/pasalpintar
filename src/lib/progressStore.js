@@ -15,6 +15,7 @@
  *   cityIndicators: { socialStability, legalIntegrity, regionalDevelopment, publicTrust },
  *   indicatorBaseline: { ...same keys },  // starting point before per-case impacts
  *   legacyCases: string[],               // cases completed under v1 (impact already in baseline)
+ *   inProgressCases: string[],           // briefing acknowledged, not finished yet (added in Stage B)
  *   caseResults: {
  *     [caseId]: { attempts, lastScore, lastDecisionId, lastPlayedAt,
  *                 best: { score, breakdown, decisionId, cityImpact, achievedAt } }
@@ -49,6 +50,7 @@ export function createDefaultProgress() {
     cityIndicators: { ...DEFAULT_INDICATORS },
     indicatorBaseline: { ...DEFAULT_INDICATORS },
     legacyCases: [],
+    inProgressCases: [],
     caseResults: {},
   };
 }
@@ -145,6 +147,7 @@ export function migrate(raw) {
       cityIndicators,
       indicatorBaseline: { ...cityIndicators },
       legacyCases: [...completedCases],
+      inProgressCases: [],
       caseResults: {},
     };
     return { progress, backup: { key: BACKUP_KEY_V1, raw }, changed: true };
@@ -157,6 +160,7 @@ export function migrate(raw) {
     completedCases,
     indicatorBaseline: sanitizeIndicators(parsed.indicatorBaseline, DEFAULT_INDICATORS),
     legacyCases: sanitizeStringArray(parsed.legacyCases),
+    inProgressCases: sanitizeStringArray(parsed.inProgressCases),
     caseResults: sanitizeCaseResults(parsed.caseResults),
   };
   progress.cityIndicators = computeIndicators(progress);
@@ -233,6 +237,13 @@ export function selectCharacter(characterId) {
   update((prev) => ({ ...prev, characterId }));
 }
 
+/** Mark a case as being investigated (briefing acknowledged, not finished). */
+export function markCaseStarted(caseId) {
+  const current = getProgress();
+  if (current.inProgressCases.includes(caseId)) return;
+  update((prev) => ({ ...prev, inProgressCases: [...prev.inProgressCases, caseId] }));
+}
+
 /**
  * Record one finished playthrough of a case.
  * result: { score, breakdown, decisionId, cityImpact }
@@ -267,6 +278,7 @@ export function recordCaseResult(caseId, result) {
     const draft = {
       ...prev,
       completedCases: [...new Set([...prev.completedCases, caseId])],
+      inProgressCases: prev.inProgressCases.filter((id) => id !== caseId),
       caseResults,
     };
     draft.cityIndicators = computeIndicators(draft);

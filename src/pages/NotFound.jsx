@@ -4,7 +4,7 @@ import { SearchX } from 'lucide-react';
 export default function NotFound() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center gap-4 p-10 text-center">
-      <SearchX size={48} className="text-accent-blue" aria-hidden="true" />
+      <SearchX size={48} className="text-brass" aria-hidden="true" />
       <h1 className="text-2xl font-bold">Halaman tidak ditemukan</h1>
       <p className="text-gray-400 max-w-md">Alamat yang kamu buka tidak tersedia di PASALPINTAR.</p>
       <div className="flex flex-col sm:flex-row gap-3">

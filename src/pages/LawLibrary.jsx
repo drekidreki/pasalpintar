@@ -29,14 +29,14 @@ export default function LawLibrary() {
   });
 
   return (
-    <div className="min-h-screen bg-navy-primary flex flex-col pb-20 md:pb-0">
+    <div className="min-h-screen flex flex-col pb-20 md:pb-0">
       <Navbar />
 
       <main className="flex-1 p-6 md:p-10 max-w-7xl mx-auto w-full">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <div className="mb-8">
             <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
-              <BookOpen className="text-accent-blue" aria-hidden="true" /> Law Library
+              <BookOpen className="text-brass" aria-hidden="true" /> Law Library
             </h1>
             <p className="text-gray-400">
               Rujukan undang-undang dan hak-kewajiban warga negara Republik Indonesia. Setiap entri menandai apakah teksnya kutipan atau ringkasan, beserta status pengecekannya.
@@ -54,7 +54,7 @@ export default function LawLibrary() {
                 placeholder="Cari pasal, kata kunci, atau penjelasan..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-navy-secondary border border-white/10 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-accent-blue"
+                className="w-full bg-soot-raised border border-white/10 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brass"
               />
             </div>
 
@@ -66,7 +66,7 @@ export default function LawLibrary() {
                   aria-pressed={selectedCategory === cat}
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
-                    selectedCategory === cat ? 'bg-accent-blue text-white' : 'bg-navy-secondary text-gray-400 hover:text-white'
+                    selectedCategory === cat ? 'bg-brass text-ink' : 'bg-soot-raised text-gray-400 hover:text-white'
                   }`}
                 >
                   {cat}
@@ -82,7 +82,7 @@ export default function LawLibrary() {
               Tidak ada rujukan yang cocok.{' '}
               <button
                 type="button"
-                className="text-accent-blue underline"
+                className="text-brass-light underline"
                 onClick={() => {
                   setSearchQuery('');
                   setSelectedCategory('All');
@@ -97,46 +97,46 @@ export default function LawLibrary() {
                 const v = VERIFICATION_LABELS[law.verification?.status] || VERIFICATION_LABELS['perlu-verifikasi'];
                 const isQuote = law.textType !== 'ringkasan';
                 return (
-                  <article key={law.id} className="light-interface p-6 rounded-xl shadow-lg border border-gray-200 flex flex-col justify-between">
+                  <article key={law.id} className="light-interface p-6 rounded-xl shadow-lg border border-ink/15 flex flex-col justify-between">
                     <div>
                       <div className="flex flex-wrap gap-2 items-start mb-3">
-                        <span className="text-xs font-bold px-2.5 py-1 bg-blue-100 text-blue-800 rounded-full">{law.category}</span>
+                        <span className="text-xs font-bold px-2.5 py-1 bg-paper-deep text-crimson rounded-full">{law.category}</span>
                         <span className={`text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 ${v.className}`}>
                           <v.Icon size={12} aria-hidden="true" /> {v.label}
                         </span>
                       </div>
-                      <h2 className="text-xl font-bold text-navy-primary mb-3">{law.title}</h2>
+                      <h2 className="text-xl font-bold text-ink mb-3">{law.title}</h2>
 
                       <span className="block text-xs font-bold text-gray-600 uppercase mb-1">
                         {isQuote ? 'Kutipan' : 'Ringkasan (bukan kutipan)'}
                       </span>
                       {isQuote ? (
-                        <blockquote className="text-sm text-gray-800 italic bg-white p-3 rounded-lg border border-gray-200 mb-4 leading-relaxed">
+                        <blockquote className="text-sm text-ink italic bg-[#F3EBD9] p-3 rounded-md border border-ink/15 mb-4 leading-relaxed">
                           &ldquo;{law.text}&rdquo;
                         </blockquote>
                       ) : (
-                        <p className="text-sm text-gray-800 bg-white p-3 rounded-lg border border-dashed border-gray-300 mb-4 leading-relaxed">
+                        <p className="text-sm text-ink bg-[#F3EBD9] p-3 rounded-md border border-dashed border-ink/30 mb-4 leading-relaxed">
                           {law.text}
                         </p>
                       )}
 
-                      <div className="bg-blue-50 p-3 rounded-lg border border-blue-100 mb-4">
-                        <span className="block text-xs font-bold text-blue-800 uppercase mb-1">Penjelasan Sederhana</span>
-                        <p className="text-sm text-gray-700">{law.simpleExplanation}</p>
+                      <div className="bg-paper-deep p-3 rounded-lg border border-ink/15 mb-4">
+                        <span className="block text-xs font-bold text-crimson uppercase mb-1">Penjelasan Sederhana</span>
+                        <p className="text-sm text-ink/85">{law.simpleExplanation}</p>
                       </div>
                       {law.verification?.note && (
                         <p className="text-xs text-gray-600 mb-4">Catatan verifikasi: {law.verification.note}</p>
                       )}
                     </div>
 
-                    <div className="pt-3 border-t border-gray-200 flex justify-between items-center gap-3 text-xs text-gray-600">
+                    <div className="pt-3 border-t border-ink/15 flex justify-between items-center gap-3 text-xs text-gray-600">
                       <span>Sumber: {law.source}</span>
                       {law.verification?.refs?.[0] && (
                         <a
                           href={law.verification.refs[0]}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-700 flex items-center gap-1 shrink-0 hover:underline"
+                          className="text-crimson flex items-center gap-1 shrink-0 hover:underline"
                         >
                           Rujukan <ExternalLink size={14} aria-hidden="true" />
                           <span className="sr-only">(membuka tab baru)</span>

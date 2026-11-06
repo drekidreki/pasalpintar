@@ -25,7 +25,7 @@ export default function Investigation({ caseData, onStageComplete }) {
 
   const itemClass = (isCollected) =>
     `card-dark w-full text-left cursor-pointer flex justify-between items-center gap-3 p-4 transition-colors ${
-      isCollected ? 'border-status-success/50 bg-status-success/5' : 'hover:border-accent-blue'
+      isCollected ? 'border-status-success/50 bg-status-success/5' : 'hover:border-brass'
     }`;
 
   return (
@@ -33,13 +33,13 @@ export default function Investigation({ caseData, onStageComplete }) {
       <div className="flex justify-between items-end gap-4 mb-8 border-b border-white/10 pb-6">
         <div>
           <h2 className="text-3xl font-bold mb-2 flex items-center gap-3">
-            <Search className="text-accent-blue shrink-0" aria-hidden="true" /> Investigation Phase
+            <Search className="text-brass shrink-0" aria-hidden="true" /> Investigation Phase
           </h2>
           <p className="text-gray-400">Kumpulkan semua fakta dan dengarkan kesaksian sebelum membuat analisis hukum.</p>
         </div>
         <div className="text-right shrink-0" aria-live="polite">
           <div className="text-sm text-gray-400 mb-1">Progress</div>
-          <div className="text-2xl font-bold text-accent-blue">{progressPercent}%</div>
+          <div className="text-2xl font-bold text-brass">{progressPercent}%</div>
         </div>
       </div>
 

@@ -15,7 +15,7 @@ const ROWS_RIGHT = [
 
 function ScoreRows({ rows, breakdown }) {
   return (
-    <dl className="space-y-3 bg-navy-primary/50 p-4 rounded-lg">
+    <dl className="space-y-3 bg-soot/50 p-4 rounded-lg">
       {rows.map(([key, label]) => (
         <div key={key} className="flex justify-between gap-4">
           <dt className="text-gray-400">{label}</dt>
@@ -37,12 +37,12 @@ export default function Evaluation({ caseData, outcome, decision, onRestart }) {
     <div className="w-full max-w-4xl mx-auto">
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="card-dark p-6 md:p-12 mb-8">
         <div className="text-center mb-8 border-b border-white/10 pb-8">
-          <div className="inline-flex p-4 bg-accent-blue/10 rounded-full text-accent-blue mb-4">
+          <div className="inline-flex p-4 bg-brass/10 rounded-full text-brass mb-4">
             <Award size={48} aria-hidden="true" />
           </div>
           <h1 className="text-3xl font-bold mb-2">Case Evaluation Report</h1>
           <p className="text-gray-400">{caseData.title}</p>
-          <div className="text-5xl font-extrabold text-accent-blue mt-6" data-testid="total-score">
+          <div className="text-5xl font-extrabold text-brass mt-6" data-testid="total-score">
             {total} <span className="text-xl font-normal text-gray-400">/ 100 Pts</span>
           </div>
           <p className="mt-4 text-sm text-gray-300 flex items-center justify-center gap-2" role="status">
@@ -58,7 +58,7 @@ export default function Evaluation({ caseData, outcome, decision, onRestart }) {
             ) : (
               `Skor terbaikmu tetap ${bestScore}. Indikator kota memakai hasil terbaik.`
             )}
-            <span className="text-gray-500">· Percobaan ke-{attempts}</span>
+            <span className="text-gray-400">· Percobaan ke-{attempts}</span>
           </p>
         </div>
 
@@ -69,8 +69,8 @@ export default function Evaluation({ caseData, outcome, decision, onRestart }) {
         </div>
 
         {/* Chosen Decision Summary */}
-        <div className="mb-8 p-6 bg-navy-primary/80 rounded-xl border border-white/10">
-          <h2 className="font-bold text-lg mb-2 text-accent-blue">Decision Outcome: {decision?.title}</h2>
+        <div className="mb-8 p-6 bg-soot/80 rounded-xl border border-white/10">
+          <h2 className="font-bold text-lg mb-2 text-brass">Decision Outcome: {decision?.title}</h2>
           <p className="text-sm text-gray-300 mb-4">{decision?.benefits}</p>
           <div className="text-xs text-status-warning bg-status-warning/10 p-3 rounded-lg border border-status-warning/20">
             <strong>Impact Note:</strong> {decision?.consequences}
@@ -79,10 +79,10 @@ export default function Evaluation({ caseData, outcome, decision, onRestart }) {
 
         {/* Real-World Action Takeaways */}
         <div className="light-interface p-6 rounded-xl mb-8">
-          <h2 className="font-bold text-lg mb-4 text-navy-primary flex items-center gap-2">
-            <CheckCircle2 className="text-accent-blue" size={20} aria-hidden="true" /> Real-World Action Steps
+          <h2 className="font-bold text-lg mb-4 text-ink flex items-center gap-2">
+            <CheckCircle2 className="text-crimson" size={20} aria-hidden="true" /> Real-World Action Steps
           </h2>
-          <ul className="space-y-2 text-sm text-gray-800 list-disc pl-5">
+          <ul className="space-y-2 text-sm text-ink list-disc pl-5">
             {caseData.realWorldAction?.map((action, i) => (
               <li key={i}>{action}</li>
             ))}

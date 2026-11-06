@@ -12,17 +12,17 @@ function OptionButton({ item, isSelected, isSubmitted, onToggle, compact = false
       onClick={onToggle}
       className={`w-full text-left p-4 rounded-lg border transition-all ${
         isSubmitted ? 'cursor-default' : 'cursor-pointer'
-      } ${isSelected ? 'border-accent-blue bg-accent-blue/10' : 'border-gray-700 hover:border-gray-500'}`}
+      } ${isSelected ? 'border-brass bg-brass/10' : 'border-gray-700 hover:border-gray-500'}`}
     >
       <span className="flex justify-between items-center gap-3">
         <span className={`font-medium text-white ${compact ? 'text-sm' : ''}`}>{item.label}</span>
         <span
           aria-hidden="true"
           className={`w-5 h-5 shrink-0 rounded border flex items-center justify-center ${
-            isSelected ? 'bg-accent-blue border-accent-blue' : 'border-gray-500'
+            isSelected ? 'bg-brass border-brass' : 'border-gray-500'
           }`}
         >
-          {isSelected && <Check size={14} className="text-white" />}
+          {isSelected && <Check size={14} className="text-ink" />}
         </span>
       </span>
       {isSubmitted && showExplanation && item.explanation && (
@@ -53,7 +53,7 @@ export default function LegalAnalysis({ caseData, onStageComplete }) {
       <div className="flex justify-between items-end mb-8 border-b border-white/10 pb-6">
         <div>
           <h2 className="text-3xl font-bold mb-2 flex items-center gap-3">
-            <Scale className="text-accent-blue shrink-0" aria-hidden="true" /> Legal Analysis Phase
+            <Scale className="text-brass shrink-0" aria-hidden="true" /> Legal Analysis Phase
           </h2>
           <p className="text-gray-400">Hubungkan fakta kasus dengan hak yang terdampak, kewajiban yang diabaikan, dan dasar hukum yang berlaku.</p>
         </div>
@@ -62,7 +62,7 @@ export default function LegalAnalysis({ caseData, onStageComplete }) {
       <div className="space-y-8 mb-12">
         <fieldset className="card-dark">
           <legend className="sr-only">Hak Warga Negara yang Terdampak</legend>
-          <h3 className="text-lg font-bold mb-4 text-accent-blue" aria-hidden="true">1. Hak Warga Negara yang Terdampak</h3>
+          <h3 className="text-lg font-bold mb-4 text-brass" aria-hidden="true">1. Hak Warga Negara yang Terdampak</h3>
           <div className="space-y-3">
             {rightsAffected.map((item) => (
               <OptionButton
@@ -78,7 +78,7 @@ export default function LegalAnalysis({ caseData, onStageComplete }) {
 
         <fieldset className="card-dark">
           <legend className="sr-only">Kewajiban yang Diabaikan</legend>
-          <h3 className="text-lg font-bold mb-4 text-accent-blue" aria-hidden="true">2. Kewajiban yang Diabaikan</h3>
+          <h3 className="text-lg font-bold mb-4 text-brass" aria-hidden="true">2. Kewajiban yang Diabaikan</h3>
           <div className="space-y-3">
             {dutiesNeglected.map((item) => (
               <OptionButton
@@ -94,7 +94,7 @@ export default function LegalAnalysis({ caseData, onStageComplete }) {
 
         <fieldset className="card-dark">
           <legend className="sr-only">Dasar Hukum yang Relevan</legend>
-          <h3 className="text-lg font-bold mb-4 text-accent-blue" aria-hidden="true">3. Dasar Hukum yang Relevan</h3>
+          <h3 className="text-lg font-bold mb-4 text-brass" aria-hidden="true">3. Dasar Hukum yang Relevan</h3>
           <div className="grid md:grid-cols-2 gap-3">
             {legalArticles.map((item) => (
               <OptionButton

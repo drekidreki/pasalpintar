@@ -34,10 +34,10 @@ export default function DialogueBox({ witness, onComplete, onClose }) {
         tabIndex={-1}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-4xl bg-navy-secondary border border-white/20 rounded-xl shadow-2xl p-5 md:p-6 flex gap-4 md:gap-6"
+        className="w-full max-w-4xl bg-soot-raised border border-white/20 rounded-xl shadow-2xl p-5 md:p-6 flex gap-4 md:gap-6"
       >
         <div
-          className="w-14 h-14 md:w-20 md:h-20 bg-gray-800 rounded-full flex items-center justify-center text-3xl md:text-4xl border-2 border-accent-blue shrink-0"
+          className="w-14 h-14 md:w-20 md:h-20 bg-gray-800 rounded-full flex items-center justify-center text-3xl md:text-4xl border-2 border-brass shrink-0"
           aria-hidden="true"
         >
           {witness.avatar}
@@ -46,7 +46,7 @@ export default function DialogueBox({ witness, onComplete, onClose }) {
         <div className="flex-1 min-w-0 flex flex-col justify-between">
           <div>
             <div className="flex items-start justify-between gap-2 mb-1">
-              <div id={nameId} className="text-accent-blue font-bold text-sm flex items-center gap-2">
+              <div id={nameId} className="text-brass font-bold text-sm flex items-center gap-2">
                 <MessageSquare size={14} aria-hidden="true" /> {witness.name}
               </div>
               <button
@@ -73,7 +73,7 @@ export default function DialogueBox({ witness, onComplete, onClose }) {
           </div>
 
           <div className="flex items-center justify-between mt-4">
-            <span className="text-xs text-gray-500" aria-label={`Baris ${step + 1} dari ${lines.length}`}>
+            <span className="text-xs text-gray-400" aria-label={`Baris ${step + 1} dari ${lines.length}`}>
               {step + 1} / {lines.length}
             </span>
             <button

@@ -1,112 +1,116 @@
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { Play, Lock, RotateCcw, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import InvestigationBoard from '../components/board/InvestigationBoard';
 import { useGameProgress } from '../hooks/useGameProgress';
 import { chapters } from '../data/chapters';
+import { characters } from '../data/characters';
+
+const INDICATORS = [
+  { key: 'socialStability', label: 'Stabilitas sosial' },
+  { key: 'legalIntegrity', label: 'Integritas hukum' },
+  { key: 'regionalDevelopment', label: 'Pembangunan daerah' },
+  { key: 'publicTrust', label: 'Kepercayaan publik' },
+];
+
+function InvestigatorNote({ progress }) {
+  const investigator = characters.find((c) => c.id === progress.characterId);
+  const solved = progress.completedCases.length;
+  const scores = Object.values(progress.caseResults)
+    .map((r) => r?.best?.score)
+    .filter(Number.isFinite);
+  const average = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
+
+  return (
+    <section className="sticky-note -rotate-2 w-full max-w-[280px]" aria-labelledby="note-heading">
+      <span className="tape -top-3 left-1/2 -translate-x-1/2 rotate-2" aria-hidden="true" />
+      <h2 id="note-heading" className="font-hand font-bold text-xl tracking-normal mb-2">Catatan penyidik</h2>
+      {investigator ? (
+        <p className="text-lg leading-snug">
+          {investigator.name}, {investigator.role}
+        </p>
+      ) : (
+        <p className="text-lg leading-snug">Belum ada penyidik yang dipilih.</p>
+      )}
+      <p className="text-lg leading-snug mt-1">
+        {solved} dari {chapters.length} kasus terbukti
+      </p>
+      {average !== null && <p className="text-lg leading-snug">Rata-rata skor terbaik: {average}</p>}
+      <Link
+        to="/character-select"
+        className="inline-block mt-3 text-base underline decoration-crimson decoration-2 underline-offset-4"
+      >
+        {investigator ? 'Ganti penyidik' : 'Pilih penyidik'}
+      </Link>
+    </section>
+  );
+}
+
+function CityCard({ indicators }) {
+  return (
+    <section className="index-card rotate-1 w-full max-w-[420px] pt-2" aria-labelledby="city-heading">
+      <span className="tape -top-3 right-8 -rotate-6" aria-hidden="true" />
+      <h2 id="city-heading" className="font-display font-bold text-2xl leading-[30px] mb-2">Kondisi kota</h2>
+      <dl className="space-y-[7px]">
+        {INDICATORS.map(({ key, label }) => {
+          const value = indicators[key];
+          return (
+            <div key={key} className="grid grid-cols-[1fr_auto] items-center gap-x-3">
+              <dt className="text-[15px] font-medium leading-[17px]">{label}</dt>
+              <dd className="font-display font-bold text-lg leading-[17px] tabular-nums">{value}</dd>
+              <dd className="col-span-2 h-[6px] bg-ink/10 rounded-full overflow-hidden" aria-hidden="true">
+                <span className="block h-full bg-ink/75 rounded-full" style={{ width: `${value}%` }} />
+              </dd>
+            </div>
+          );
+        })}
+      </dl>
+      <p className="text-xs leading-snug text-ink/75 mt-3">
+        Skala 0–100. Indikator skenario edukatif, bukan data kota sungguhan. Setiap kasus dihitung dari hasil terbaikmu.
+      </p>
+    </section>
+  );
+}
+
+function StringLegend() {
+  return (
+    <p className="bg-[#EFE6D2] text-ink text-sm leading-snug px-4 py-3 shadow-pinned rotate-1 max-w-[300px]">
+      <span className="flex items-center gap-2 font-semibold mb-1">
+        <span className="inline-block w-8 h-[3px] bg-crimson rounded-full" aria-hidden="true" />
+        Benang merah
+      </span>
+      Menghubungkan kasus yang berbagi pasal yang sama. Arahkan kursor atau fokus ke berkas untuk melihat pasalnya.
+    </p>
+  );
+}
 
 export default function Dashboard() {
   const { progress } = useGameProgress();
-  const navigate = useNavigate();
-
-  const indicators = [
-    { label: 'Social Stability', value: progress.cityIndicators.socialStability, color: 'bg-status-success' },
-    { label: 'Legal Integrity', value: progress.cityIndicators.legalIntegrity, color: 'bg-accent-blue' },
-    { label: 'Regional Dev.', value: progress.cityIndicators.regionalDevelopment, color: 'bg-status-warning' },
-    { label: 'Public Trust', value: progress.cityIndicators.publicTrust, color: 'bg-status-danger' },
-  ];
 
   return (
     <div className="min-h-screen flex flex-col pb-20 md:pb-0">
       <Navbar />
 
-      <main className="flex-1 p-6 md:p-10 max-w-7xl mx-auto w-full">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          {/* Header & City Indicators */}
-          <section className="mb-12" aria-labelledby="city-heading">
-            <h1 id="city-heading" className="text-3xl font-bold mb-2">City Overview</h1>
-            <p className="text-xs text-gray-400 mb-6">
-              Indikator skenario edukatif (skala 0–100), bukan data atau prediksi kota sungguhan. Setiap kasus dihitung dari hasil terbaikmu.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {indicators.map((ind) => (
-                <div key={ind.label} className="card-dark !p-4">
-                  <div className="text-xs text-gray-400 mb-2">{ind.label}</div>
-                  <div className="text-2xl font-bold mb-2">
-                    {ind.value}
-                    <span className="text-sm font-normal text-gray-400"> / 100</span>
-                  </div>
-                  <div
-                    className="w-full bg-gray-700 h-2 rounded-full overflow-hidden"
-                    role="meter"
-                    aria-label={ind.label}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-valuenow={ind.value}
-                  >
-                    <div className={`h-full ${ind.color}`} style={{ width: `${ind.value}%` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+      <main className="flex-1 px-4 py-6 md:px-8 md:py-8 max-w-7xl mx-auto w-full">
+        <header className="mb-5 max-w-2xl">
+          <h1 className="font-display font-extrabold text-4xl md:text-5xl leading-none">Papan investigasi</h1>
+          <p className="text-gray-300 mt-2">
+            Lima berkas pelanggaran hak warga menunggu. Pilih satu foto di papan untuk membuka berkasnya.
+          </p>
+        </header>
 
-          {/* Cases List */}
-          <section aria-labelledby="cases-heading">
-            <h2 id="cases-heading" className="text-2xl font-bold mb-6">Active Cases</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {chapters.map((chapter) => {
-                const result = progress.caseResults[chapter.id];
-                const isCompleted = progress.completedCases.includes(chapter.id);
-                const bestScore = result?.best?.score;
-                return (
-                  <article
-                    key={chapter.id}
-                    className={`card-dark flex flex-col ${!chapter.isUnlocked ? 'opacity-60 grayscale' : ''}`}
-                  >
-                    <div className="flex justify-between items-start gap-2 mb-4">
-                      <span className="text-xs font-semibold px-3 py-1 bg-gray-800 rounded-full text-accent-blue border border-white/5">
-                        {chapter.category}
-                      </span>
-                      {!chapter.isUnlocked && <Lock size={16} className="text-gray-500" aria-label="Terkunci" />}
-                      {chapter.isUnlocked && isCompleted && (
-                        <span className="text-xs font-semibold px-2 py-1 rounded-full bg-status-success/15 text-status-success flex items-center gap-1">
-                          <CheckCircle2 size={12} aria-hidden="true" />
-                          Selesai{Number.isFinite(bestScore) ? ` · Terbaik ${bestScore}` : ''}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-xl font-bold mb-2">{chapter.title}</h3>
-                    <p className="text-sm text-gray-400 mb-6 flex-1">{chapter.description}</p>
-
-                    <button
-                      type="button"
-                      onClick={() => navigate(`/case/${chapter.id}`)}
-                      disabled={!chapter.isUnlocked}
-                      className={`w-full py-3 rounded-lg flex items-center justify-center gap-2 font-medium transition-colors ${
-                        chapter.isUnlocked
-                          ? 'bg-accent-blue/10 text-accent-blue hover:bg-accent-blue hover:text-white'
-                          : 'bg-gray-800 text-gray-500 cursor-not-allowed'
-                      }`}
-                    >
-                      {!chapter.isUnlocked ? (
-                        'Locked'
-                      ) : isCompleted ? (
-                        <>
-                          <RotateCcw size={16} aria-hidden="true" /> Replay Investigation
-                        </>
-                      ) : (
-                        <>
-                          <Play size={16} aria-hidden="true" /> Start Investigation
-                        </>
-                      )}
-                    </button>
-                  </article>
-                );
-              })}
+        <div className="wood-frame">
+          <div className="cork px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-start justify-between gap-8 mb-8 xl:mb-4">
+              <InvestigatorNote progress={progress} />
+              <div className="hidden xl:block self-end">
+                <StringLegend />
+              </div>
+              <CityCard indicators={progress.cityIndicators} />
             </div>
-          </section>
-        </motion.div>
+
+            <InvestigationBoard chapters={chapters} progress={progress} />
+          </div>
+        </div>
       </main>
     </div>
   );

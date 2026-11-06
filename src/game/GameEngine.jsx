@@ -21,7 +21,7 @@ const STAGE_LABELS = {
 export default function GameEngine() {
   const { caseId } = useParams();
   const navigate = useNavigate();
-  const { recordCaseResult } = useGameProgress();
+  const { recordCaseResult, markCaseStarted } = useGameProgress();
   const [stage, setStage] = useState('briefing'); // 'briefing', 'investigation', 'legal', 'decision', 'evaluation'
   const [partialScores, setPartialScores] = useState({});
   const [chosenDecision, setChosenDecision] = useState(null);
@@ -78,9 +78,9 @@ export default function GameEngine() {
   };
 
   return (
-    <div className="min-h-screen bg-navy-primary flex flex-col">
+    <div className="min-h-screen flex flex-col">
       {/* Top Navigation */}
-      <header className="border-b border-white/10 px-4 py-3 flex justify-between items-center gap-3 bg-navy-secondary sticky top-0 z-30">
+      <header className="border-b border-white/10 px-4 py-3 flex justify-between items-center gap-3 bg-soot-raised sticky top-0 z-30">
         <button
           type="button"
           onClick={() => navigate('/dashboard')}
@@ -90,7 +90,7 @@ export default function GameEngine() {
           <ChevronLeft size={20} aria-hidden="true" />
           <span className="hidden sm:inline">Return to Dashboard</span>
         </button>
-        <div className="font-bold text-accent-blue truncate min-w-0 text-center">{caseData.title}</div>
+        <div className="font-bold text-brass truncate min-w-0 text-center">{caseData.title}</div>
         <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-widest shrink-0" aria-live="polite">
           <span className="sr-only">Tahap saat ini: </span>
           {STAGE_LABELS[stage]}
@@ -108,36 +108,36 @@ export default function GameEngine() {
         {stage === 'briefing' && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full">
             <div className="light-interface p-8 md:p-12 rounded-xl shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-2 bg-accent-blue" />
-              <div className="flex items-center gap-3 text-accent-blue font-bold mb-6 uppercase tracking-wider text-sm">
-                <AlertCircle size={18} /> Official Case Briefing
+              <div className="absolute top-0 left-0 w-full h-2 bg-crimson" />
+              <div className="flex items-center gap-3 text-crimson font-bold mb-6 text-sm">
+                <AlertCircle size={18} /> Briefing kasus
               </div>
               <h1 className="text-3xl md:text-4xl font-bold mb-8">{caseData.title}</h1>
               <div className="grid md:grid-cols-3 gap-8 mb-8">
                 <div className="md:col-span-2 space-y-6">
                   <div>
-                    <h3 className="text-sm font-bold text-gray-500 mb-1 uppercase">Situation Report</h3>
-                    <p className="text-lg leading-relaxed text-gray-800">{caseData.briefing.situation}</p>
+                    <h3 className="text-sm font-bold text-gray-600 mb-1 uppercase">Situation Report</h3>
+                    <p className="text-lg leading-relaxed text-ink">{caseData.briefing.situation}</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-gray-500 mb-1 uppercase">Primary Objective</h3>
-                    <p className="text-lg leading-relaxed text-gray-800 font-medium">{caseData.briefing.objective}</p>
+                    <h3 className="text-sm font-bold text-gray-600 mb-1 uppercase">Primary Objective</h3>
+                    <p className="text-lg leading-relaxed text-ink font-medium">{caseData.briefing.objective}</p>
                   </div>
                 </div>
-                <div className="bg-ui-lightBg p-6 rounded-lg border border-gray-200">
-                  <h3 className="text-sm font-bold text-gray-500 mb-3 uppercase">Case Details</h3>
+                <div className="bg-paper-deep p-6 rounded-md border border-ink/15">
+                  <h3 className="text-sm font-bold text-gray-600 mb-3 uppercase">Case Details</h3>
                   <div className="space-y-4 text-sm">
                     <div>
-                      <span className="block text-gray-500">Location</span>
-                      <span className="font-bold text-gray-800">{caseData.briefing.location}</span>
+                      <span className="block text-gray-600">Location</span>
+                      <span className="font-bold text-ink">{caseData.briefing.location}</span>
                     </div>
                     <div>
-                      <span className="block text-gray-500">Source</span>
-                      <span className="font-bold text-gray-800">{caseData.briefing.report}</span>
+                      <span className="block text-gray-600">Source</span>
+                      <span className="font-bold text-ink">{caseData.briefing.report}</span>
                     </div>
                     <div>
-                      <span className="block text-gray-500 mb-1">Involved Parties</span>
-                      <ul className="list-disc pl-4 text-gray-800 font-medium space-y-1">
+                      <span className="block text-gray-600 mb-1">Involved Parties</span>
+                      <ul className="list-disc pl-4 text-ink font-medium space-y-1">
                         {caseData.briefing.characters.map((char, i) => (
                           <li key={i}>{char}</li>
                         ))}
@@ -146,8 +146,11 @@ export default function GameEngine() {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-end pt-6 border-t border-gray-200">
-                <button type="button" onClick={() => setStage('investigation')} className="btn-primary flex items-center gap-2">
+              <div className="flex justify-end pt-6 border-t border-ink/15">
+                <button type="button" onClick={() => {
+                  markCaseStarted(caseId);
+                  setStage('investigation');
+                }} className="btn-primary flex items-center gap-2">
                   <FileText size={18} aria-hidden="true" /> Acknowledge & Begin Investigation
                 </button>
               </div>

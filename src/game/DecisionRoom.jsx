@@ -10,7 +10,7 @@ export default function DecisionRoom({ caseData, onDecisionChosen }) {
       <div className="flex justify-between items-end mb-8 border-b border-white/10 pb-6">
         <div>
           <h2 className="text-3xl font-bold mb-2 flex items-center gap-3">
-            <ShieldAlert className="text-accent-blue shrink-0" aria-hidden="true" /> Decision Room
+            <ShieldAlert className="text-brass shrink-0" aria-hidden="true" /> Decision Room
           </h2>
           <p className="text-gray-400">Pilih strategi penanganan yang proporsional, berdasar hukum, dan efektif untuk jangka panjang.</p>
         </div>
@@ -28,12 +28,12 @@ export default function DecisionRoom({ caseData, onDecisionChosen }) {
               whileHover={{ scale: 1.02 }}
               onClick={() => setSelectedDecision(dec)}
               className={`card-dark text-left cursor-pointer flex flex-col justify-between border-2 transition-all ${
-                isSelected ? 'border-accent-blue bg-navy-secondary/90' : 'border-white/10 hover:border-gray-500'
+                isSelected ? 'border-brass bg-soot-raised/90' : 'border-white/10 hover:border-gray-500'
               }`}
             >
               <span className="block">
                 <span className="block text-xl font-bold mb-3 text-white">{dec.title}</span>
-                <span className="text-xs text-accent-blue mb-4 flex items-center gap-1 font-semibold">
+                <span className="text-xs text-brass mb-4 flex items-center gap-1 font-semibold">
                   <Building2 size={14} aria-hidden="true" /> {dec.stakeholders}
                 </span>
                 <span className="block text-sm text-gray-300 mb-6 leading-relaxed">{dec.description}</span>
@@ -57,10 +57,10 @@ export default function DecisionRoom({ caseData, onDecisionChosen }) {
               <span className="mt-6 pt-4 border-t border-white/10 flex justify-end" aria-hidden="true">
                 <span
                   className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                    isSelected ? 'border-accent-blue bg-accent-blue' : 'border-gray-600'
+                    isSelected ? 'border-brass bg-brass' : 'border-gray-600'
                   }`}
                 >
-                  {isSelected && <CheckCircle2 size={16} className="text-white" />}
+                  {isSelected && <CheckCircle2 size={16} className="text-ink" />}
                 </span>
               </span>
             </motion.button>

@@ -36,11 +36,11 @@ export default function CharacterSelect() {
               whileTap={{ scale: 0.98 }}
               key={char.id}
               onClick={() => setSelectedId(char.id)}
-              className={`card-dark text-left cursor-pointer transition-all ${selectedId === char.id ? 'border-accent-blue ring-1 ring-accent-blue bg-navy-secondary/80' : 'hover:border-gray-500'}`}
+              className={`card-dark text-left cursor-pointer transition-all ${selectedId === char.id ? 'border-brass ring-1 ring-brass bg-soot-raised/80' : 'hover:border-gray-500'}`}
             >
               <span className="block text-5xl mb-4" aria-hidden="true">{char.avatar}</span>
               <span className="block text-xl font-bold mb-1">{char.name}</span>
-              <span className="block text-sm text-accent-blue mb-4">{char.role}</span>
+              <span className="block text-sm text-brass mb-4">{char.role}</span>
               <span className="block text-gray-400 text-sm leading-relaxed">{char.description}</span>
             </motion.button>
           ))}
