@@ -6,6 +6,7 @@ import {
   recordCaseResult,
   markCaseStarted,
   setShowCommentary,
+  saveInvestigation,
 } from '../lib/progressStore';
 
 /**
@@ -15,5 +16,5 @@ import {
  */
 export const useGameProgress = () => {
   const progress = useSyncExternalStore(subscribe, getProgress, getProgress);
-  return { progress, selectCharacter, recordCaseResult, markCaseStarted, setShowCommentary };
+  return { progress, selectCharacter, recordCaseResult, markCaseStarted, setShowCommentary, saveInvestigation };
 };

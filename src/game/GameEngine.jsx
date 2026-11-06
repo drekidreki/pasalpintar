@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronLeft, FileText, AlertCircle } from 'lucide-react';
+import { ChevronLeft, FileText, AlertCircle, NotebookPen } from 'lucide-react';
 import { chapters } from '../data/chapters';
 import { computeCaseScore } from '../data/scoring';
 import { useGameProgress } from '../hooks/useGameProgress';
 import { getCharacter, getCommentary, getRelevance, relevanceLabel } from '../lib/commentary';
 import InvestigatorAvatar from '../components/InvestigatorAvatar';
+import JournalDrawer from '../components/JournalDrawer';
+import { createDraft, draftOps } from '../lib/investigation';
 import Investigation from './Investigation';
 import LegalAnalysis from './LegalAnalysis';
 import DecisionRoom from './DecisionRoom';
@@ -23,8 +25,13 @@ const STAGE_LABELS = {
 export default function GameEngine() {
   const { caseId } = useParams();
   const navigate = useNavigate();
-  const { progress, recordCaseResult, markCaseStarted } = useGameProgress();
+  const { progress, recordCaseResult, markCaseStarted, saveInvestigation } = useGameProgress();
   const characterId = progress.characterId;
+  const savedDraft = progress.investigations?.[caseId];
+  const draft = savedDraft || createDraft();
+  const hasDraft = Boolean(savedDraft && (savedDraft.opened.length || savedDraft.interviewed.length));
+  const [journalOpen, setJournalOpen] = useState(false);
+  const updateDraft = (next) => saveInvestigation(caseId, next);
   const [stage, setStage] = useState('briefing'); // 'briefing', 'investigation', 'legal', 'decision', 'evaluation'
   const [partialScores, setPartialScores] = useState({});
   const [chosenDecision, setChosenDecision] = useState(null);
@@ -55,8 +62,14 @@ export default function GameEngine() {
     );
   }
 
-  const handleLegalComplete = (scores) => {
+  const handleInvestigationComplete = (scores) => {
     setPartialScores(scores);
+    setStage('legal');
+  };
+
+  const handleLegalComplete = (scores) => {
+    // Keep the problem-identification score graded in the investigation stage.
+    setPartialScores((prev) => ({ ...prev, ...scores }));
     setStage('decision');
   };
 
@@ -104,7 +117,9 @@ export default function GameEngine() {
         ref={mainRef}
         tabIndex={-1}
         aria-label={`Tahap ${STAGE_LABELS[stage]}`}
-        className="flex-1 p-6 md:p-10 max-w-5xl mx-auto w-full flex focus:outline-none"
+        className={`flex-1 p-6 md:p-10 max-w-5xl mx-auto w-full flex focus:outline-none ${
+          stage === 'legal' || stage === 'decision' ? 'pb-28' : ''
+        }`}
       >
         
         {/* STAGE 1: BRIEFING */}
@@ -155,7 +170,8 @@ export default function GameEngine() {
                   markCaseStarted(caseId);
                   setStage('investigation');
                 }} className="btn-primary flex items-center gap-2">
-                  <FileText size={18} aria-hidden="true" /> Acknowledge & Begin Investigation
+                  <FileText size={18} aria-hidden="true" />{' '}
+                  {hasDraft ? 'Acknowledge & Resume Investigation' : 'Acknowledge & Begin Investigation'}
                 </button>
               </div>
             </div>
@@ -167,8 +183,20 @@ export default function GameEngine() {
           <Investigation
             caseData={caseData}
             characterId={characterId}
-            onStageComplete={() => setStage('legal')}
+            draft={draft}
+            onDraftChange={updateDraft}
+            onOpenJournal={() => setJournalOpen(true)}
+            onStageComplete={handleInvestigationComplete}
           />
+        )}
+
+        {/* Journal shortcut while reasoning about the evidence */}
+        {(stage === 'legal' || stage === 'decision') && (
+          <div className="fixed bottom-4 right-4 z-30">
+            <button type="button" onClick={() => setJournalOpen(true)} className="btn-secondary shadow-lifted gap-2">
+              <NotebookPen size={18} aria-hidden="true" /> Buka jurnal
+            </button>
+          </div>
         )}
 
         {/* STAGE 3: LEGAL ANALYSIS */}
@@ -200,6 +228,15 @@ export default function GameEngine() {
         )}
 
       </main>
+
+      {journalOpen && (
+        <JournalDrawer
+          caseData={caseData}
+          draft={draft}
+          onNoteChange={(text) => updateDraft(draftOps.note(draft, text))}
+          onClose={() => setJournalOpen(false)}
+        />
+      )}
     </div>
   );
 }

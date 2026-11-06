@@ -32,10 +32,8 @@ export function computeLegalScores(legalAnalysis, { rights, duties, articles }) 
   const a = tally(legalAnalysis.legalArticles, articles);
 
   return {
-    // The investigation stage can only be finished after every document and
-    // witness has been examined, so problem identification is awarded in full.
-    // (A graded investigation is planned for Stage D.)
-    problemIdentScore: SCORING_WEIGHTS.problemIdentification,
+    // Problem identification is graded in the investigation stage
+    // (lib/investigation.js → computeProblemIdentScore) and merged in GameEngine.
     rightsDutiesScore: Math.round(
       ratio(r.correct + d.correct, r.incorrect + d.incorrect, r.total + d.total) * SCORING_WEIGHTS.rightsDuties
     ),

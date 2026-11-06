@@ -17,6 +17,7 @@
  *   legacyCases: string[],               // cases completed under v1 (impact already in baseline)
  *   inProgressCases: string[],           // briefing acknowledged, not finished yet (added in Stage B)
  *   preferences: { showCommentary: boolean } // added in Stage C
+ *   investigations: { [caseId]: draft }       // unfinished investigation, added in Stage D
  *   caseResults: {
  *     [caseId]: { attempts, lastScore, lastDecisionId, lastPlayedAt,
  *                 best: { score, breakdown, decisionId, cityImpact, achievedAt } }
@@ -53,6 +54,29 @@ function sanitizePreferences(value) {
   };
 }
 
+const strList = (v) => (Array.isArray(v) ? [...new Set(v.filter((x) => typeof x === 'string'))] : []);
+
+/** Keep only well-formed investigation drafts; never throw on odd data. */
+function sanitizeInvestigations(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+  const out = {};
+  for (const [caseId, d] of Object.entries(value)) {
+    if (!d || typeof d !== 'object') continue;
+    const classifications = {};
+    for (const [k, v] of Object.entries(d.classifications || {})) if (typeof v === 'string') classifications[k] = v;
+    const asked = {};
+    for (const [k, v] of Object.entries(d.asked || {})) asked[k] = strList(v);
+    out[caseId] = {
+      opened: strList(d.opened),
+      classifications,
+      interviewed: strList(d.interviewed),
+      asked,
+      note: typeof d.note === 'string' ? d.note.slice(0, 2000) : '',
+    };
+  }
+  return out;
+}
+
 export function createDefaultProgress() {
   return {
     version: SCHEMA_VERSION,
@@ -63,6 +87,7 @@ export function createDefaultProgress() {
     legacyCases: [],
     inProgressCases: [],
     preferences: { ...DEFAULT_PREFERENCES },
+    investigations: {},
     caseResults: {},
   };
 }
@@ -161,6 +186,7 @@ export function migrate(raw) {
       legacyCases: [...completedCases],
       inProgressCases: [],
       preferences: sanitizePreferences(parsed.preferences),
+      investigations: {},
       caseResults: {},
     };
     return { progress, backup: { key: BACKUP_KEY_V1, raw }, changed: true };
@@ -175,6 +201,7 @@ export function migrate(raw) {
     legacyCases: sanitizeStringArray(parsed.legacyCases),
     inProgressCases: sanitizeStringArray(parsed.inProgressCases),
     preferences: sanitizePreferences(parsed.preferences),
+    investigations: sanitizeInvestigations(parsed.investigations),
     caseResults: sanitizeCaseResults(parsed.caseResults),
   };
   progress.cityIndicators = computeIndicators(progress);
@@ -251,6 +278,11 @@ export function selectCharacter(characterId) {
   update((prev) => ({ ...prev, characterId }));
 }
 
+/** Save the unfinished investigation of one case (survives refresh). */
+export function saveInvestigation(caseId, draft) {
+  update((prev) => ({ ...prev, investigations: { ...prev.investigations, [caseId]: draft } }));
+}
+
 export function setShowCommentary(show) {
   update((prev) => ({ ...prev, preferences: { ...prev.preferences, showCommentary: Boolean(show) } }));
 }
@@ -297,6 +329,8 @@ export function recordCaseResult(caseId, result) {
       ...prev,
       completedCases: [...new Set([...prev.completedCases, caseId])],
       inProgressCases: prev.inProgressCases.filter((id) => id !== caseId),
+      // A finished case starts fresh when replayed.
+      investigations: Object.fromEntries(Object.entries(prev.investigations || {}).filter(([id]) => id !== caseId)),
       caseResults,
     };
     draft.cityIndicators = computeIndicators(draft);
